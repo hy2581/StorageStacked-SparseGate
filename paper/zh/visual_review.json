@@ -1,0 +1,76 @@
+{
+  "schema": "sparse_gate_chinese_visual_review_v1",
+  "status": "VISUALLY_REVIEWED",
+  "pdf": "paper/SparseGate-paper-zh.pdf",
+  "pdf_sha256": "1f079c693a12a4dec191931cbb0949c011a2d1c156e13f43ed97e35d62a45b7b",
+  "delivery_sha256": "6896e780116b22fee5cb597ba5154c46b14160e0dbb22bf23a2d902b239ae2bb",
+  "reviewed_at_utc": "2026-09-22T06:37:10.174509+00:00",
+  "method": "Rendered the final PDF with PyMuPDF at 108 dpi and visually inspected each of the seven pages.",
+  "pages": [
+    {
+      "page": 1,
+      "render_path": "paper/build/zh/final_review/page-1.png",
+      "render_sha256": "a07ccd24990b6a76c2b5c1a9a8841186bdb751841e05180b6769c9b03da191e2",
+      "status": "REVIEWED",
+      "notes": "标题、摘要、关键词与双栏正文清晰；中文术语和公式排版正常。"
+    },
+    {
+      "page": 2,
+      "render_path": "paper/build/zh/final_review/page-2.png",
+      "render_sha256": "39a0d394d8827ea8a6013962a982e091352daab3a29127afa42b127f2c3ebe3b",
+      "status": "REVIEWED",
+      "notes": "统一系统中文架构图及协议路径清晰；公式和正文无裁切。"
+    },
+    {
+      "page": 3,
+      "render_path": "paper/build/zh/final_review/page-3.png",
+      "render_sha256": "cc2d50cbf16dcd1ffc460cb232f96eb5af953a6fb5435dacc307cbd1bd25e58d",
+      "status": "REVIEWED",
+      "notes": "FP4 数值通路中文图清晰；多行传输计数公式完整。"
+    },
+    {
+      "page": 4,
+      "render_path": "paper/build/zh/final_review/page-4.png",
+      "render_sha256": "806028570abee57022277a71400b9a8540f3bae7596e70ce2f26f7241b515eb5",
+      "status": "REVIEWED",
+      "notes": "物理记录布局与 96 B / 288 B 标注清晰；表 1 无溢出。"
+    },
+    {
+      "page": 5,
+      "render_path": "paper/build/zh/final_review/page-5.png",
+      "render_sha256": "143b584c205ae6e8d585f3c38618de25242dba4b9973c3267c797fdbcd2ec17b",
+      "status": "REVIEWED",
+      "notes": "命令流程、实际 VCD 波形及表 2/3 完整；6 ns DONE 间隔与中文单位正确。"
+    },
+    {
+      "page": 6,
+      "render_path": "paper/build/zh/final_review/page-6.png",
+      "render_sha256": "241c4bd93bb997941e2965cadc3f58121f7a76b07de476448dd5327d5671950e",
+      "status": "REVIEWED",
+      "notes": "两张测量图中文坐标、图例和数值正确；表 4 面积与时序单位清晰，未溢出。"
+    },
+    {
+      "page": 7,
+      "render_path": "paper/build/zh/final_review/page-7.png",
+      "render_sha256": "5831ea4cfd1b54817e1813210b28a82b4987adcf3d53e6f4d3fdd6b07503c3c0",
+      "status": "REVIEWED",
+      "notes": "讨论、研究材料与 8 条参考文献完整；机构作者与 RTL 大小写正确。"
+    }
+  ],
+  "figures": 7,
+  "tables": 4,
+  "references": 8,
+  "findings": {
+    "clipped_content": false,
+    "overlapping_text": false,
+    "garbled_chinese": false,
+    "overflowing_tables": false
+  },
+  "cross_review": {
+    "language_and_technical_meaning": "Two independent agents reviewed Chinese wording, mathematical meaning, numerical tables and evidence boundaries. Necessary wording and corporate-author formatting corrections were incorporated.",
+    "earlier_visual_review_pdf_sha256": "11e83798921a8038877e8c1a817c0788f9a760c164cbef10b27cdb575f111606",
+    "earlier_visual_review_pages": 7,
+    "final_pdf_review": "Root agent inspected all seven pages of the final PDF identified above after the final build."
+  },
+  "limits": "Editorial and visual checks only; this record is not external peer review or new hardware validation. Page PNGs are reproducible local review outputs and are not committed."
+}

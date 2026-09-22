@@ -1,0 +1,44 @@
+\documentclass[UTF8,fontset=none,a4paper,10pt,twocolumn]{ctexart}
+\usepackage[top=20mm,bottom=20mm,left=17mm,right=17mm,columnsep=7mm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,graphicx,array,microtype,url}
+\usepackage[sort&compress]{gbt7714}
+\usepackage[hidelinks]{hyperref}
+\setmainfont{TeX Gyre Termes}
+\setsansfont{TeX Gyre Heros}
+\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
+\setCJKmainfont{Noto Serif CJK SC}[SlantedFont={Noto Serif CJK SC}]
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Sans Mono CJK SC}
+\ctexset{section={format=\large\bfseries,beforeskip=1.2ex plus .3ex,afterskip=.7ex},subsection={format=\normalsize\bfseries,beforeskip=1ex,afterskip=.5ex}}
+\setlength{\textfloatsep}{12pt plus 2pt minus 2pt}
+\setlength{\dbltextfloatsep}{12pt plus 2pt minus 2pt}
+\setlength{\floatsep}{10pt plus 2pt minus 2pt}
+\setlength{\dblfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\tabcolsep}{3.5pt}
+\linespread{1.10}
+\emergencystretch=1em
+\graphicspath{{figures/}{figures/generated/}}
+\newcommand{\code}[1]{\texttt{#1}}
+\input{generated/results.tex}
+\hypersetup{pdftitle={面向统一 CPU/GPU/NPU–UCIe 存储系统的 FP4 稀疏索引电路},pdfauthor={匿名作者},pdfsubject={数字门控电路、统一系统集成及可复现实验研究：中文译稿}}
+\begin{document}
+\twocolumn[{
+\begin{center}
+{\LARGE\bfseries 面向统一 CPU/GPU/NPU–UCIe 存储系统的\\[.25em] FP4 稀疏索引电路\par}
+\vspace{.8em}
+{\normalsize 匿名作者\par}
+{\small 数字硬件设计与可复现实验研究\quad 中文译稿\par}
+\end{center}
+\vspace{.3em}
+\begin{minipage}{\textwidth}
+\small
+\textbf{摘\quad 要：}学习型稀疏注意力索引需要协同实现低精度计算、候选选择与数据搬运。本文面向 CSA2 投影后的索引算子，设计可综合数字电路，并通过原生 256 位 AXI、AXI2Flit 和 UCIe 接入 CPU、Vortex GPU 与 CoralNPU 共用的在线存储仿真系统。电路采用 16 路 E2M1 FP4 计算通道和 E8M0 分组缩放，计算 32 个索引头的有符号加权 ReLU 分数；以共享键缓冲区、稳定 Top-512 最小堆、明确的 FP32 舍入约定及 DMA 端点，支持全量扫描、候选集扫描和已提交索引复用。命令完成由实际存储响应驱动。\input{generated/abstract_results.tex}验证覆盖 \CoreCaseCount{} 个核心用例、\FpCaseCount{} 个浮点算术用例、预训练权重派生算子输入以及 AXI 错误与背压场景。投影、候选块生成、最终注意力计算、完整模型质量评估及 SRAM-CIM 物理实现不在本文已验证范围内。
+\par\medskip
+\textbf{关键词：}数字集成电路；稀疏注意力；FP4；近存计算；RTL；AXI；UCIe
+\end{minipage}
+\vspace{1.1em}
+}]
+\input{body.tex}
+\bibliographystyle{gbt7714-numerical}
+\bibliography{references}
+\end{document}

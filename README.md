@@ -44,7 +44,9 @@
 | 可综合算术核与 Top-K | [rtl/sparse_gate](rtl/sparse_gate/) |
 | AXI256 寄存器与 DMA 电路 | [rtl/sparse_gate_axi](rtl/sparse_gate_axi/) |
 | 算法选型、官方来源和独立 oracle | [research](research/) |
-| IEEE 论文 PDF | [SparseGate-paper.pdf](paper/SparseGate-paper.pdf) |
+| 中文论文 PDF（正文、图表与学术润色） | [SparseGate-paper-zh.pdf](paper/SparseGate-paper-zh.pdf) |
+| 英文 IEEE 论文 PDF | [SparseGate-paper.pdf](paper/SparseGate-paper.pdf) |
+| 中文 LaTeX、图表与复现入口 | [paper/zh](paper/zh/) |
 | LaTeX、测量作图与生成图片提示词 | [paper](paper/) |
 | 在线适配、时钟与命令完成规则 | [system_adapter.md](docs/sparse_gate/system_adapter.md) |
 | 原统一系统说明 | [upstream_README.md](docs/upstream_README.md) |

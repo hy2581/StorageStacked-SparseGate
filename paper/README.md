@@ -2,6 +2,8 @@
 
 The English IEEE-style manuscript accompanies the independently implemented digital hardware and its online system integration. It is an engineering research draft, not a peer-reviewed publication. Algorithm attribution, hardware boundaries, evidence limitations and measured timing margins are retained explicitly.
 
+完整中文译稿见 [SparseGate-paper-zh.pdf](SparseGate-paper-zh.pdf)。正文与全部七张图、四张表已中文化并进行学术语言润色，保留英文版的公式、实验数据和结论边界。中文 LaTeX、图表提示词与独立构建命令见 [zh/README.md](zh/README.md)；两种语言分别记录交付与逐页检查结果。
+
 - `main.tex`, `references.bib`: editable manuscript and primary references.
 - `export_completion.py`: exports a small actual VCD window from the accepted native CPU case when regenerating system evidence.
 - `prepare.py`: generates numerical macros, tables and measured plots from evidence JSON; verifies the recorded source hashes and refuses final publication when required system evidence is incomplete.
