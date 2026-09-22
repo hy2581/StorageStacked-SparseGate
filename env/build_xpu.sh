@@ -32,7 +32,7 @@ env -u CFLAGS -u CXXFLAGS -u CPPFLAGS -u LDFLAGS make -C tests/regression/vecadd
 make -C "$HET_PROJECT_ROOT/workloads/three_source"
 make -C "$HET_PROJECT_ROOT/workloads/shared_buffer" CC="$AXI_CC"
 cd "$CORALNPU_HOME"
-"$SS_DEPS_ROOT/xpu-tools/bin/bazel" --output_user_root="$SS_DEPS_ROOT/bazel" build --jobs=6 \
+"$SS_DEPS_ROOT/xpu-tools/bin/bazel" --output_user_root="${SS_BAZEL_OUTPUT_ROOT:-$SS_DEPS_ROOT/bazel}" build --jobs=6 \
     --define=storagestacked_native_cpp=1 \
     --repo_env="CC=$AXI_CC" --repo_env="CXX=$AXI_CXX" \
     --action_env="CC=$AXI_CC" --action_env="CXX=$AXI_CXX" \
@@ -47,7 +47,7 @@ from pathlib import Path
 root=Path(os.environ['SS_ROOT']);npu=Path(os.environ['CORALNPU_HOME'])
 build=root/'build/xpu';build.mkdir(parents=True,exist_ok=True)
 # cquery chooses the actual target configuration, without cache-path guessing.
-cmd=[os.environ['SS_DEPS_ROOT']+'/xpu-tools/bin/bazel','--output_user_root='+os.environ['SS_DEPS_ROOT']+'/bazel',
+cmd=[os.environ['SS_DEPS_ROOT']+'/xpu-tools/bin/bazel','--output_user_root='+os.environ.get('SS_BAZEL_OUTPUT_ROOT',os.environ['SS_DEPS_ROOT']+'/bazel'),
      'cquery','--define=storagestacked_native_cpp=1','--output=files','//gem5int:ddr_touch.elf']
 for kind in ('repo_env','action_env'):
     for key,envkey in [('CC','AXI_CC'),('CXX','AXI_CXX')]:

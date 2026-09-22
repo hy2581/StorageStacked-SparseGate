@@ -1,0 +1,769 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "scope": "Actual FP4 score arithmetic and stable Top-K core only; no projection, source block-pool, epoch reuse, DMA, final attention, or physical signoff implied.",
+  "contract": "CSA2_FP4_G32_FP32_RNE_ORDERED_V1",
+  "config": {
+    "MAX_HEADS": 32,
+    "TOPK_MAX": 512,
+    "LANES": 16,
+    "D": 128,
+    "G": 32
+  },
+  "case_count": 42,
+  "cases": [
+    {
+      "id": 1,
+      "name": "one_head",
+      "heads": 1,
+      "positions": 7,
+      "submitted": 7,
+      "topk": 3,
+      "expected_error": 0,
+      "mac_terms": 896,
+      "measured": {
+        "cycles": 760,
+        "keys_scored": 7,
+        "mac_terms": 896,
+        "error": 0
+      },
+      "selected_count": 3,
+      "selected_sha256": "cdb1bf2748c4e1d343e5d9e2e949319b4f6648e03a64669b2ee017c3dbfe0610"
+    },
+    {
+      "id": 2,
+      "name": "random_h2_n31_k1",
+      "heads": 2,
+      "positions": 31,
+      "submitted": 31,
+      "topk": 1,
+      "expected_error": 0,
+      "mac_terms": 7936,
+      "measured": {
+        "cycles": 3672,
+        "keys_scored": 31,
+        "mac_terms": 7936,
+        "error": 0
+      },
+      "selected_count": 1,
+      "selected_sha256": "56062e672a70225c9a556091c161ae4a13fe19985d9c075d9ec5f54b95243081"
+    },
+    {
+      "id": 3,
+      "name": "random_h4_n40_k17",
+      "heads": 4,
+      "positions": 40,
+      "submitted": 40,
+      "topk": 17,
+      "expected_error": 0,
+      "mac_terms": 20480,
+      "measured": {
+        "cycles": 6536,
+        "keys_scored": 40,
+        "mac_terms": 20480,
+        "error": 0
+      },
+      "selected_count": 17,
+      "selected_sha256": "498528febbc42ee36f6d0a497aa0556e773c30d7debca66138b67259dd16d4d9"
+    },
+    {
+      "id": 4,
+      "name": "random_h8_n33_k32",
+      "heads": 8,
+      "positions": 33,
+      "submitted": 33,
+      "topk": 32,
+      "expected_error": 0,
+      "mac_terms": 33792,
+      "measured": {
+        "cycles": 8319,
+        "keys_scored": 33,
+        "mac_terms": 33792,
+        "error": 0
+      },
+      "selected_count": 32,
+      "selected_sha256": "ec7dc19f4aa88b8d355a3a37da1265ae6d4b9e95896f4fc6edf4f116c92fb7b8"
+    },
+    {
+      "id": 5,
+      "name": "random_h32_n11_k8",
+      "heads": 32,
+      "positions": 11,
+      "submitted": 11,
+      "topk": 8,
+      "expected_error": 0,
+      "mac_terms": 45056,
+      "measured": {
+        "cycles": 9812,
+        "keys_scored": 11,
+        "mac_terms": 45056,
+        "error": 0
+      },
+      "selected_count": 8,
+      "selected_sha256": "fcf850bc734515306586504616f310af7e7b52a021fd63a64ffa95272570ddfb"
+    },
+    {
+      "id": 6,
+      "name": "random_h1_n521_k512",
+      "heads": 1,
+      "positions": 521,
+      "submitted": 521,
+      "topk": 512,
+      "expected_error": 0,
+      "mac_terms": 66688,
+      "measured": {
+        "cycles": 53277,
+        "keys_scored": 521,
+        "mac_terms": 66688,
+        "error": 0
+      },
+      "selected_count": 512,
+      "selected_sha256": "c6969f2faa742252fc78bd5ff4370e71d8597572977b9731f06e8203a0558c4b"
+    },
+    {
+      "id": 7,
+      "name": "random_h1_n533_k1",
+      "heads": 1,
+      "positions": 533,
+      "submitted": 533,
+      "topk": 1,
+      "expected_error": 0,
+      "mac_terms": 68224,
+      "measured": {
+        "cycles": 50461,
+        "keys_scored": 533,
+        "mac_terms": 68224,
+        "error": 0
+      },
+      "selected_count": 1,
+      "selected_sha256": "bb5974a06389c3363537e1bdc27018af839cb7254f261dc3bfdd52ee1fe0fb32"
+    },
+    {
+      "id": 8,
+      "name": "random_h32_n521_k512",
+      "heads": 32,
+      "positions": 521,
+      "submitted": 521,
+      "topk": 512,
+      "expected_error": 0,
+      "mac_terms": 2134016,
+      "measured": {
+        "cycles": 362348,
+        "keys_scored": 521,
+        "mac_terms": 2134016,
+        "error": 0
+      },
+      "selected_count": 512,
+      "selected_sha256": "edda4956e4f1868a7b36a0f9bfbd38eb7aaacae5fe868fc1ee5947fbb397cc46"
+    },
+    {
+      "id": 9,
+      "name": "all_equal_shuffled_ids",
+      "heads": 4,
+      "positions": 35,
+      "submitted": 35,
+      "topk": 9,
+      "expected_error": 0,
+      "mac_terms": 17920,
+      "measured": {
+        "cycles": 5669,
+        "keys_scored": 35,
+        "mac_terms": 17920,
+        "error": 0
+      },
+      "selected_count": 9,
+      "selected_sha256": "657858c18e5e7e179f74951e97bf36264d219e0eb94a550050d16c678ab00d6e"
+    },
+    {
+      "id": 10,
+      "name": "negative_head_weights",
+      "heads": 2,
+      "positions": 20,
+      "submitted": 20,
+      "topk": 7,
+      "expected_error": 0,
+      "mac_terms": 5120,
+      "measured": {
+        "cycles": 2490,
+        "keys_scored": 20,
+        "mac_terms": 5120,
+        "error": 0
+      },
+      "selected_count": 7,
+      "selected_sha256": "6c77b7dfba9a3274539bddd2ca55b657ca855ac0a614b2752078f335b0ec19f4"
+    },
+    {
+      "id": 11,
+      "name": "gradual_underflow_zero",
+      "heads": 3,
+      "positions": 5,
+      "submitted": 5,
+      "topk": 4,
+      "expected_error": 0,
+      "mac_terms": 1920,
+      "measured": {
+        "cycles": 886,
+        "keys_scored": 5,
+        "mac_terms": 1920,
+        "error": 0
+      },
+      "selected_count": 4,
+      "selected_sha256": "42ba7513dc4ea70ed210eac1330eb7d78db5fc1f7005a3c02d275e0f8127f59d"
+    },
+    {
+      "id": 12,
+      "name": "subnormal_scores",
+      "heads": 1,
+      "positions": 13,
+      "submitted": 13,
+      "topk": 8,
+      "expected_error": 0,
+      "mac_terms": 1664,
+      "measured": {
+        "cycles": 1372,
+        "keys_scored": 13,
+        "mac_terms": 1664,
+        "error": 0
+      },
+      "selected_count": 8,
+      "selected_sha256": "b278f37a7f369e1474164da8f3f9690c3cbab1ccd91cce77e36bd39f817074cc"
+    },
+    {
+      "id": 13,
+      "name": "relu_after_complete_dot_signed_weight",
+      "heads": 1,
+      "positions": 4,
+      "submitted": 4,
+      "topk": 3,
+      "expected_error": 0,
+      "mac_terms": 512,
+      "measured": {
+        "cycles": 456,
+        "keys_scored": 4,
+        "mac_terms": 512,
+        "error": 0
+      },
+      "selected_count": 3,
+      "selected_sha256": "cdb1bf2748c4e1d343e5d9e2e949319b4f6648e03a64669b2ee017c3dbfe0610"
+    },
+    {
+      "id": 14,
+      "name": "candidate_subset",
+      "heads": 4,
+      "positions": 64,
+      "submitted": 22,
+      "topk": 12,
+      "expected_error": 0,
+      "mac_terms": 11264,
+      "measured": {
+        "cycles": 3758,
+        "keys_scored": 22,
+        "mac_terms": 11264,
+        "error": 0
+      },
+      "selected_count": 12,
+      "selected_sha256": "416a39d661e2d41f6cc15461168e805bedbbd4f5e5255a0af33aeaf55355e71d"
+    },
+    {
+      "id": 15,
+      "name": "empty_scan",
+      "expected_error": 0,
+      "mac_terms": 0,
+      "measured": {
+        "cycles": 1,
+        "keys_scored": 0,
+        "mac_terms": 0,
+        "error": 0
+      },
+      "selected_count": 0,
+      "selected_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": 16,
+      "name": "missing_q",
+      "expected_error": 2,
+      "measured": {
+        "cycles": 141,
+        "keys_scored": 0,
+        "mac_terms": 0,
+        "error": 2
+      },
+      "selected_count": 0,
+      "selected_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": 17,
+      "name": "missing_k",
+      "expected_error": 3,
+      "measured": {
+        "cycles": 139,
+        "keys_scored": 0,
+        "mac_terms": 0,
+        "error": 3
+      },
+      "selected_count": 0,
+      "selected_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": 18,
+      "name": "bad_q_scale",
+      "expected_error": 4,
+      "measured": {
+        "cycles": 142,
+        "keys_scored": 0,
+        "mac_terms": 0,
+        "error": 4
+      },
+      "selected_count": 0,
+      "selected_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": 19,
+      "name": "bad_k_scale",
+      "expected_error": 4,
+      "measured": {
+        "cycles": 140,
+        "keys_scored": 0,
+        "mac_terms": 0,
+        "error": 4
+      },
+      "selected_count": 0,
+      "selected_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": 20,
+      "name": "bad_weight",
+      "expected_error": 5,
+      "measured": {
+        "cycles": 142,
+        "keys_scored": 0,
+        "mac_terms": 0,
+        "error": 5
+      },
+      "selected_count": 0,
+      "selected_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": 21,
+      "name": "overflow",
+      "expected_error": 6,
+      "measured": {
+        "cycles": 145,
+        "keys_scored": 0,
+        "mac_terms": 32,
+        "error": 6
+      },
+      "selected_count": 0,
+      "selected_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": 22,
+      "name": "bad_config_0_1",
+      "expected_error": 1,
+      "measured": {
+        "cycles": 0,
+        "keys_scored": 0,
+        "mac_terms": 0,
+        "error": 1
+      },
+      "selected_count": 0,
+      "selected_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": 23,
+      "name": "bad_config_33_1",
+      "expected_error": 1,
+      "measured": {
+        "cycles": 0,
+        "keys_scored": 0,
+        "mac_terms": 0,
+        "error": 1
+      },
+      "selected_count": 0,
+      "selected_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": 24,
+      "name": "bad_config_1_0",
+      "expected_error": 1,
+      "measured": {
+        "cycles": 0,
+        "keys_scored": 0,
+        "mac_terms": 0,
+        "error": 1
+      },
+      "selected_count": 0,
+      "selected_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": 25,
+      "name": "bad_config_1_513",
+      "expected_error": 1,
+      "measured": {
+        "cycles": 0,
+        "keys_scored": 0,
+        "mac_terms": 0,
+        "error": 1
+      },
+      "selected_count": 0,
+      "selected_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": 27,
+      "name": "recovery_after_reset",
+      "heads": 2,
+      "positions": 4,
+      "submitted": 4,
+      "topk": 3,
+      "expected_error": 0,
+      "mac_terms": 1024,
+      "measured": {
+        "cycles": 611,
+        "keys_scored": 4,
+        "mac_terms": 1024,
+        "error": 0
+      },
+      "selected_count": 3,
+      "selected_sha256": "c194858f788ecaa40c4a0d4b39a8b447c52d83bfa1db7f66e01bbb8af47a521f"
+    },
+    {
+      "id": 28,
+      "name": "external:random-small-k8.json",
+      "heads": 32,
+      "positions": 24,
+      "submitted": 24,
+      "topk": 8,
+      "expected_error": 0,
+      "mac_terms": 98304,
+      "measured": {
+        "cycles": 18757,
+        "keys_scored": 24,
+        "mac_terms": 98304,
+        "error": 0
+      },
+      "selected_count": 8,
+      "selected_sha256": "2d2f91e16c55e83deac15cea30bfd5146d774c5270a3c016f24403517235bc67"
+    },
+    {
+      "id": 29,
+      "name": "external:random-top512.json",
+      "heads": 32,
+      "positions": 600,
+      "submitted": 600,
+      "topk": 512,
+      "expected_error": 0,
+      "mac_terms": 2457600,
+      "measured": {
+        "cycles": 417001,
+        "keys_scored": 600,
+        "mac_terms": 2457600,
+        "error": 0
+      },
+      "selected_count": 512,
+      "selected_sha256": "aeef15f20fbdfdbf4aac4af453937a1842c681501ff0c966561e1e806696b4cd"
+    },
+    {
+      "id": 30,
+      "name": "external:zero-ties-top512.json",
+      "heads": 32,
+      "positions": 520,
+      "submitted": 520,
+      "topk": 512,
+      "expected_error": 0,
+      "mac_terms": 2129920,
+      "measured": {
+        "cycles": 361652,
+        "keys_scored": 520,
+        "mac_terms": 2129920,
+        "error": 0
+      },
+      "selected_count": 512,
+      "selected_sha256": "34f4616533a915d8e807544cce08fc8bb7940ffc1cbcb4eb964eacad59a703c7"
+    },
+    {
+      "id": 31,
+      "name": "external:negative-head-weights.json",
+      "heads": 32,
+      "positions": 80,
+      "submitted": 80,
+      "topk": 32,
+      "expected_error": 0,
+      "mac_terms": 327680,
+      "measured": {
+        "cycles": 57316,
+        "keys_scored": 80,
+        "mac_terms": 327680,
+        "error": 0
+      },
+      "selected_count": 32,
+      "selected_sha256": "7f387d06e16a7f08c068f7252a4f052e50515660e1c56978777d4f727358b8a8"
+    },
+    {
+      "id": 32,
+      "name": "external:subnormal-underflow.json",
+      "heads": 32,
+      "positions": 4,
+      "submitted": 4,
+      "topk": 4,
+      "expected_error": 0,
+      "mac_terms": 16384,
+      "measured": {
+        "cycles": 4980,
+        "keys_scored": 4,
+        "mac_terms": 16384,
+        "error": 0
+      },
+      "selected_count": 4,
+      "selected_sha256": "98fed3cbc16c7ae8080b695e00473ef01f30521e477ace7730f7bf8368f9f684"
+    },
+    {
+      "id": 33,
+      "name": "external:cross-group-cancellation.json",
+      "heads": 32,
+      "positions": 3,
+      "submitted": 3,
+      "topk": 3,
+      "expected_error": 0,
+      "mac_terms": 12288,
+      "measured": {
+        "cycles": 4322,
+        "keys_scored": 3,
+        "mac_terms": 12288,
+        "error": 0
+      },
+      "selected_count": 3,
+      "selected_sha256": "b15f8ae0cab0eab9d9725cf68e23c780f99dcca9b347065c71d6a873c75d5ee5"
+    },
+    {
+      "id": 34,
+      "name": "external:reindex-sparse-top512.json",
+      "heads": 32,
+      "positions": 1024,
+      "submitted": 688,
+      "topk": 512,
+      "expected_error": 0,
+      "mac_terms": 2818048,
+      "measured": {
+        "cycles": 477599,
+        "keys_scored": 688,
+        "mac_terms": 2818048,
+        "error": 0
+      },
+      "selected_count": 512,
+      "selected_sha256": "457669277e865b507168b87ccfeed0b391490bbf4e7e304387bf16502c0a0467"
+    },
+    {
+      "id": 35,
+      "name": "external:source-block-pool-small.json",
+      "heads": 32,
+      "positions": 81,
+      "submitted": 81,
+      "topk": 32,
+      "expected_error": 0,
+      "mac_terms": 331776,
+      "measured": {
+        "cycles": 57977,
+        "keys_scored": 81,
+        "mac_terms": 331776,
+        "error": 0
+      },
+      "selected_count": 32,
+      "selected_sha256": "63d1a88100955a7d631cbd1e1e2d0d72782d5871a534f3d5963ed9892cbb7b38"
+    },
+    {
+      "id": 36,
+      "name": "external:pretrained-layer20-random-activation-top512.json",
+      "heads": 32,
+      "positions": 640,
+      "submitted": 640,
+      "topk": 512,
+      "expected_error": 0,
+      "mac_terms": 2621440,
+      "measured": {
+        "cycles": 444514,
+        "keys_scored": 640,
+        "mac_terms": 2621440,
+        "error": 0
+      },
+      "selected_count": 512,
+      "selected_sha256": "7e62936687c963fc1e21520905ed9f5b551b1fa9e8031b9b244b5d44c7fd7a8b"
+    },
+    {
+      "id": 37,
+      "name": "external:pretrained-layer20-small-full.json",
+      "heads": 32,
+      "positions": 64,
+      "submitted": 64,
+      "topk": 8,
+      "expected_error": 0,
+      "mac_terms": 262144,
+      "measured": {
+        "cycles": 46101,
+        "keys_scored": 64,
+        "mac_terms": 262144,
+        "error": 0
+      },
+      "selected_count": 8,
+      "selected_sha256": "65a7db60a7094a4da15dfd2dae6a278436c189f362e297a1e65acac40e550191"
+    },
+    {
+      "id": 38,
+      "name": "external:pretrained-layer20-small-reindex.json",
+      "heads": 32,
+      "positions": 64,
+      "submitted": 16,
+      "topk": 8,
+      "expected_error": 0,
+      "mac_terms": 65536,
+      "measured": {
+        "cycles": 13250,
+        "keys_scored": 16,
+        "mac_terms": 65536,
+        "error": 0
+      },
+      "selected_count": 8,
+      "selected_sha256": "1accbf7a5ce1d0139e49f9d013a569f5cf533abcbf3569f8b7a9b12c6b2f525d"
+    },
+    {
+      "id": 39,
+      "name": "external:invalid-e8m0-nan.json",
+      "expected_error": 4,
+      "measured": {
+        "cycles": 2312,
+        "keys_scored": 0,
+        "mac_terms": 0,
+        "error": 4
+      },
+      "selected_count": 0,
+      "selected_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": 40,
+      "name": "external:invalid-bf16-infinity.json",
+      "expected_error": 5,
+      "measured": {
+        "cycles": 2312,
+        "keys_scored": 0,
+        "mac_terms": 0,
+        "error": 5
+      },
+      "selected_count": 0,
+      "selected_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": 41,
+      "name": "external:invalid-bf16-nan.json",
+      "expected_error": 5,
+      "measured": {
+        "cycles": 2312,
+        "keys_scored": 0,
+        "mac_terms": 0,
+        "error": 5
+      },
+      "selected_count": 0,
+      "selected_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": 42,
+      "name": "external:group-overflow.json",
+      "expected_error": 6,
+      "measured": {
+        "cycles": 2346,
+        "keys_scored": 0,
+        "mac_terms": 32,
+        "error": 6
+      },
+      "selected_count": 0,
+      "selected_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": 43,
+      "name": "external:weighted-overflow.json",
+      "expected_error": 6,
+      "measured": {
+        "cycles": 2360,
+        "keys_scored": 0,
+        "mac_terms": 128,
+        "error": 6
+      },
+      "selected_count": 0,
+      "selected_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    }
+  ],
+  "score_handshakes": 4531,
+  "successful_keys": 4520,
+  "mac_terms": 13557824,
+  "float": {
+    "total": 130009,
+    "counts": {
+      "0": 80361,
+      "1": 40361,
+      "2": 9287
+    },
+    "overflow_cases": 6508,
+    "passed": true
+  },
+  "source_sha256": {
+    "rtl/sparse_gate/sg_fp32_pkg.sv": "54e4f21009646b1214236e73def967aefa9e1ebd6099fa483294a57699c65b9c",
+    "tests/sparse_gate/tb_fp32.sv": "50cc35d39abdcf74f3ddb3f714c95139c40aca3c93f6afbccf54e890631de75d",
+    "scripts/sparse_gate/validate_fp32.py": "48aabb85befdc254f338ba02f6bf0d709d26ead64853f517366198e980f0fc1c",
+    "research/csa2_oracle.py": "96bc98b791b9db338cbc3138138b9d9221c791f86fa1263642e31ba45aab98eb",
+    "rtl/sparse_gate/sg_index_core.sv": "094b297eaabca45981dc31dd46661ca6fd39b77859ba9bf1c82681eb5444a3ab",
+    "tests/sparse_gate/tb_index_core.sv": "c6cec6b0ce5b3b4ef8e9a0c2a50675519b413bf91ceb5589de4c7c840cb75b79",
+    "scripts/sparse_gate/validate_core.py": "c6ee04855677b454bad330e3367c84afa78ad505e90b04e64e17eca7997f3196"
+  },
+  "source_summaries": {
+    "results/sparse-gate/core-accepted/summary.json": "3e39e2ff1a3f54f152e0c9bfd407bf9be59895446bfa5243c29d636cc36203e1",
+    "results/sparse-gate/fp32-final/summary.json": "a539db20b832c1899d06aadaa577f4f66cb87d76ee6c4ce70afa084af98a2110"
+  },
+  "input_fixture_sha256": {
+    "results/research/inputs/random-small-k8.json": "bbbe7d27c146f41f0efad2c4b782bdbf670762c49ed9d48f083afc41d0de2238",
+    "results/research/inputs/random-top512.json": "09a8fcbe5aa0becce7ce64e105128abe68f24e2d654efd10c41ece3c02e1f235",
+    "results/research/inputs/zero-ties-top512.json": "2d2f5d672fdf454c31e641769943da67423e55a2f5ebefb25c170a1a2ceb0ae2",
+    "results/research/inputs/negative-head-weights.json": "9723f37f1d09528bd5a689767e6f8003071aa4dfbaaaf7df32840e7d67c62da5",
+    "results/research/inputs/subnormal-underflow.json": "ec54f77de9c1aabfc63edfe717a4929dba6b48cdd23810a33709fcfbf0c16478",
+    "results/research/inputs/cross-group-cancellation.json": "3b998bfe49fb8a377c868986c64784fcdebe80247287e7e59587cacde82d33c8",
+    "results/research/inputs/reindex-sparse-top512.json": "2424c6c665d1091a11da24ccbb2e3a49e12c9d2f06466014d61753bff0e4a6d5",
+    "results/research/inputs/source-block-pool-small.json": "dc32dcad75e8d3311adc9ff2c12f2487d32366c782630a49daa3cf24dcb026fa",
+    "results/research/inputs/pretrained-layer20-random-activation-top512.json": "5a172b3053b85ea79b0626208cb41d0fcd70dd6d44897cec535acf90e3979b1e",
+    "results/research/inputs/pretrained-layer20-small-full.json": "a1f14a12f1842d58f0c287704e126d18843fbc17cfa36c8a3795dd485a29df62",
+    "results/research/inputs/pretrained-layer20-small-reindex.json": "6469ecdabd7e547bfeb56a5ac72c4ebc09480ece8ee51119e583bbc76cdcf4e6",
+    "results/research/inputs/invalid-e8m0-nan.json": "234edb178133d387b7941dfc54892694d4888b34922314b9b15bdf6e9df14f17",
+    "results/research/inputs/invalid-bf16-infinity.json": "30c6afbe25482864158b8810c4ea359373e4f76c8ae3e42eb734c41437c30d72",
+    "results/research/inputs/invalid-bf16-nan.json": "6e4d41c550debc201f1cc89ed297b0e7bf3c4b770074805e4bd6629a7aeec808",
+    "results/research/inputs/group-overflow.json": "80d96d3e3ee0818216a9d62cfbc90c03874f75b8c75bb93de816b7cbf3a47442",
+    "results/research/inputs/weighted-overflow.json": "a9fdee6fb376b5f4c8dd0258d7e93a864f4b8fb1325e577383a81972b5428100"
+  },
+  "producer_locks": {
+    "results/research/inputs/manifest.json": "c88d084cca2ac272a5af142d51cd4b35f77cff9d12192711732385efaa304d70",
+    "research/generate_inputs.py": "46503141fb1340b745db761debdf81857245eba84cbf1ce68031e5ee9b9ac34c",
+    "research/csa2_oracle.py": "96bc98b791b9db338cbc3138138b9d9221c791f86fa1263642e31ba45aab98eb",
+    "research/csa2_sources.lock.json": "03d6a13d9e0be20064c1712a65460a7793ae61b1877f30be97ecbfba1a33f70b",
+    "results/research/reference/manifest.json": "6d85b8b7fee0af8e2ef7568cef3bcef401af622f427d7f9750fe0cf8bedb9cf2",
+    "results/research/reference/inference/model.py": "4e9ae23620edc8028ccc5d5fef552ab7fdc7dcd6f79608754fe9f67644056f65",
+    "results/research/reference/inference/kernel.py": "1236c3507019ed176f5dba5e04bcea58867cf654818c6cf138ed4845398c2455",
+    "results/research/reference/inference/config.json": "2e84f45cf1dac8c7fcbb200e96667d4b913275690668ed496f24c7747207a809"
+  },
+  "artifact_sha256": {
+    "core": {
+      "commands.txt": "ed367e445d4e344004e73fee2d668756b00545a4f2047e7cc8716b62c0937463",
+      "expected.json": "092d3ec26ef8f18c1f86e9c90dbf47cae2757b3003f19ebafbcb818eb61d5413",
+      "Vtb_index_core": "3e365fc75157ae5ff2271d820d31a65094f49d69f56d8916db48b958a2c3d903",
+      "compile.log": "6fc920a861006a774b919e45c3fa99920d76bedd441633a7c2362fa1f836ded2",
+      "simulation.log": "5686e7570c20349bd2967bf960918a4d34ee5e9ce7ab5b9f43c37b636b45dc2f"
+    },
+    "float": {
+      "vectors.txt": "306ebde6234e61e58290b18400706d39e0b3bc176103adbed4bd4a0f044d89a6",
+      "tb_fp32.vvp": "c7a14974eeff13eaa468cc1402988c66c307b4a5288c263c2a5909d501257678",
+      "simulation.log": "6af7ea7d8fb7829139e18929e1aec2b1d8bf78c605baaab208ee244e30c1e981"
+    }
+  },
+  "tool_sha256": {
+    "verilator": "4c6292ab82e57b7f34ab26dbae86ba9c494bacfb088b6ff34be93c553d1301b1",
+    "g++": "1353e9bdd29a7295c7226bf6c63abccce056d8cac31f112e5cdbecc3f28c2769",
+    "iverilog": "a6071e4b4a68feafca0c8ee0e6aa275eee9a43a108c62801cfd1eca6eab6d8a3",
+    "vvp": "a10bd7d4a0850308ac8c2c98115b6a3084f9be978307610f2a521190c28f4023"
+  },
+  "collector_path": "scripts/sparse_gate/collect_evidence.py",
+  "collector_sha256": "55845f3af16961d6fb4dce22717706a4916bf84e0fa1dc805b6e42f1c2a25fe8"
+}

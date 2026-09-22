@@ -39,3 +39,12 @@ __pycache__/
 /vfastLog/
 /novas.conf
 /novas.rc
+
+# Private synthesis databases, derived foundry libraries and work directories.
+/evidence/core/dc-*/
+*.ddc
+*.svf
+*.alib
+/paper/build/
+/.venv-paper/
+/paper/SparseGate-preview.pdf

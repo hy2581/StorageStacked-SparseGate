@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "status": "MAPPED_TIMING_MET",
+  "passed": true,
+  "completed": true,
+  "mapped": true,
+  "mapping_passed": true,
+  "physical_signoff": false,
+  "gate_level_equivalence_status": "NOT_RUN",
+  "target_period_ns": 2.0,
+  "library_corner": "TT 0.9V 25C",
+  "timing_coverage": {
+    "status": "PASS",
+    "passed": true,
+    "checks_performed": [
+      "generated_clocks",
+      "loops",
+      "no_input_delay",
+      "unconstrained_endpoints",
+      "pulse_clock_cell_type",
+      "clock_no_period",
+      "no_driving_cell",
+      "partial_input_delay",
+      "no_clock"
+    ],
+    "required_checks": [
+      "clock_no_period",
+      "no_clock",
+      "no_input_delay",
+      "partial_input_delay",
+      "unconstrained_endpoints"
+    ],
+    "warning_count": 1,
+    "unwaived_warning_count": 0,
+    "warning_counts_by_check": {
+      "no_input_delay": 1
+    },
+    "reset_false_path_verified": true,
+    "exceptions": [
+      {
+        "port": "clk",
+        "reason": "Clock source is excluded from data input delay coverage"
+      },
+      {
+        "port": "rst_n",
+        "reason": "Asynchronous reset is excluded from data input delays and explicitly false-pathed"
+      },
+      {
+        "check": "no_input_delay",
+        "waived_warning_count": 1,
+        "reason": "All data input delays are verified; the reported reset input has an explicit false path"
+      }
+    ],
+    "io_delay_check": {
+      "status": "PASS",
+      "passed": true,
+      "input_data_ports": 92,
+      "output_ports": 316,
+      "missing_or_mismatched_inputs": [],
+      "missing_or_mismatched_outputs": [],
+      "checked_edges": [
+        "min_rise",
+        "min_fall",
+        "max_rise",
+        "max_fall"
+      ],
+      "related_clock": "core_clk"
+    }
+  },
+  "scope": "index arithmetic+heap+register arrays only; no wrapper/DMA/physical SRAM/signoff",
+  "config": {
+    "MAX_HEADS": 32,
+    "TOPK_MAX": 512,
+    "LANES": 16,
+    "D": 128,
+    "G": 32
+  },
+  "clock_ns": 2.0,
+  "setup_slack_ns": 6e-06,
+  "hold_slack_ns": 0.005131,
+  "setup_violated": false,
+  "hold_violated": false,
+  "timing_passed": true,
+  "cell_area_library_units": 301340.925259,
+  "area_unit_note": "Supplied library cell area units; not routed/core/die area or node scaling",
+  "leaf_cells": 250241,
+  "registers": 53993,
+  "unmapped_leaf_references": 0,
+  "units": {
+    "time": "ns",
+    "capacitance": "pF"
+  },
+  "constraints": {
+    "uncertainty_ns": 0.05,
+    "input_delay_ns": 0.2,
+    "output_delay_ns": 0.2,
+    "output_load_pF": 0.02
+  },
+  "design_rule_violation_count": 0,
+  "design_rule_violation_counts": {
+    "max_transition": 0,
+    "min_transition": 0,
+    "max_capacitance": 0,
+    "min_capacitance": 0,
+    "max_fanout": 0
+  },
+  "design_rules_passed": true,
+  "constraint_violation_counts": {
+    "max_area": 1,
+    "max_leakage_power": 1
+  },
+  "design_rule_count_scope": "Reported electrical-constraint violation rows; same object may occur in multiple categories. Excludes setup/hold and zero-valued area/power optimization objectives; not physical DRC.",
+  "clock_model": {
+    "clock": "core_clk",
+    "source": "clk",
+    "ideal_clock": true,
+    "clock_attributes": "",
+    "cts_status": "NOT_RUN",
+    "physical_clock_tree_status": "NOT_IMPLEMENTED",
+    "extracted_parasitics_status": "NOT_RUN",
+    "high_fanout_net_count": 1,
+    "assumed_fanout_for_delay": 1000,
+    "high_fanout_nets": [
+      {
+        "name": "clk",
+        "loads": 53993,
+        "drivers": 1
+      }
+    ],
+    "non_clock_high_fanout_net_count": 0,
+    "note": "Mapped synthesis uses an ideal clock and no physical clock-tree load or skew model; this is not clock-network signoff."
+  },
+  "source_sha256": {
+    "rtl/sparse_gate/sg_fp32_pkg.sv": "54e4f21009646b1214236e73def967aefa9e1ebd6099fa483294a57699c65b9c",
+    "rtl/sparse_gate/sg_index_core.sv": "094b297eaabca45981dc31dd46661ca6fd39b77859ba9bf1c82681eb5444a3ab",
+    "rtl/sparse_gate/synth/core_dc.tcl": "786eb9b2d3ccdfb7cc65d96f79086e591b26b137df04519b7dceb368099982be"
+  },
+  "library": {
+    "name": "tcbn28hpcplusbwp12t40p140tt0p9v25c.db",
+    "sha256": "5363ad782af12e7cec187d23d27696c136d9d9014b8ba645b544228b18caf8e4",
+    "copied": false,
+    "cell_area_readback_count": 1142
+  },
+  "library_cell_areas": {
+    "sha256": "b735c7f9fe01494a2ef4089211c1f43b08fc42be881bbc07f064aaf41028edf5",
+    "rows": 1142
+  },
+  "tool": {
+    "name": "dc_shell",
+    "sha256": "55fc03369624babd44ea58b399f20c864cf3c4d17866cf06e55106845a356354"
+  },
+  "private_run_path": "results/sparse-gate/dc-h32-k512-l16-r2",
+  "artifact_sha256": {
+    "area.rpt": "a5fa6c891d17c33d4662f793494af15693be2825dc624fbdb4e5cac61ee92e03",
+    "setup.rpt": "de1679bd58eea533cb2e0dc6671857a33735975516d4175d82cd48505a75a4ea",
+    "hold.rpt": "957ad245afbfb13c7e053744959411f5bde4b34b096d49cfdf38252620d04ce8",
+    "units.rpt": "ee475a762303f34248fc2f80d49845a731fe40c595b8b8580baa5bf55f756f69",
+    "mapped.sdc": "87c056aa07878c29f7b9a12041e6bfcf037cc11da288fe9ed65bb431fa980430",
+    "references.rpt": "f407fbdb1281e4ebc439757d6b4f871b1b1fe0c89a3a4a52df7c05fd38de9922",
+    "mapping_status.txt": "7b32d2bf8001bf0c4f19df8c47bfcb9b382f28f8d6bffc9cf83d5d09541e1a4e",
+    "check_mapped.rpt": "fd2bf8e3d89237e3b2e9d6d1843213c0e57e89e3761c133528ed5a8f4ba6aaca",
+    "clocks.rpt": "55664a5e3f266068cdf6c070dcbc697781f551071bdcb6fabe4dd58402fa2493",
+    "qor.rpt": "f0a0383a0bde32283065f79e51d25a890b73d8dcdcf92d754e32f9639972937b",
+    "violations.rpt": "e791b04b8717d04eab10e40d7cda4e126c9dc58b3c40ff498756608e8f434f44",
+    "completed.txt": "1a446fb42a3502b33538bcd72ca78bc6f5b37cce47be8de6660dd0787162452a",
+    "readback_setup.rpt": "0d82fe7a804e9e5c3c54225d23139210f23d557d6c796749fc414fd17ee3ca40",
+    "readback_hold.rpt": "ab514bf491e1a0e4b0ec57f6dfe8f126e68a81bb053c98f7f08ffe63a467bd26",
+    "readback_units.rpt": "ae80910a87a8ee28c4d7aecd11c4de4786d5676042f79241fae6c31abe148b0e",
+    "readback_mapping.txt": "4ced208bc6199f642bf8b391db41b2b2812fc8f7f8534aff6af99b1e9ecc4344",
+    "readback_check.rpt": "82c74e1a26e31735e47a1ed54fa378a171be12c625abb6c39e8dd157ab2eabc3",
+    "readback_library_cell_areas.tsv": "b735c7f9fe01494a2ef4089211c1f43b08fc42be881bbc07f064aaf41028edf5",
+    "readback_check_timing.rpt": "c8214a944fc84e5fbeede9a34b9ad1c6582346ee8ca8c911628294c896b43785",
+    "readback_timing_coverage_status.txt": "3247ec8f534cf352a7618b8350828368f0e86b0eb51fbf9a79a8cecbc16a0439",
+    "readback_ports.rpt": "b725f6d30de5ec749477dc0dff6bda1f509f81e32a3da55cad22e5e8190360de",
+    "dc.log": "b4c85bb3a8d6cf83de5b282137b917ab727431f34f809c16406c10e2185998b2",
+    "readback.log": "4a209bba742aaf74ee0ab69bf7d05f1b09bc24a2703871adf5310d1375b7ad1e",
+    "mapped.ddc": "cfeacbaaae50bddb29e5cd3d545e3229193ff1b8344d015f66098bbfcbfd70f3",
+    "mapped.v": "18401be0ebd4f35d0604fcd9cb14d10c721781a4c3cdddc7c06ff2459523f3e8",
+    "run.json": "2f894a095e4e710c6d39cd829c54f957ad6079474d8fc062ea1172dc91ee18fa"
+  },
+  "run_producer": {
+    "source_path": "scripts/sparse_gate/run_dc.py",
+    "used_sha256": "02c063358606836b4bf565afbd087253bb4f2b13b4579e6ee6de20a13daf051d",
+    "private_snapshot": "source/run_dc.py"
+  },
+  "reproduction_entrypoint": {
+    "source_path": "scripts/sparse_gate/run_dc.py",
+    "sha256": "901a6634da4559e567f7aea65d9d05e56296b004c0704793286b2f96cf3b8c34",
+    "note": "Public launcher may differ in portable tool/library path resolution, private output location, and launcher snapshot bookkeeping; used runner identity remains separately frozen"
+  },
+  "producer_sha256": {
+    "scripts/sparse_gate/summarize_dc.py": "f75c611ea822acaa1f4ec72e59b356d73b96f2eaf8f60f071e9944d425791d22",
+    "rtl/sparse_gate/synth/recheck_dc.tcl": "cab077ccbf7c70e8bab4fa0cfb8f0e08a503ce16f4d7421d9a638da8816f8df1"
+  },
+  "commands": [
+    "dc_shell -f source/core_dc.tcl",
+    "dc_shell -f source/recheck_dc.tcl"
+  ],
+  "elapsed_seconds": 8985.076456785202,
+  "combinational_cell_area_library_units": 163838.470422,
+  "noncombinational_cell_area_library_units": 137502.454837,
+  "macro_or_black_box_area_library_units": 0.0
+}

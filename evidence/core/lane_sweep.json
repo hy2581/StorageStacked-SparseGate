@@ -1,0 +1,107 @@
+{
+  "passed": true,
+  "schema_version": 1,
+  "contract": "CSA2_FP4_G32_FP32_RNE_ORDERED_V1",
+  "scope": "Actual cycle counters, same Q/K/weights, arrival order and output stalls. Byte loading is this core interface, not modeled DMA. No PPA for lanes8/32 claimed.",
+  "fixture_path": "results/research/inputs/pretrained-layer20-random-activation-top512.json",
+  "fixture_sha256": "5a172b3053b85ea79b0626208cb41d0fcd70dd6d44897cec535acf90e3979b1e",
+  "source_sha256": {
+    "rtl/sparse_gate/sg_fp32_pkg.sv": "54e4f21009646b1214236e73def967aefa9e1ebd6099fa483294a57699c65b9c",
+    "rtl/sparse_gate/sg_index_core.sv": "094b297eaabca45981dc31dd46661ca6fd39b77859ba9bf1c82681eb5444a3ab",
+    "tests/sparse_gate/tb_lane_sweep.sv": "cdd661026093a2a78069b5fad85fde1c2807140746c93ce3fa49650c0ee5d936",
+    "research/csa2_oracle.py": "96bc98b791b9db338cbc3138138b9d9221c791f86fa1263642e31ba45aab98eb",
+    "scripts/sparse_gate/lane_sweep.py": "f11298f362bd237555196c925f4825d6abcd1792b313974e118da7857522ed3c"
+  },
+  "tool_sha256": {
+    "verilator": "4c6292ab82e57b7f34ab26dbae86ba9c494bacfb088b6ff34be93c553d1301b1",
+    "g++": "1353e9bdd29a7295c7226bf6c63abccce056d8cac31f112e5cdbecc3f28c2769"
+  },
+  "results": [
+    {
+      "passed": true,
+      "lanes": 8,
+      "heads": 32,
+      "dimension": 128,
+      "topk": 512,
+      "positions": 640,
+      "score_checks": 640,
+      "selected_count": 512,
+      "selected_sha256": "7e62936687c963fc1e21520905ed9f5b551b1fa9e8031b9b244b5d44c7fd7a8b",
+      "measured": {
+        "cycles": 608365,
+        "keys_scored": 640,
+        "mac_terms": 2621440,
+        "error": 0
+      },
+      "phases": {
+        "ready_cycles": 46401,
+        "arithmetic_cycles": 552960,
+        "heap_cycles": 2671,
+        "score_output_cycles": 3507,
+        "result_output_cycles": 2826,
+        "q_load_bytes": 2240,
+        "k_load_bytes": 43520
+      },
+      "fixture_sha256": "5a172b3053b85ea79b0626208cb41d0fcd70dd6d44897cec535acf90e3979b1e",
+      "command_sha256": "dac5463599cd4e5742e2fadfa34b2de3562dde11e718199d0060d6e08d43c23c"
+    },
+    {
+      "passed": true,
+      "lanes": 16,
+      "heads": 32,
+      "dimension": 128,
+      "topk": 512,
+      "positions": 640,
+      "score_checks": 640,
+      "selected_count": 512,
+      "selected_sha256": "7e62936687c963fc1e21520905ed9f5b551b1fa9e8031b9b244b5d44c7fd7a8b",
+      "measured": {
+        "cycles": 444525,
+        "keys_scored": 640,
+        "mac_terms": 2621440,
+        "error": 0
+      },
+      "phases": {
+        "ready_cycles": 46401,
+        "arithmetic_cycles": 389120,
+        "heap_cycles": 2671,
+        "score_output_cycles": 3507,
+        "result_output_cycles": 2826,
+        "q_load_bytes": 2240,
+        "k_load_bytes": 43520
+      },
+      "fixture_sha256": "5a172b3053b85ea79b0626208cb41d0fcd70dd6d44897cec535acf90e3979b1e",
+      "command_sha256": "dac5463599cd4e5742e2fadfa34b2de3562dde11e718199d0060d6e08d43c23c"
+    },
+    {
+      "passed": true,
+      "lanes": 32,
+      "heads": 32,
+      "dimension": 128,
+      "topk": 512,
+      "positions": 640,
+      "score_checks": 640,
+      "selected_count": 512,
+      "selected_sha256": "7e62936687c963fc1e21520905ed9f5b551b1fa9e8031b9b244b5d44c7fd7a8b",
+      "measured": {
+        "cycles": 362605,
+        "keys_scored": 640,
+        "mac_terms": 2621440,
+        "error": 0
+      },
+      "phases": {
+        "ready_cycles": 46401,
+        "arithmetic_cycles": 307200,
+        "heap_cycles": 2671,
+        "score_output_cycles": 3507,
+        "result_output_cycles": 2826,
+        "q_load_bytes": 2240,
+        "k_load_bytes": 43520
+      },
+      "fixture_sha256": "5a172b3053b85ea79b0626208cb41d0fcd70dd6d44897cec535acf90e3979b1e",
+      "command_sha256": "dac5463599cd4e5742e2fadfa34b2de3562dde11e718199d0060d6e08d43c23c"
+    }
+  ],
+  "source_summary_path": "results/sparse-gate/lane-sweep/summary.json",
+  "source_summary_sha256": "844a64c3807b76c63035c8585aa460e9b257fc7f0c6f940ac58dafba7681d340"
+}

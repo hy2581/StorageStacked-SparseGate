@@ -1,9 +1,10 @@
-# StorageStacked 统一系统
+# StorageStacked-SparseGate 独立硬件研究系统
 
 接手先读 integrate_doc/HANDOFF.md 和 integrate_doc/09_migration.md（本地交接资料），
 再读 README.md 和 docs/development.md。若交接资料未分发，以已提交文档为准。
 
-- 主仓库为git@github.com:fmq03/StorageStacked.git；提交说明用中文，push须有用户明确授权。
+- 本仓库独立于 fmq03/StorageStacked；upstream 只用于追溯主线 3be39b697bdc315ae0be08ed2162c322bcf59462。
+- 新仓库目标为 hy2581/StorageStacked-SparseGate；用户已明确授权创建并上传。提交说明用中文，禁止向原仓库推送。
 - ucie-model、axi2flit、gem5_axi、mem_sim、gem5_new 是主仓库普通目录，直接维护源码。
   不重新建立内部 .git、gitlink 或构建时向内部模块应用补丁。
 - gem5、coralnpu、vortex-gpu/vortex 是外部子模块，按 env/sources.lock.json 固定版本。

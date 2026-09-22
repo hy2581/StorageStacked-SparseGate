@@ -15,6 +15,8 @@ parser.add_argument("--het-trace", action="store_true",
                     help="Observe target packets using gem5_new HetAxiMonitor")
 parser.add_argument("--backend", choices=["ram", "aou"], default="ram")
 parser.add_argument("--memory-backend", choices=["simple", "memsim"], default="simple")
+parser.add_argument("--gate-enable", action="store_true")
+parser.add_argument("--gate-library", default="")
 parser.add_argument("--memsim-channels", type=int, default=2)
 parser.add_argument("--memsim-scale", type=int, default=1)
 parser.add_argument("--memsim-queue", type=int, default=4)
@@ -31,6 +33,8 @@ parser.add_argument("--max-ticks", type=int, default=10**13)
 args = parser.parse_args()
 if args.memory_backend == "memsim" and args.backend != "aou":
     parser.error("memsim requires --backend aou")
+if args.gate_enable and (args.backend != "aou" or args.memory_backend != "memsim" or not os.path.isfile(args.gate_library)):
+    parser.error("gate requires --backend aou --memory-backend memsim and an existing --gate-library")
 if min(args.memsim_channels, args.memsim_scale, args.memsim_queue, args.memsim_slots) < 1 or args.memsim_response_hold < 0:
     parser.error("invalid memsim capacities/clock scale")
 if args.mode == "cpu" and not args.binary:
@@ -45,11 +49,12 @@ system = System()
 system.clk_domain = SrcClockDomain(clock="2GHz", voltage_domain=VoltageDomain())
 system.mem_mode = "timing"
 host_range = AddrRange(0, size="512MiB")
-target_range = AddrRange(base, size="16KiB")
+target_range = AddrRange(base, size="1MiB" if args.gate_enable else "16KiB")
 system.mem_ranges = [host_range, target_range]
 system.host_mem = SimpleMemory(range=host_range, latency="10ns")
 system.axi = AxiDemo(
-    base=base, size=8192, period=args.period, outstanding=args.slots,
+    base=base, size=0x100000 if args.gate_enable else 8192, period=args.period, outstanding=args.slots,
+    gate_enable=args.gate_enable, gate_library=os.path.abspath(args.gate_library) if args.gate_library else '',
     backend=args.backend, planes=args.planes, replay=args.replay,
     memory_backend=args.memory_backend, memsim_channels=args.memsim_channels,
     memsim_scale=args.memsim_scale, memsim_queue=args.memsim_queue,
@@ -94,7 +99,7 @@ else:
 root = Root(full_system=False, systemc_kernel=SystemC_Kernel(system=system))
 m5.instantiate()
 if args.mode == "cpu":
-    process.map(base, base, 8192, cacheable=False)
+    process.map(base, base, 0x100000 if args.gate_enable else 8192, cacheable=False)
 event = m5.simulate(args.max_ticks)  # Default 10 ms simulated, finite watchdog
 system.axi.finish()
 print("EXIT:", event.getCause(), "code", event.getCode(), "tick", m5.curTick())

@@ -1,6 +1,9 @@
 # 开发与历史追溯
 
-五个内部模块作为同一系统维护，直接在主仓库创建功能分支，允许一个提交同时修改
+本项目在独立仓库 `hy2581/StorageStacked-SparseGate` 维护，`origin` 指向新仓库；
+`upstream` 仅用于读取原始 `fmq03/StorageStacked`，不得向它推送实验修改。
+
+五个内部模块作为同一系统维护，直接在本仓库创建功能分支，允许一个提交同时修改
 处理器适配、AXI、UCIe和内存接口。只有外部gem5、Vortex、CoralNPU保留子模块。
 
 ```bash
@@ -12,13 +15,13 @@ git commit -m "说明本次行为变化的中文提交信息"
 ```
 
 不要对五个普通目录执行git pull；它们没有独立仓库。在根目录同步并合并主仓库分支，
-主仓库地址为git@github.com:fmq03/StorageStacked.git（HTTPS地址见README）。
+本项目地址为 `git@github.com:hy2581/StorageStacked-SparseGate.git`（HTTPS 地址见 README）。
 更新主仓库后运行git submodule update --init --recursive，使外部依赖匹配主仓库记录。
 若子模块有自己的源码修改，先保存和核对这些修改，不要用reset清除本地适配。
 
-## 迁移历史
+## 继承自上游的迁移历史（2026-09-11）
 
-本轮先为已有本地改动建立中文提交，再对有远端的四个内部仓库执行
+以下描述上游原始系统的历史导入，不是本次新仓库操作。上游当时先为已有本地改动建立中文提交，再对有远端的四个内部仓库执行
 `git pull --no-rebase --no-commit origin main`，产生的合并使用中文提交。
 gem5_axi原来没有远端和首次提交，因此单独建立源码基线。
 

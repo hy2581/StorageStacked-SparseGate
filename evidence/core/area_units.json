@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "status": "VERIFIED",
+  "passed": true,
+  "source_sha256": {
+    "scripts/check_library_area_units.py": "3a4b4012c15ac6305dbbe043012968b8ee3e785e000a8bcd45da6ac412e67735"
+  },
+  "inputs": {
+    "liberty": {
+      "basename": "tcbn28hpcplusbwp12t40p140tt0p9v25c.lib",
+      "sha256": "b15d9618663e6d2f38113c0aeae185ddc49d40eb543d247e81a63d13fd47c70b"
+    },
+    "lef": {
+      "basename": "tcbn28hpcplusbwp12t40p140.lef",
+      "sha256": "192a4b10a3de4344b24251689ed19009c4a76da6da0b69fba3dc034a30995aa0",
+      "archive": {
+        "basename": "tcbn28hpcplusbwp12t40p140_170a_sef.tar.gz",
+        "sha256": "6af05ff13e463cd4990c66ac693ac1bcaee97dae2cdca93f97d453e781751d10"
+      }
+    },
+    "release_note": {
+      "basename": "RN_TCBN28HPCPLUSBWP12T40P140_180A.pdf",
+      "sha256": "25d041f5044088313db4eb6bdad36aaa684dba0f8edcb6a7758457084f669309",
+      "archive": {
+        "basename": "tcbn28hpcplusbwp12t40p140_180a_rln.tar.gz",
+        "sha256": "d05e5c9b1b66359c415501cca75eb5d7dd425bd1bf3e555edb47701528f9c5bb"
+      }
+    },
+    "dc_database": {
+      "basename": "tcbn28hpcplusbwp12t40p140tt0p9v25c.db",
+      "sha256": "5363ad782af12e7cec187d23d27696c136d9d9014b8ba645b544228b18caf8e4"
+    },
+    "dc_cell_areas": {
+      "basename": "readback_library_cell_areas.tsv",
+      "sha256": "b735c7f9fe01494a2ef4089211c1f43b08fc42be881bbc07f064aaf41028edf5"
+    }
+  },
+  "method": "Exact Decimal equality of every Liberty cell area with the same-name LEF MACRO SIZE width times height; optional comparison with all actual DC DB library cell areas using explicit numeric tolerances (default zero). No per-cell values are published.",
+  "liberty_lef_match": {
+    "left_entries": 1142,
+    "right_entries": 1186,
+    "compared": 1142,
+    "exact_matches": 1142,
+    "within_tolerance_matches": 1142,
+    "mismatches": 0,
+    "left_missing_on_right": 0,
+    "right_missing_on_left": 44,
+    "max_absolute_error": "0.000000",
+    "max_relative_error_nonzero_reference": "0.000",
+    "absolute_tolerance": "0",
+    "relative_tolerance": "0",
+    "acceptance_rule": "abs(reference-observed) <= absolute_tolerance + relative_tolerance*abs(reference)",
+    "passed": true
+  },
+  "lef_reference": {
+    "title": "LEF/DEF 5.7 Language Reference",
+    "author": "Cadence Design Systems",
+    "version": "5.7",
+    "date": "November 2009",
+    "pdf_page": 183,
+    "url": "https://www.ispd.cc/contests/18/lefdefref.pdf",
+    "sha256": "94c98fb198c418088e80cb7ce7bb4045840a0f447dab990f53506f68622c18ed",
+    "bytes": 2151069,
+    "macro_size_unit": "um",
+    "definition_checked": true
+  },
+  "kit_compatibility": {
+    "passed": true,
+    "document_page": 2,
+    "library_release": "180a",
+    "required_lef_kit": "170a",
+    "matched_kits": {
+      "nldm": "180a",
+      "sef": "170a",
+      "doc": "170a"
+    }
+  },
+  "liberty_area_unit_verified": true,
+  "area_unit": "um2",
+  "dc_database_sha256": "5363ad782af12e7cec187d23d27696c136d9d9014b8ba645b544228b18caf8e4",
+  "dc_cell_area_match": {
+    "left_entries": 1142,
+    "right_entries": 1142,
+    "compared": 1142,
+    "exact_matches": 1142,
+    "within_tolerance_matches": 1142,
+    "mismatches": 0,
+    "left_missing_on_right": 0,
+    "right_missing_on_left": 0,
+    "max_absolute_error": "0.000000",
+    "max_relative_error_nonzero_reference": "0.000",
+    "absolute_tolerance": "0",
+    "relative_tolerance": "0",
+    "acceptance_rule": "abs(reference-observed) <= absolute_tolerance + relative_tolerance*abs(reference)",
+    "passed": true
+  },
+  "limitations": [
+    "The DC TSV association must be checked against the independent synthesis readback receipt and database hash.",
+    "Cell footprint area does not establish placed core/die area, timing closure, power, or physical signoff.",
+    "The supplier input files and per-cell geometric/numeric data remain private."
+  ]
+}

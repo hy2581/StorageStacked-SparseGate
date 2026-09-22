@@ -8,7 +8,7 @@ from pathlib import Path
 from audit_wave import vcd_groups
 
 
-def check(directory, replay=False):
+def check(directory, replay=False, gate=False):
     def rows(name):
         with (directory / name).open() as f:
             return list(csv.DictReader(f))
@@ -52,7 +52,15 @@ def check(directory, replay=False):
             assert lo['id'] == hi['id'] and lo['resp'] == hi['resp']
     assert not writes and not reads
     s = json.loads((directory/'aou_summary.json').read_text())
-    assert s['memory_completed'] == wide_channels['AW']+wide_channels['AR']
+    if gate:
+        config=json.loads((directory/'config.json').read_text())['systemc_kernel']['system']['axi']
+        g=json.loads((directory/'sparse_gate_summary.json').read_text())
+        assert config['gate_enable'] and g['drained']
+        assert g['host_completed']==wide_channels['AW']+wide_channels['AR']
+        assert s['memory_completed']==g['memory_completed']==g['host_bypass']+g['dma_reads']+g['dma_writes']
+        assert g['host_completed']==g['host_bypass']+g['mmio_reads']+g['mmio_writes']
+    else:
+        assert s['memory_completed'] == wide_channels['AW']+wide_channels['AR']
     assert s['target_reads'] == wide_channels['AR']
     assert s['target_writes'] == wide_channels['AW']
     assert s['target_read_beats'] == wide_channels['R']
@@ -96,5 +104,5 @@ def check(directory, replay=False):
     print(json.dumps(result,indent=2))
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(); p.add_argument('directory',type=Path); p.add_argument('--replay',action='store_true')
-    a=p.parse_args(); check(a.directory,a.replay)
+    p=argparse.ArgumentParser(); p.add_argument('directory',type=Path); p.add_argument('--replay',action='store_true');p.add_argument('--gate',action='store_true')
+    a=p.parse_args(); check(a.directory,a.replay,a.gate)

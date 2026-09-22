@@ -1,0 +1,138 @@
+{
+  "files": {
+    "LICENSE": {
+      "bytes": 1084,
+      "sha256": "f2c6c602815669d292889e5be8c802f2ed950653b77999b1584e8e6aed25d040",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/dba1be0a40aa45a94ad051997016db3960a90277/LICENSE"
+    },
+    "README.md": {
+      "bytes": 13110,
+      "sha256": "347c9db4e5506acb531cbc3b724407ab88e9af8781679152f0823d7bac16d251",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/dba1be0a40aa45a94ad051997016db3960a90277/README.md"
+    },
+    "config.json": {
+      "bytes": 3311,
+      "sha256": "8be45ce0476004a3f529fd896115a4a2e800a129ad2d3ec05b16050f52e21879",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/dba1be0a40aa45a94ad051997016db3960a90277/config.json"
+    },
+    "inference/config.json": {
+      "bytes": 1982,
+      "sha256": "2e84f45cf1dac8c7fcbb200e96667d4b913275690668ed496f24c7747207a809",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/dba1be0a40aa45a94ad051997016db3960a90277/inference/config.json"
+    },
+    "inference/kernel.py": {
+      "bytes": 23790,
+      "sha256": "1236c3507019ed176f5dba5e04bcea58867cf654818c6cf138ed4845398c2455",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/dba1be0a40aa45a94ad051997016db3960a90277/inference/kernel.py"
+    },
+    "inference/model.py": {
+      "bytes": 61549,
+      "sha256": "4e9ae23620edc8028ccc5d5fef552ab7fdc7dcd6f79608754fe9f67644056f65",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/dba1be0a40aa45a94ad051997016db3960a90277/inference/model.py"
+    },
+    "model.safetensors.index.json": {
+      "bytes": 7470294,
+      "sha256": "74b0686a3d2891980d5e303251b075a3bccae2c2ff650747db2620a649b98fa8",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/dba1be0a40aa45a94ad051997016db3960a90277/model.safetensors.index.json"
+    }
+  },
+  "model": "deepseek-ai/DeepSeek-V4.1-Flash",
+  "revision": "dba1be0a40aa45a94ad051997016db3960a90277",
+  "schema_version": 1,
+  "tensors": {
+    "layers.20.attn.indexer.k_norm.weight": {
+      "bytes": 256,
+      "file": "tensors/layers.20.attn.indexer.k_norm.weight.bin",
+      "range": "bytes 9440896-9441151/7400713088",
+      "safetensors_metadata": {
+        "data_offsets": [
+          9179608,
+          9179864
+        ],
+        "dtype": "BF16",
+        "shape": [
+          128
+        ]
+      },
+      "sha256": "9a077b7d9215c21e062eb2c3cd928201cd18445a20d56afda18ba42abe7921de",
+      "shard": "model-00023-of-00048.safetensors",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/dba1be0a40aa45a94ad051997016db3960a90277/model-00023-of-00048.safetensors"
+    },
+    "layers.20.attn.indexer.weights_proj.weight": {
+      "bytes": 327680,
+      "file": "tensors/layers.20.attn.indexer.weights_proj.weight.bin",
+      "range": "bytes 9441152-9768831/7400713088",
+      "safetensors_metadata": {
+        "data_offsets": [
+          9179864,
+          9507544
+        ],
+        "dtype": "BF16",
+        "shape": [
+          32,
+          5120
+        ]
+      },
+      "sha256": "8deb4c575a07cf595e40452eb246644a19222aa8b056f25a75eed53a09273f4c",
+      "shard": "model-00023-of-00048.safetensors",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/dba1be0a40aa45a94ad051997016db3960a90277/model-00023-of-00048.safetensors"
+    },
+    "layers.20.attn.indexer.wk.weight": {
+      "bytes": 131072,
+      "file": "tensors/layers.20.attn.indexer.wk.weight.bin",
+      "range": "bytes 9768832-9899903/7400713088",
+      "safetensors_metadata": {
+        "data_offsets": [
+          9507544,
+          9638616
+        ],
+        "dtype": "BF16",
+        "shape": [
+          128,
+          512
+        ]
+      },
+      "sha256": "58be282c2387b7a9e593c015584d1f7d23c9c4429e987b01aa3a3c7f2891f5e6",
+      "shard": "model-00023-of-00048.safetensors",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/dba1be0a40aa45a94ad051997016db3960a90277/model-00023-of-00048.safetensors"
+    },
+    "layers.20.attn.indexer.wq_b.scale": {
+      "bytes": 5120,
+      "file": "tensors/layers.20.attn.indexer.wq_b.scale.bin",
+      "range": "bytes 13856128-13861247/7400713088",
+      "safetensors_metadata": {
+        "data_offsets": [
+          13594840,
+          13599960
+        ],
+        "dtype": "F8_E8M0",
+        "shape": [
+          128,
+          40
+        ]
+      },
+      "sha256": "01c0811597244fae9363ff0c506c7349adf649c87ff1cbae029da79a194bb66a",
+      "shard": "model-00023-of-00048.safetensors",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/dba1be0a40aa45a94ad051997016db3960a90277/model-00023-of-00048.safetensors"
+    },
+    "layers.20.attn.indexer.wq_b.weight": {
+      "bytes": 5242880,
+      "file": "tensors/layers.20.attn.indexer.wq_b.weight.bin",
+      "range": "bytes 438692736-443935615/7400713088",
+      "safetensors_metadata": {
+        "data_offsets": [
+          438431448,
+          443674328
+        ],
+        "dtype": "F8_E4M3",
+        "shape": [
+          4096,
+          1280
+        ]
+      },
+      "sha256": "962fc65f4e418fcfce3b6a39f0f5c3a83642650ded2fc95fa7a1b2617cd1efe5",
+      "shard": "model-00023-of-00048.safetensors",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/resolve/dba1be0a40aa45a94ad051997016db3960a90277/model-00023-of-00048.safetensors"
+    }
+  }
+}

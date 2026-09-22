@@ -35,4 +35,5 @@ run_case three --cmd "$HET_PROJECT_ROOT/workloads/three_source/build/host_main" 
 run_case three_slow --cmd "$HET_PROJECT_ROOT/workloads/three_source/build/host_main" --options="-k $VORTEX_BUILD/tests/regression/vecadd/kernel.vxbin" "${gpu[@]}" "${npu[@]}" --memsim-scale 4
 "$AXI_PYTHON" "$AXI_PROJECT_DIR/scripts/audit_wave.py" "$destination/npu" "$destination/gpu" "$destination/three" "$destination/three_slow" --output "$destination/wave_audit"
 "$AXI_PYTHON" "$SS_ROOT/env/verify_xpu.py" "$destination"
+"$AXI_PYTHON" "$SS_ROOT/env/seal_system_run.py" "$destination"
 echo "三源全链路验收通过：$destination/summary.json"

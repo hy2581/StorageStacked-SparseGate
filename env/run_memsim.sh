@@ -46,4 +46,5 @@ run_case cpu_slow --mode cpu --no-stalls --binary "$AXI_PROJECT_DIR/build/memsim
 "$AXI_PYTHON" "$AXI_PROJECT_DIR/scripts/check_link_negative.py" "$destination/directed"
 "$AXI_PYTHON" "$AXI_PROJECT_DIR/scripts/check_axi256.py" "$destination/directed"
 "$AXI_PYTHON" "$SS_ROOT/env/verify_memsim.py" "$destination"
+"$AXI_PYTHON" "$SS_ROOT/env/seal_system_run.py" "$destination"
 echo "全链路验收通过：$destination/summary.json"

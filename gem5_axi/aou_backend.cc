@@ -4,6 +4,7 @@
 #include "aou_target.h"
 #include "simple_burst_memory.h"
 #include "memsim_backend.hh"
+#include "sparse_gate_backend.hh"
 #include "sim/core.hh"
 #include "sim/cur_tick.hh"
 #include <fstream>
@@ -31,12 +32,15 @@ struct AouBackend::Fabric : sc_module {
     sc_fifo<FdiFlit> mem_tx{"mem_tx", 8}, mem_rx{"mem_rx", 8};
     sc_fifo<SimpleMemRequest> requests{"requests", 4};
     sc_fifo<SimpleMemResponse> responses{"responses", 4};
+    sc_fifo<SimpleMemRequest> gate_memory_requests{"gate_memory_requests", 4};
+    sc_fifo<SimpleMemResponse> gate_memory_responses{"gate_memory_responses", 4};
     Axi2Flit bridge;
     UcieAouAdapter adapter;
     UcieLink link;
     AouTarget target;
     std::unique_ptr<SimpleBurstMemory> simple;
     std::unique_ptr<MemSimBackend> memory;
+    std::unique_ptr<SparseGateBackend> gate;
     struct Cursor { uint64_t addr; unsigned size, left; };
     std::deque<Cursor> writes;
     std::map<unsigned, Cursor> reads;
@@ -95,7 +99,19 @@ struct AouBackend::Fabric : sc_module {
             memory = std::make_unique<MemSimBackend>("memory", p.base, p.size,
                 p.memsim_slots, p.memsim_channels, p.memsim_scale,
                 p.memsim_queue, p.memsim_response_hold, p.trace_dir);
-            memory->request(requests); memory->response(responses);
+            if (p.gate_enable) {
+                if (p.gate_library.empty() || p.base != 0x90000000ULL ||
+                    p.size < 0x100000ULL || p.gate_base != 0x900f0000ULL)
+                    throw std::invalid_argument("SparseGate v1 requires its fixed 1 MiB target window and model library");
+                gate = std::make_unique<SparseGateBackend>("sparse_gate", p.gate_library,
+                    p.gate_base, p.trace_dir);
+                gate->clk(o.clk); gate->resetn(o.resetn);
+                gate->host_request(requests); gate->host_response(responses);
+                gate->memory_request(gate_memory_requests); gate->memory_response(gate_memory_responses);
+                memory->request(gate_memory_requests); memory->response(gate_memory_responses);
+            } else {
+                memory->request(requests); memory->response(responses);
+            }
         } else if (p.memory_backend == "simple") {
             simple = std::make_unique<SimpleBurstMemory>("memory", p.base, p.size,
                 sc_time::from_value(p.period * p.latency), sc_time::from_value(p.period));
@@ -267,6 +283,7 @@ void AouBackend::finish(const std::string& dir) {
     auto& s=*fabric; s.log.flush(); s.flit_log.flush(); s.soc_log.flush(); s.mem_log.flush();
     sc_assert(s.writes.empty() && s.reads.empty());
     sc_assert(s.bridge.order_violations()==0);
+    if (s.gate) s.gate->finish();
     if (s.memory) s.memory->finish();
     std::ofstream f(dir+"/aou_summary.json");
     f << "{\"width\":256,\"planes\":" << s.planes

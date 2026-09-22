@@ -17,6 +17,8 @@ Demo::Demo(sc_module_name n, const gem5::AxiDemoParams& p)
       events(p.trace_dir + "/axi_events.csv"), directory(p.trace_dir) {
     if (!events) throw std::runtime_error("cannot open AXI trace");
     master.clk(clock); master.resetn(resetn); master.axi.bind(wires);
+    if (p.gate_enable && (p.backend != "aou" || p.memory_backend != "memsim"))
+        throw std::invalid_argument("SparseGate requires the AoU/UCIe online memsim path");
     if (p.memory_backend != "memsim" && p.size > UINT32_MAX)
         throw std::invalid_argument("test RAM size exceeds 32-bit limit");
     if (p.backend == "aou") {

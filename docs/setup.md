@@ -1,5 +1,9 @@
 # 配置、交接与完整运行
 
+本页沿用上游统一系统的环境步骤，克隆与 origin 已改为独立 SparseGate 仓库。
+上游旧依赖包仅能提供工具/依赖缓存，不能代替本项目源码；门控构建、当前验收和论文见[根 README](../README.md)。
+下面标注的旧平台/历史交接记录属于上游日期，不自动成为本次验证结果。
+
 本工程把CPU、Vortex GPU、CoralNPU的访存接入同一个AXI256/UCIe/在线mem_sim响应闭环。
 五个内部模块已并入主仓库；只有gem5、coralnpu、vortex-gpu/vortex及Vortex递归依赖是子模块。
 入口统一在根目录env/；protocol/是共享协议源码。
@@ -25,12 +29,12 @@ sudo apt-get install -y build-essential git python3 curl ca-certificates \
 
 ## 2. 没有依赖包：从Git与上游下载
 
-主仓库为https://github.com/fmq03/StorageStacked。建议用Git克隆，保留子模块版本信息；
+主仓库为https://github.com/hy2581/StorageStacked-SparseGate。建议用Git克隆，保留子模块版本信息；
 GitHub的源码ZIP不包含完整的上游子模块，不能直接代替下面的步骤。
 
 ```bash
-git clone --recurse-submodules https://github.com/fmq03/StorageStacked.git StorageStacked
-cd StorageStacked
+git clone --recurse-submodules https://github.com/hy2581/StorageStacked-SparseGate.git StorageStacked-SparseGate
+cd StorageStacked-SparseGate
 # 已clone但未初始化子模块时执行：
 git submodule sync --recursive
 git submodule update --init --recursive
@@ -40,7 +44,7 @@ bash env/bootstrap_xpu.sh
 bash env/build_xpu.sh
 ```
 
-若新电脑已配置GitHub SSH密钥，可将克隆地址换成git@github.com:fmq03/StorageStacked.git。
+若新电脑已配置GitHub SSH密钥，可将克隆地址换成git@github.com:hy2581/StorageStacked-SparseGate.git。
 若仓库访问要求身份验证，使用有该仓库权限的GitHub账号。
 
 正确命令是`git submodule update --init --recursive`，它取主仓库记录的确切提交。
@@ -55,9 +59,9 @@ bootstrap按锁文件下载已编译的GCC/G++、Python等工具包，不在本�
 全量构建需要数十分钟；gem5/mem_sim默认6个编译任务，可用AXI_JOBS调整，例如
 `AXI_JOBS=12 bash env/build_xpu.sh`（本轮在32GiB内存机器上验证）。
 
-## 3. 有依赖包：恢复源码与下载缓存
+## 3. 可选：已有上游历史依赖包时恢复下载缓存
 
-交付文件为`storagestacked-deps-20260911.tar.gz`和对应的`.sha256`。
+本仓库未随附该历史依赖包；只有已单独取得时才使用本节。历史文件为`storagestacked-deps-20260911.tar.gz`和对应的`.sha256`。
 依赖包不加入Git，解压后包含：
 
 | 内容 | 用途 |
@@ -83,8 +87,8 @@ tar -xzf storagestacked-deps-20260911.tar.gz
 # 用解压后的真实绝对路径替换这里的路径。
 export SS_BUNDLE_DIR=/data/storagestacked-deps-20260911
 # 先取得当前主仓库；无需在线递归下载，下面的install会从包内恢复子模块。
-git clone https://github.com/fmq03/StorageStacked.git StorageStacked
-cd StorageStacked
+git clone https://github.com/hy2581/StorageStacked-SparseGate.git StorageStacked-SparseGate
+cd StorageStacked-SparseGate
 export SS_DEPS_ROOT="$HOME/.local/share/storagestacked-unified"
 python3 env/dependency_bundle.py install "$SS_BUNDLE_DIR" --deps-root "$SS_DEPS_ROOT"
 
@@ -109,7 +113,7 @@ install校验锁文件及包内容，从包内本地Git仓库初始化缺失的�
 从bundle克隆后，主仓库origin指向本地bundle；联网后更新源码：
 
 ```bash
-git remote set-url origin https://github.com/fmq03/StorageStacked.git
+git remote set-url origin https://github.com/hy2581/StorageStacked-SparseGate.git
 git pull --ff-only origin main
 git submodule update --init --recursive
 ```

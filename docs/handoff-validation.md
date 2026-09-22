@@ -1,3 +1,6 @@
+> 上游历史交接记录，保留原日期和原仓库归属；这里的 PASS 不是新 SparseGate 项目的验收。
+> 本项目仓库为 [hy2581/StorageStacked-SparseGate](https://github.com/hy2581/StorageStacked-SparseGate)，当前结果见[根 README](../README.md)与 `evidence/system/summary.json`。
+
 # 配置交接验收
 
 ## 2026-09-14 GitHub发布前复核

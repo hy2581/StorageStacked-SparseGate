@@ -1,0 +1,134 @@
+{
+  "schema": "sparse_gate_wrapper_validation_v1",
+  "status": "PASS",
+  "source_sha256": {
+    "rtl/sparse_gate/sg_fp32_pkg.sv": "54e4f21009646b1214236e73def967aefa9e1ebd6099fa483294a57699c65b9c",
+    "rtl/sparse_gate/sg_index_core.sv": "094b297eaabca45981dc31dd46661ca6fd39b77859ba9bf1c82681eb5444a3ab",
+    "rtl/sparse_gate_axi/sparse_gate_dma.sv": "0c7eb97e4fb64dbb70fb83f9401a45a4fa5aa3ae113799c97faceb7a30050332",
+    "rtl/sparse_gate_axi/sparse_gate_axi.sv": "978cd71cd0f8794410fcb326124a36262bf980a8bfb603a92760121bad994073",
+    "rtl/sparse_gate_axi/tests/test_axi.cpp": "6064ce6f02b107d92a66d4690a071c6e854962d5c3f7e8dc5e82d48f5ff0c4f9",
+    "rtl/sparse_gate_axi/tests/run.sh": "b7d16c3467dbff4f1628caa52f597ec0a5f9a491cfcffa4d6c3ee9a5a13c35f4"
+  },
+  "verilator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)",
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "seed": 918273,
+  "command": "bash rtl/sparse_gate_axi/tests/run.sh",
+  "binary_sha256": "7b82a88d98ed9aa134125c5ea846971facdea89855d082b6c8a988a859dddd32",
+  "log_sha256": "b37e70740571293f576d63be98e793a7884149d190e13942838ace8a56ba3334",
+  "total_test_cycles": 27187,
+  "jobs": [
+    {
+      "mode": 2,
+      "status": 516,
+      "cycles": 2,
+      "reads": 0,
+      "writes": 0,
+      "scores": 0
+    },
+    {
+      "mode": 0,
+      "status": 260,
+      "cycles": 2,
+      "reads": 0,
+      "writes": 0,
+      "scores": 0
+    },
+    {
+      "mode": 0,
+      "status": 260,
+      "cycles": 2,
+      "reads": 0,
+      "writes": 0,
+      "scores": 0
+    },
+    {
+      "mode": 0,
+      "status": 2,
+      "cycles": 7156,
+      "reads": 132,
+      "writes": 50,
+      "scores": 25
+    },
+    {
+      "mode": 2,
+      "status": 2,
+      "cycles": 1309,
+      "reads": 45,
+      "writes": 50,
+      "scores": 0
+    },
+    {
+      "mode": 2,
+      "status": 516,
+      "cycles": 2,
+      "reads": 0,
+      "writes": 0,
+      "scores": 0
+    },
+    {
+      "mode": 1,
+      "status": 2,
+      "cycles": 2438,
+      "reads": 61,
+      "writes": 40,
+      "scores": 4
+    },
+    {
+      "mode": 1,
+      "status": 772,
+      "cycles": 781,
+      "reads": 16,
+      "writes": 0,
+      "scores": 1
+    },
+    {
+      "mode": 1,
+      "status": 772,
+      "cycles": 803,
+      "reads": 16,
+      "writes": 0,
+      "scores": 1
+    },
+    {
+      "mode": 0,
+      "status": 1028,
+      "cycles": 18,
+      "reads": 1,
+      "writes": 0,
+      "scores": 0
+    },
+    {
+      "mode": 0,
+      "status": 1284,
+      "cycles": 665,
+      "reads": 15,
+      "writes": 0,
+      "scores": 0
+    },
+    {
+      "mode": 0,
+      "status": 1028,
+      "cycles": 5962,
+      "reads": 87,
+      "writes": 1,
+      "scores": 25
+    },
+    {
+      "mode": 0,
+      "status": 2,
+      "cycles": 7123,
+      "reads": 132,
+      "writes": 50,
+      "scores": 25
+    },
+    {
+      "mode": 2,
+      "status": 516,
+      "cycles": 2,
+      "reads": 0,
+      "writes": 0,
+      "scores": 0
+    }
+  ],
+  "scope": "AXI256 RTL simulation with independent byte-addressed test memory; separate from native-system integration"
+}

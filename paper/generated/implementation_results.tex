@@ -1,0 +1,27 @@
+\begin{figure}[t]
+\centering\includegraphics[width=\columnwidth]{lane_sweep.pdf}
+\caption{Measured lane-count sensitivity for the same H32/N640/K512 learned-weight-derived input. All scores and selections match. This core-only test excludes wrapper positional sorting and native DMA/RAM waits; result-drain cycles reflect its testbench ready sequence. No clock or PPA equivalence across builds is assumed.}
+\label{fig:lanes}
+\end{figure}
+The 8/16/32-lane implementations require 608,365, 444,525, and 362,605 cycles for the same input and identical handshake schedule. Each computes 2,621,440 product terms and selects the same 512 indices. Relative cycle improvements are 1.369$\times$ from 8 to 16 lanes and 1.226$\times$ from 16 to 32 lanes. More lanes shorten integer-product batches, while scale conversion and FP32 reduction remain serialized. Loading, selection and output costs remain visible; the result does not imply linear scaling or equal attainable frequency.
+
+The 444,514-cycle Top-512 case in Table~\ref{tab:core} uses a different randomized backpressure sequence from this controlled lane sweep; the 444,525-cycle 16-lane result is therefore not an identical timing experiment.
+
+\begin{table}[t]
+\centering\caption{Native Design Compiler mapping of the 16-lane score/heap core in a TSMC 28-nm HPC+ standard-cell library. Arrays are flop-mapped. No layout, extracted interconnect, gate-level equivalence or physical signoff is claimed.}
+\label{tab:synthesis}
+\small
+\begin{tabular}{lr}\toprule
+Metric & Measured / configured\\\midrule
+Library corner & TT 0.9V 25C\\
+Target period (ns) & 2.000\\
+Mapped cell area ($\mu$m$^2$) & 301,340.93\\
+Leaf cells & 250,241\\
+Sequential cells & 53,993\\
+Setup slack (ns) & +0.000006\\
+Hold slack (ns) & +0.005131\\
+Design-rule violation entries & 0\\
+Constraint coverage & PASS\\
+\bottomrule\end{tabular}
+\end{table}
+The reported setup and hold checks meet the stated constraints in this mapped-core model. The reported setup margin is only 6 fs; this near-zero nominal margin is not evidence of a robust physical frequency. Design-rule entries count reported transition, capacitance, fanout, or other electrical-limit violations; an object appearing in multiple categories is counted in each. These checks are distinct from setup/hold and from layout DRC. The independent clock and I/O coverage checks pass, with the documented reset false-path exception. The report attributes 163,838.47 $\mu$m$^2$ to combinational cells and 137,502.45 $\mu$m$^2$ (45.6\%) to noncombinational cells. The latter includes control state as well as flop-mapped storage; it is not a measurement of Q/heap storage alone. For all 1,142 Liberty cells, the area exactly matches the same-name LEF width times height. The kit release compatibility is checked, and actual DC database areas match exactly. LEF SIZE dimensions use micrometers~\cite{lefdef}; this establishes cell-footprint area, not placed core or die area. The synthesis target excludes the AXI wrapper, DMA, processor models, and UCIe system. The clock is ideal; CTS and physical clock-network loading are not modeled. The tool uses a fanout estimate of 1,000 for the clock net reported with 53,993 loads. An independent saved-design readback checks mapping and timing reports; it is not an equivalence proof. The simulation clock is a test setting, not an established chip frequency.

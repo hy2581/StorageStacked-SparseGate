@@ -1,0 +1,2827 @@
+{
+  "schema": "sparse_gate_public_system_evidence_v1",
+  "passed": true,
+  "status": "PASS",
+  "base_upstream_revision": "3be39b697bdc315ae0be08ed2162c322bcf59462",
+  "current_revision": "3be39b697bdc315ae0be08ed2162c322bcf59462",
+  "source_lock": {
+    "path": "env/sources.lock.json",
+    "sha256": "7be8d21d6518c2c6566d90877eca55ac71fe44cab306f3001235da76396f5473"
+  },
+  "collector_sha256": "ec8df9fd967e88746ba3a83b10b2b6da13d03df1934860e5b3cf55957133eff8",
+  "path": "CPU / Vortex SimX / CoralNPU RTL -> native AXI256 -> AXI2Flit -> UCIe -> AouTarget -> RTL dispatcher / same online mem_sim",
+  "time_axis": "single gem5 native SystemC event axis, 1 fs; Verilator evaluated at existing AXI clock edges",
+  "cases": {
+    "baseline_cpu": {
+      "status": "PASS",
+      "passed": true,
+      "summary": {
+        "path": "results/baseline-memsim/summary.json",
+        "sha256": "6eef0a680b76358a6b8b1325f9e1d46df3af7b54674068bb01156d7395a12121"
+      },
+      "closure": {
+        "path": "results/baseline-memsim/closure.json",
+        "sha256": "be8c3045285a664e07fe878fc1a7bffc9a4290819e92860bcb0128432753c5a2"
+      },
+      "environment_manifest": {
+        "path": "results/baseline-memsim/environment/manifest.json",
+        "sha256": "ba52cf235b2c6b70881ae98e351ca078155dcfb7a60cef93c3f3f397f79b6eb9"
+      },
+      "environment": {
+        "compiler": "x86_64-conda-linux-gnu-g++ (conda-forge gcc 13.4.0-20) 13.4.0",
+        "python": "3.12.13 | packaged by conda-forge | (main, Mar  5 2026, 16:50:00) [GCC 14.3.0]",
+        "systemc": "gem5 native; no external libsystemc",
+        "ticks_per_second": 1000000000000000,
+        "gem5_binary_sha256": "fab07a6ec345e1b8f4f958d45776cfb1c1f4206d2d250efe868ca98b578e2cb1",
+        "memsim_library_sha256": "382e40995e35f9d705cf4fa1d040244636ef6abffcae689155bc7efebc3ec5cd"
+      },
+      "native_tests_passed": 19,
+      "native_plan": {
+        "path": "results/baseline-memsim/native-test-plan.json",
+        "sha256": "3a10e2098d2b1903aa55a598ada9c8f6a842d3bc0469789d8a1e533ba38a632e"
+      },
+      "native_test_log": {
+        "path": "results/baseline-memsim/native-tests.log",
+        "sha256": "3d296a20b93cd271c09a8b22b3780e4ea15935e4e541d62fd7ffc791221c2ae2"
+      },
+      "cases": {
+        "directed": {
+          "status": "PASS",
+          "gate_enable": false,
+          "host_finish_tick_fs": 4067000000,
+          "host_transactions": 17,
+          "memsim_scale": 1,
+          "memsim_period_fs": 250000,
+          "axi_period_fs": 2000000,
+          "artifacts": {
+            "run.log": {
+              "path": "results/baseline-memsim/directed/run.log",
+              "sha256": "94b50b2c922d02f7bea5679af807fdeca9cf3f9c92f149dff70504a9d68713ee"
+            },
+            "config.json": {
+              "path": "results/baseline-memsim/directed/config.json",
+              "sha256": "e39d8b5aae79cdb954e9f5e7d3b00a8dc7f00d92d9959dd718c1f6207e8c84dc"
+            },
+            "stats.txt": {
+              "path": "results/baseline-memsim/directed/stats.txt",
+              "sha256": "8e6a749fbc138bdcc67205f5767c05b5434d5383de441bfb2614f9f299277646"
+            },
+            "axi_events.csv": {
+              "path": "results/baseline-memsim/directed/axi_events.csv",
+              "sha256": "fd4b602151081829818771964f89357e97b68370d7106bf48233691ab9513859"
+            },
+            "axi_wave.vcd": {
+              "path": "results/baseline-memsim/directed/axi_wave.vcd",
+              "sha256": "3aacb9058a1e6b8190456d3ac4d066ac6c2491c93890f038da4b7c096b2f4fb7"
+            },
+            "aou_events.csv": {
+              "path": "results/baseline-memsim/directed/aou_events.csv",
+              "sha256": "ebe85d6c780d191001379844c9efb94292858243687815c0fc7ac811ef9da08e"
+            },
+            "ucie_flits.csv": {
+              "path": "results/baseline-memsim/directed/ucie_flits.csv",
+              "sha256": "3efb47fd4a2d91020466be670af5c97f832bd1d04f53713d738e907f65bb1bda"
+            },
+            "memsim_bridge.csv": {
+              "path": "results/baseline-memsim/directed/memsim_bridge.csv",
+              "sha256": "74936bd37a78be357f8835fc03be98ee1507d884fc5f2c08822e343c6d857254"
+            },
+            "memsim_commands.csv": {
+              "path": "results/baseline-memsim/directed/memsim_commands.csv",
+              "sha256": "cfa26092a3c99ec0dfba5404e9757386be277fa1ed3d6a2f1dc6cff45dc4be67"
+            },
+            "memsim_dfi_signals.csv": {
+              "path": "results/baseline-memsim/directed/memsim_dfi_signals.csv",
+              "sha256": "74809791677b16fb23518302d2c5a8bf8005018545c638fbde8281f566056996"
+            },
+            "memsim_image.csv": {
+              "path": "results/baseline-memsim/directed/memsim_image.csv",
+              "sha256": "3f4dfa1dc6df703bbb62b563a7b3dea1837e1a534e42d425f4732e85fd716086"
+            },
+            "check_summary.json": {
+              "path": "results/baseline-memsim/directed/check_summary.json",
+              "sha256": "20e3cf2f0296f4d3059375ae3bfa6a62aea47f62730f4034d557504e9fe16d8f"
+            },
+            "aou_check_summary.json": {
+              "path": "results/baseline-memsim/directed/aou_check_summary.json",
+              "sha256": "fe66cad25c0d22716d799603845f38bea6d020936f52f02eae053aeffd5062c6"
+            },
+            "memsim_check.json": {
+              "path": "results/baseline-memsim/directed/memsim_check.json",
+              "sha256": "dae18b72c0a141574fd2eacccac4246597ebc6a81409219b9209327f6a3dd70f"
+            },
+            "memsim_core.json": {
+              "path": "results/baseline-memsim/directed/memsim_core.json",
+              "sha256": "a054be86d1c9f1a39c3f35fd895d23d0c2aafc5eccd26eca76a3ba4ece582ce0"
+            },
+            "link_check_summary.json": {
+              "path": "results/baseline-memsim/directed/link_check_summary.json",
+              "sha256": "bce36987377e3373146c65d939d580f5859a87c5ec97439f2384036c68258431"
+            }
+          }
+        },
+        "replay": {
+          "status": "PASS",
+          "gate_enable": false,
+          "host_finish_tick_fs": 4087000000,
+          "host_transactions": 17,
+          "memsim_scale": 1,
+          "memsim_period_fs": 250000,
+          "axi_period_fs": 2000000,
+          "artifacts": {
+            "run.log": {
+              "path": "results/baseline-memsim/replay/run.log",
+              "sha256": "dd6a76731fbf940992d3674b5296ea942cf526ac3e8e1f357995c2b8752b4058"
+            },
+            "config.json": {
+              "path": "results/baseline-memsim/replay/config.json",
+              "sha256": "3a3fcdb465e08f7bb944dcbc39ec619f1c801a901bc4c9fa7c9c7090796284fa"
+            },
+            "stats.txt": {
+              "path": "results/baseline-memsim/replay/stats.txt",
+              "sha256": "d6b137cfd2a8eaaab5422b338d3b5c882988ee2aff3b05504db8128e2112c5de"
+            },
+            "axi_events.csv": {
+              "path": "results/baseline-memsim/replay/axi_events.csv",
+              "sha256": "afac87cb47017555a9d8551c190b7af256ead80009a62aea9f9eb25cdddaad84"
+            },
+            "axi_wave.vcd": {
+              "path": "results/baseline-memsim/replay/axi_wave.vcd",
+              "sha256": "b74633f807dfa95e7fd52bfdcbf1e7c6d3aba2ee9215fb983f02e12e6a3393a9"
+            },
+            "aou_events.csv": {
+              "path": "results/baseline-memsim/replay/aou_events.csv",
+              "sha256": "5ed68f83dcee839a2538860acee958b0bc7c52e96512b88fc9f8fe4335df17cb"
+            },
+            "ucie_flits.csv": {
+              "path": "results/baseline-memsim/replay/ucie_flits.csv",
+              "sha256": "b65a0cc79801a1a6ec14a23599705c1e6e44bd8f07be2b10cb26054d16dd88e2"
+            },
+            "memsim_bridge.csv": {
+              "path": "results/baseline-memsim/replay/memsim_bridge.csv",
+              "sha256": "73e248b2c13e1bd622d242a644dfba0c1b2310b737513debcb868a95658b7cd0"
+            },
+            "memsim_commands.csv": {
+              "path": "results/baseline-memsim/replay/memsim_commands.csv",
+              "sha256": "0208a2d34e74fed1cd23c29868b500673b20ddf8134bb59932a5a9b028a6325c"
+            },
+            "memsim_dfi_signals.csv": {
+              "path": "results/baseline-memsim/replay/memsim_dfi_signals.csv",
+              "sha256": "1442aa47d22aba6a1ab9012bbc87224d3de075a6742c9fca5c5e00fff1e7c179"
+            },
+            "memsim_image.csv": {
+              "path": "results/baseline-memsim/replay/memsim_image.csv",
+              "sha256": "853da1c40ca77b0c52d301b1eb05eab086d09837ac96e46f3be3313e6869e1d7"
+            },
+            "check_summary.json": {
+              "path": "results/baseline-memsim/replay/check_summary.json",
+              "sha256": "9f7376d8e9beb34b83de1230e656b03e1a0fd8c1e804c467124e9b1d2b57bbb5"
+            },
+            "aou_check_summary.json": {
+              "path": "results/baseline-memsim/replay/aou_check_summary.json",
+              "sha256": "364dd0a742d04fc334332e9c53a862590c3b1fd5883e5a35966a5ae7147d95e4"
+            },
+            "memsim_check.json": {
+              "path": "results/baseline-memsim/replay/memsim_check.json",
+              "sha256": "e9e8c0151f0ecb97047bdcd59630d489b28415421af0aef6d3e57bc5dc58e4d0"
+            },
+            "memsim_core.json": {
+              "path": "results/baseline-memsim/replay/memsim_core.json",
+              "sha256": "a4fa770c69f4036f0b0ac373803090907e3d377770834fe8404813946b5b40d7"
+            },
+            "link_check_summary.json": {
+              "path": "results/baseline-memsim/replay/link_check_summary.json",
+              "sha256": "5724c627d6dda9fb34c79edffc6a0f42c5c91b890c360d23f57934cd620bc4c8"
+            }
+          }
+        },
+        "shallow": {
+          "status": "PASS",
+          "gate_enable": false,
+          "host_finish_tick_fs": 4961000000,
+          "host_transactions": 17,
+          "memsim_scale": 1,
+          "memsim_period_fs": 250000,
+          "axi_period_fs": 2000000,
+          "artifacts": {
+            "run.log": {
+              "path": "results/baseline-memsim/shallow/run.log",
+              "sha256": "19f007598e42432ac0419b3d322753e57028fe4e6526ac4c108e1d3f77a94fa4"
+            },
+            "config.json": {
+              "path": "results/baseline-memsim/shallow/config.json",
+              "sha256": "b12104c247f18ff3081dc1bf61b30ff50efb0ff5f478f4f95442eca1d2008b2b"
+            },
+            "stats.txt": {
+              "path": "results/baseline-memsim/shallow/stats.txt",
+              "sha256": "d93da25516b87c6ebb32cc5f686b34ce73f03439e83ca2b33d4e9c0363419da2"
+            },
+            "axi_events.csv": {
+              "path": "results/baseline-memsim/shallow/axi_events.csv",
+              "sha256": "8df377fda21bbd08691231116219490bce00d5a5e967936cacd1db760e6c9a8e"
+            },
+            "axi_wave.vcd": {
+              "path": "results/baseline-memsim/shallow/axi_wave.vcd",
+              "sha256": "9a70b76cf7134f4eb24a150392d1cc794a0753d3a591cfbf631fc97e0fc96ba3"
+            },
+            "aou_events.csv": {
+              "path": "results/baseline-memsim/shallow/aou_events.csv",
+              "sha256": "c4b387ed03eaf8b62812b07fe946f5507fa6ae56f280120461c8724f4e3b2ca7"
+            },
+            "ucie_flits.csv": {
+              "path": "results/baseline-memsim/shallow/ucie_flits.csv",
+              "sha256": "515d8b8cb2e2d38a42aa655b3eb516ad37883527fcbde1b2db5d68c02faa9d6e"
+            },
+            "memsim_bridge.csv": {
+              "path": "results/baseline-memsim/shallow/memsim_bridge.csv",
+              "sha256": "9eed582a5ac2f25b5614792d624e9c7a5907ab81fd2124c9f020877fae7459ba"
+            },
+            "memsim_commands.csv": {
+              "path": "results/baseline-memsim/shallow/memsim_commands.csv",
+              "sha256": "e7c4ac0bec419b7a1cb43e9997b54710dfde721f6e024519b06261ce6ced5d37"
+            },
+            "memsim_dfi_signals.csv": {
+              "path": "results/baseline-memsim/shallow/memsim_dfi_signals.csv",
+              "sha256": "9e2ca5343bd8016d1b2ee995c8322f433fe3ac5630215f50ae3ee899e618ee4d"
+            },
+            "memsim_image.csv": {
+              "path": "results/baseline-memsim/shallow/memsim_image.csv",
+              "sha256": "96f76ac3a7068c3ba52140304b8648c87de72824f377a2dffe472245176c7c1e"
+            },
+            "check_summary.json": {
+              "path": "results/baseline-memsim/shallow/check_summary.json",
+              "sha256": "66ebd89d430badbce4c1e609360142f3794b792f56a677a9380d25a769a30c70"
+            },
+            "aou_check_summary.json": {
+              "path": "results/baseline-memsim/shallow/aou_check_summary.json",
+              "sha256": "fc64ac39b54773f26c44c8c75ffc0eb6c9b20d3a0d7b0a5f0a28431968189e2f"
+            },
+            "memsim_check.json": {
+              "path": "results/baseline-memsim/shallow/memsim_check.json",
+              "sha256": "79b106602eec788fea48d086f151d0ee766983510274bb3ed61202f9cecb0e08"
+            },
+            "memsim_core.json": {
+              "path": "results/baseline-memsim/shallow/memsim_core.json",
+              "sha256": "67a4bdee2a7a11c28a786131a5bb3180a954a4f27b7b7b274c560431e99d0c67"
+            },
+            "link_check_summary.json": {
+              "path": "results/baseline-memsim/shallow/link_check_summary.json",
+              "sha256": "a4171717fc0f89eb7c5b31723549f2b815336fcb29536e3b96e2667685631b50"
+            }
+          }
+        },
+        "held": {
+          "status": "PASS",
+          "gate_enable": false,
+          "host_finish_tick_fs": 5529000000,
+          "host_transactions": 17,
+          "memsim_scale": 1,
+          "memsim_period_fs": 250000,
+          "axi_period_fs": 2000000,
+          "artifacts": {
+            "run.log": {
+              "path": "results/baseline-memsim/held/run.log",
+              "sha256": "d81fd156039bdb5f4ca0edd43e61ab1b86b02058a057b25dfd9f9bbec0640a91"
+            },
+            "config.json": {
+              "path": "results/baseline-memsim/held/config.json",
+              "sha256": "d736a24ef58856a31e6a4726ad757abeedd3c00b6139617c1c4e435a84292ac3"
+            },
+            "stats.txt": {
+              "path": "results/baseline-memsim/held/stats.txt",
+              "sha256": "78345c5c7c661c756bede67688470b0445e28e5aad850c8d264d5d42d45b9490"
+            },
+            "axi_events.csv": {
+              "path": "results/baseline-memsim/held/axi_events.csv",
+              "sha256": "c8f4adf58f1245abd8cac4c62574f3efc9afa8f78b7cc98a776b455c9807fb82"
+            },
+            "axi_wave.vcd": {
+              "path": "results/baseline-memsim/held/axi_wave.vcd",
+              "sha256": "bf2bcf4907cd1773230572c370ab95a295b39f79656123d10bac9abfcfc36852"
+            },
+            "aou_events.csv": {
+              "path": "results/baseline-memsim/held/aou_events.csv",
+              "sha256": "9df77c7bdbf6c60247a891b2fce26c19f34158c300982aea0ae39628f7ed5613"
+            },
+            "ucie_flits.csv": {
+              "path": "results/baseline-memsim/held/ucie_flits.csv",
+              "sha256": "6c08bce2531a5ed2fc725d398ebb18d89f5ff60c1f85b033f2c5bf89f8f55c8c"
+            },
+            "memsim_bridge.csv": {
+              "path": "results/baseline-memsim/held/memsim_bridge.csv",
+              "sha256": "7e3eddd7a181cd324c3bfd8f1b4d5912ba5ed2b03a78fbde62e61320ce69d5f7"
+            },
+            "memsim_commands.csv": {
+              "path": "results/baseline-memsim/held/memsim_commands.csv",
+              "sha256": "a16b54f9e1517534eb34578b3895a657ba86a982443e32eb2eb2576d080638f7"
+            },
+            "memsim_dfi_signals.csv": {
+              "path": "results/baseline-memsim/held/memsim_dfi_signals.csv",
+              "sha256": "e350985c66cd9021af18cfe6d9f69c31777de49c93a7179de26dd184124631ff"
+            },
+            "memsim_image.csv": {
+              "path": "results/baseline-memsim/held/memsim_image.csv",
+              "sha256": "5a838e481b024d283f93181179d799b64c274adf05831009bce3d9f9effa4fdb"
+            },
+            "check_summary.json": {
+              "path": "results/baseline-memsim/held/check_summary.json",
+              "sha256": "787a9e51665120c357ac245b7feb554fca5bf8c34c50ce81030d83076ef23952"
+            },
+            "aou_check_summary.json": {
+              "path": "results/baseline-memsim/held/aou_check_summary.json",
+              "sha256": "f6a44bb03d3f8cbb12d89890b868a00e2b0b552ae8173eb599a4316ace6a0f0e"
+            },
+            "memsim_check.json": {
+              "path": "results/baseline-memsim/held/memsim_check.json",
+              "sha256": "915b22307624b9345530ae8893c2f56f64729e355749528d8b1825e9248742e4"
+            },
+            "memsim_core.json": {
+              "path": "results/baseline-memsim/held/memsim_core.json",
+              "sha256": "c3bbb3e3b9ecc044dda593b5611316b57963dc142ef09c39a3b7eab83c75609d"
+            },
+            "link_check_summary.json": {
+              "path": "results/baseline-memsim/held/link_check_summary.json",
+              "sha256": "dc3b657eb25d1f7e3c693a1077c6aa6213b54ffaa9630b2f4e8ddd812d927ebb"
+            }
+          }
+        },
+        "period_3ns": {
+          "status": "PASS",
+          "gate_enable": false,
+          "host_finish_tick_fs": 4960000000,
+          "host_transactions": 17,
+          "memsim_scale": 1,
+          "memsim_period_fs": 250000,
+          "axi_period_fs": 3000000,
+          "artifacts": {
+            "run.log": {
+              "path": "results/baseline-memsim/period_3ns/run.log",
+              "sha256": "9649e85719dcf067c5ab2a9fe44306e0093dd84c1733808d47da6ffc9e9ccac9"
+            },
+            "config.json": {
+              "path": "results/baseline-memsim/period_3ns/config.json",
+              "sha256": "a5f66f5ba1524e9c6ab96780284845d663dad0024a47f14cff00b45d273b3b83"
+            },
+            "stats.txt": {
+              "path": "results/baseline-memsim/period_3ns/stats.txt",
+              "sha256": "ed2f7f392229a7852d387bdc02db68fb393de8e51ccb5ae58287c3073aab25fd"
+            },
+            "axi_events.csv": {
+              "path": "results/baseline-memsim/period_3ns/axi_events.csv",
+              "sha256": "3bc45f660da4b784fe9ec56224d6533b60200d04ce9937393ec2d1579210eb22"
+            },
+            "axi_wave.vcd": {
+              "path": "results/baseline-memsim/period_3ns/axi_wave.vcd",
+              "sha256": "e575b0f83df636a9a5c9c2eb945283872127614387321a0b851170a152f0043c"
+            },
+            "aou_events.csv": {
+              "path": "results/baseline-memsim/period_3ns/aou_events.csv",
+              "sha256": "ed58485da33ec9b66c40746f8c1519e6b162e740936d86f0f45ed2c89430c421"
+            },
+            "ucie_flits.csv": {
+              "path": "results/baseline-memsim/period_3ns/ucie_flits.csv",
+              "sha256": "f4939eed984ef2d46660a34b8fc7789554a0076f7557cb4f82bcbef95917853a"
+            },
+            "memsim_bridge.csv": {
+              "path": "results/baseline-memsim/period_3ns/memsim_bridge.csv",
+              "sha256": "abecbcd98b51088a512cadfe474724cadc817ca6367ea20af3e7f5c503a9b33d"
+            },
+            "memsim_commands.csv": {
+              "path": "results/baseline-memsim/period_3ns/memsim_commands.csv",
+              "sha256": "442c826846b8e7d1ba91f7665a6602ce03a1af67ae1d3df9bf12102be3ee6761"
+            },
+            "memsim_dfi_signals.csv": {
+              "path": "results/baseline-memsim/period_3ns/memsim_dfi_signals.csv",
+              "sha256": "8c03f97874c9d3d12f319d214464e801573992e228bbeda8f280ea70c0765362"
+            },
+            "memsim_image.csv": {
+              "path": "results/baseline-memsim/period_3ns/memsim_image.csv",
+              "sha256": "258f17e0429ac3389d1eb9ce7334fcdfbf90c4774af7214b2637ef7561ab09c9"
+            },
+            "check_summary.json": {
+              "path": "results/baseline-memsim/period_3ns/check_summary.json",
+              "sha256": "35102ff084447a81e4c44e4191c251fc3b9b32cb628b1d345bee240087a0808b"
+            },
+            "aou_check_summary.json": {
+              "path": "results/baseline-memsim/period_3ns/aou_check_summary.json",
+              "sha256": "2b829c47a0d1f8a21ad5802d470c5dc3f68ad867bc92b64058b76e7757db6d2c"
+            },
+            "memsim_check.json": {
+              "path": "results/baseline-memsim/period_3ns/memsim_check.json",
+              "sha256": "250aa8ab16cf30a183e13abbd871a473edc85b987a47db2fb425dd35d06b0f2f"
+            },
+            "memsim_core.json": {
+              "path": "results/baseline-memsim/period_3ns/memsim_core.json",
+              "sha256": "af1072c16d82a57d975128e5676697c20cdfaa1e77f023de41390e132eac4ce9"
+            },
+            "link_check_summary.json": {
+              "path": "results/baseline-memsim/period_3ns/link_check_summary.json",
+              "sha256": "86d1984e1e0f2a66d4a5df307e640a23af3498ea48a2361d07b5750459c0db5d"
+            }
+          }
+        },
+        "cpu": {
+          "status": "PASS",
+          "gate_enable": false,
+          "host_finish_tick_fs": 106550000000,
+          "host_transactions": 452,
+          "memsim_scale": 1,
+          "memsim_period_fs": 250000,
+          "axi_period_fs": 2000000,
+          "artifacts": {
+            "run.log": {
+              "path": "results/baseline-memsim/cpu/run.log",
+              "sha256": "bb28747ac5e75fc7823effd4e00e09a2d542260a57ca18e8a770cac485d7186a"
+            },
+            "config.json": {
+              "path": "results/baseline-memsim/cpu/config.json",
+              "sha256": "9461f8a7415c60836f1f9196849b8ad470f8825b0ea1558e2f4e731981cf7971"
+            },
+            "stats.txt": {
+              "path": "results/baseline-memsim/cpu/stats.txt",
+              "sha256": "5f62dd04f27200203e6892a781908abab6c39199950ce13121e286a420f024fc"
+            },
+            "axi_events.csv": {
+              "path": "results/baseline-memsim/cpu/axi_events.csv",
+              "sha256": "7aff624e31a8ea5f5b3ad028decacec47e705f17fdc885ceb20fc608d36366b0"
+            },
+            "axi_wave.vcd": {
+              "path": "results/baseline-memsim/cpu/axi_wave.vcd",
+              "sha256": "94c8d6cc01033950bf621abe1439cdf2775cb29b09dbe2ff82949f66fdcdc6d9"
+            },
+            "aou_events.csv": {
+              "path": "results/baseline-memsim/cpu/aou_events.csv",
+              "sha256": "acbcdc84033ba3dd7cefa1d3944f360c7f54525115239474e4295694cfe38479"
+            },
+            "ucie_flits.csv": {
+              "path": "results/baseline-memsim/cpu/ucie_flits.csv",
+              "sha256": "cd0c83e85e604d05a5efc3315764ab50200cfb45637c4c65d0dd7362ba47b366"
+            },
+            "memsim_bridge.csv": {
+              "path": "results/baseline-memsim/cpu/memsim_bridge.csv",
+              "sha256": "4f1e8c3d07b2d9a1d43babab59a6cab0ba489e2c5e0d5231357af1abd7607687"
+            },
+            "memsim_commands.csv": {
+              "path": "results/baseline-memsim/cpu/memsim_commands.csv",
+              "sha256": "4856d36b130e6cd7437e533098e2ef6c4a85e6cb1c2b71b71993b0012e1113a5"
+            },
+            "memsim_dfi_signals.csv": {
+              "path": "results/baseline-memsim/cpu/memsim_dfi_signals.csv",
+              "sha256": "c4ed4079c0fe5790912bcb628c48d5f170f4d043edb833df9e73f4dac29e7c9b"
+            },
+            "memsim_image.csv": {
+              "path": "results/baseline-memsim/cpu/memsim_image.csv",
+              "sha256": "79c58e713f7ae473b8d43b17f153a71a9179ff34bda3c263d667f2bae4504dd3"
+            },
+            "check_summary.json": {
+              "path": "results/baseline-memsim/cpu/check_summary.json",
+              "sha256": "3fe7c5778b5d1b21aa9c5f0b8b5214c17127bdcbc3fb9ac43fca6d101a5cf105"
+            },
+            "aou_check_summary.json": {
+              "path": "results/baseline-memsim/cpu/aou_check_summary.json",
+              "sha256": "27ffbf47db44e3c8bead096d7e23b0b93b86532b8fc856cd037e989171a679fa"
+            },
+            "memsim_check.json": {
+              "path": "results/baseline-memsim/cpu/memsim_check.json",
+              "sha256": "8c345d8139cdbeef8ef04fc5c734b6c759f775aa111adb380d4bfe2bbe4ed166"
+            },
+            "memsim_core.json": {
+              "path": "results/baseline-memsim/cpu/memsim_core.json",
+              "sha256": "6d22bfecadff65e3b71a4014bdced03e3a9250d04330c0ce5a2716cbb70a1b60"
+            },
+            "link_check_summary.json": {
+              "path": "results/baseline-memsim/cpu/link_check_summary.json",
+              "sha256": "ac5eb6772b3944b41975df9882380dbbfb4c30c9e7069dca91150b655391fc89"
+            }
+          }
+        },
+        "cpu_slow": {
+          "status": "PASS",
+          "gate_enable": false,
+          "host_finish_tick_fs": 122836000000,
+          "host_transactions": 452,
+          "memsim_scale": 4,
+          "memsim_period_fs": 1000000,
+          "axi_period_fs": 2000000,
+          "artifacts": {
+            "run.log": {
+              "path": "results/baseline-memsim/cpu_slow/run.log",
+              "sha256": "beadb02fecb782faad94141016dc5120d338ad8adadb62d05e8e0d2c17dbde80"
+            },
+            "config.json": {
+              "path": "results/baseline-memsim/cpu_slow/config.json",
+              "sha256": "b6c5659f565e7bc0a6c79f7fa465d1d7b2e99867643a62dde75d3c30a0c24951"
+            },
+            "stats.txt": {
+              "path": "results/baseline-memsim/cpu_slow/stats.txt",
+              "sha256": "465fa714a1e2593bf55d3d24b53bae7fc069bab38545fff02e405127f1300758"
+            },
+            "axi_events.csv": {
+              "path": "results/baseline-memsim/cpu_slow/axi_events.csv",
+              "sha256": "68e7e644d541593d5be127d9dba0117bc73ae001400b29330150419b808df63e"
+            },
+            "axi_wave.vcd": {
+              "path": "results/baseline-memsim/cpu_slow/axi_wave.vcd",
+              "sha256": "a5672c17f3c6e76c06347eeb318f70031778f766ecb552db0f901a3faa071129"
+            },
+            "aou_events.csv": {
+              "path": "results/baseline-memsim/cpu_slow/aou_events.csv",
+              "sha256": "755bf67c0e6b2bf11c379341825174a6655db83866583dcea97ba60955fa2320"
+            },
+            "ucie_flits.csv": {
+              "path": "results/baseline-memsim/cpu_slow/ucie_flits.csv",
+              "sha256": "5e13c15cf076405bb2697f00116be1fafb0ecbbf34210b23341048f3716d649c"
+            },
+            "memsim_bridge.csv": {
+              "path": "results/baseline-memsim/cpu_slow/memsim_bridge.csv",
+              "sha256": "059f216b07e14069f70179bdd93bb63fb31782d0f7f2325b731fef7aa74471ca"
+            },
+            "memsim_commands.csv": {
+              "path": "results/baseline-memsim/cpu_slow/memsim_commands.csv",
+              "sha256": "ec93d9f10b111f8b48319160e728f730f49fd7b65471cdd75cf03c85edf68ff7"
+            },
+            "memsim_dfi_signals.csv": {
+              "path": "results/baseline-memsim/cpu_slow/memsim_dfi_signals.csv",
+              "sha256": "36bbb884f84149c22a138c5ea6ef738d7e9ea5b6c05d6ae137d9be76a1b8c77e"
+            },
+            "memsim_image.csv": {
+              "path": "results/baseline-memsim/cpu_slow/memsim_image.csv",
+              "sha256": "b8126521b883796edc8ced952b9bdc6a79dcf73d501c21ebb079e34a95e01c48"
+            },
+            "check_summary.json": {
+              "path": "results/baseline-memsim/cpu_slow/check_summary.json",
+              "sha256": "21bab3915e6c55ca821c9fe4e06617bbaf1a114776b8769b95eb56c20b061c99"
+            },
+            "aou_check_summary.json": {
+              "path": "results/baseline-memsim/cpu_slow/aou_check_summary.json",
+              "sha256": "27ffbf47db44e3c8bead096d7e23b0b93b86532b8fc856cd037e989171a679fa"
+            },
+            "memsim_check.json": {
+              "path": "results/baseline-memsim/cpu_slow/memsim_check.json",
+              "sha256": "7ea03b9d4ee303ccb1ab6b5a0ef47d7fbab9ff9c4eb4c1bfe644abfa70d96a74"
+            },
+            "memsim_core.json": {
+              "path": "results/baseline-memsim/cpu_slow/memsim_core.json",
+              "sha256": "fbd62a79d6852f506c9592b0fe8f69d403947924baf41cc56064894905ba1e73"
+            },
+            "link_check_summary.json": {
+              "path": "results/baseline-memsim/cpu_slow/link_check_summary.json",
+              "sha256": "ac5eb6772b3944b41975df9882380dbbfb4c30c9e7069dca91150b655391fc89"
+            }
+          }
+        }
+      },
+      "memory_feedback": {
+        "passed": true,
+        "simulated_instructions": 4326,
+        "transactions": 452,
+        "finish_delta_ns": 16286.0,
+        "transaction_delta_sum_ns": 16286.0,
+        "slower_transactions": 440,
+        "transaction_delta_min_ns": -172.0,
+        "transaction_delta_max_ns": 1056.0
+      }
+    },
+    "baseline_xpu": {
+      "status": "PASS",
+      "passed": true,
+      "summary": {
+        "path": "results/baseline-xpu/summary.json",
+        "sha256": "9cf578c7d90f466ead1b816f2ec844c4238cf1fe758a53d850ccd0dbf8c3b6df"
+      },
+      "closure": {
+        "path": "results/baseline-xpu/closure.json",
+        "sha256": "68209b16002599eb3a07112bcfe0fbe1f8c34ebad86c35b2a70f8b3d6cc24cc8"
+      },
+      "environment_manifest": {
+        "path": "results/baseline-xpu/environment/manifest.json",
+        "sha256": "176d91c854f5c19c5dda677cc675b697700191b6262117dc3faa9860931f0bfb"
+      },
+      "environment": {
+        "compiler": "x86_64-conda-linux-gnu-g++ (conda-forge gcc 13.4.0-20) 13.4.0",
+        "python": "3.12.13 | packaged by conda-forge | (main, Mar  5 2026, 16:50:00) [GCC 14.3.0]",
+        "systemc": "gem5 native; no external libsystemc",
+        "ticks_per_second": 1000000000000000,
+        "gem5_binary_sha256": "8c34a18d1785bca82b77f0c50753973ee6beabd728323a956ac230649c317ffa",
+        "memsim_library_sha256": "382e40995e35f9d705cf4fa1d040244636ef6abffcae689155bc7efebc3ec5cd"
+      },
+      "native_tests_passed": 19,
+      "native_plan": {
+        "path": "results/baseline-xpu/native-test-plan.json",
+        "sha256": "3a10e2098d2b1903aa55a598ada9c8f6a842d3bc0469789d8a1e533ba38a632e"
+      },
+      "native_test_log": {
+        "path": "results/baseline-xpu/native-tests.log",
+        "sha256": "c79db60d5677efffd60a004c7f9d2704419bb6eea68db890ccb7f1df3f78b160"
+      },
+      "cases": {
+        "npu": {
+          "status": "PASS",
+          "gate_enable": false,
+          "host_finish_tick_fs": 187158500000,
+          "host_transactions": 320,
+          "memsim_scale": 1,
+          "memsim_period_fs": 250000,
+          "axi_period_fs": 2000000,
+          "artifacts": {
+            "run.log": {
+              "path": "results/baseline-xpu/npu/run.log",
+              "sha256": "c2fb122decdee4b3f3571b3cf74e13102efdd496d0cd528287cc857067e1a967"
+            },
+            "config.json": {
+              "path": "results/baseline-xpu/npu/config.json",
+              "sha256": "fc6449c82ec675730b5a417c6e29aa619547457f59cd91513d2562b8f88a7612"
+            },
+            "stats.txt": {
+              "path": "results/baseline-xpu/npu/stats.txt",
+              "sha256": "8902ce17086975fec1ac1ffdbf0351bfd47075c56a58521b1d17c4b6039be11b"
+            },
+            "axi_events.csv": {
+              "path": "results/baseline-xpu/npu/axi_events.csv",
+              "sha256": "3d95f474b0d03a5366c893ee2400a33c6949518b45574cf74b541a637afd9aab"
+            },
+            "axi_wave.vcd": {
+              "path": "results/baseline-xpu/npu/axi_wave.vcd",
+              "sha256": "ac282ee2c95348fec2f42e1b0b590cb08c9d17e00d915d1d98acdea07f28caaf"
+            },
+            "aou_events.csv": {
+              "path": "results/baseline-xpu/npu/aou_events.csv",
+              "sha256": "0ec147b84bff298907942546a8639ffffd5aa4a41ce961e7fa4beda46ed4e402"
+            },
+            "ucie_flits.csv": {
+              "path": "results/baseline-xpu/npu/ucie_flits.csv",
+              "sha256": "63ffe58e9243c201fc7062f1850ee92b9be8583798df3ceaa1185e862f17e496"
+            },
+            "memsim_bridge.csv": {
+              "path": "results/baseline-xpu/npu/memsim_bridge.csv",
+              "sha256": "0338e2c40e3220cb62bbde457d33d03bc4b5f0568726d07755a2ec52fdd7d163"
+            },
+            "memsim_commands.csv": {
+              "path": "results/baseline-xpu/npu/memsim_commands.csv",
+              "sha256": "30ba6773b1902cd22baa123d6261298cf5bf73a47ad98dc67b96ba045632fa2e"
+            },
+            "memsim_dfi_signals.csv": {
+              "path": "results/baseline-xpu/npu/memsim_dfi_signals.csv",
+              "sha256": "cd40e5f07fed6d8af0cef91d1ca1c47efafd77c8061d65bc6c6b9c6258d63161"
+            },
+            "memsim_image.csv": {
+              "path": "results/baseline-xpu/npu/memsim_image.csv",
+              "sha256": "94c3c824d02bd01093cf71f2d12738239f2ad2015bc04d17ac992734c372e9e6"
+            },
+            "check_summary.json": {
+              "path": "results/baseline-xpu/npu/check_summary.json",
+              "sha256": "3a99da891a9cd3f681a40e3ac2c49b6f7b4e9482d6f44898ee2b4d496540cc16"
+            },
+            "aou_check_summary.json": {
+              "path": "results/baseline-xpu/npu/aou_check_summary.json",
+              "sha256": "99560c31434ea59849746137331af5605a516df17712f37bee10480c26a9d43d"
+            },
+            "memsim_check.json": {
+              "path": "results/baseline-xpu/npu/memsim_check.json",
+              "sha256": "d47c042d0cfb2afc5c8d6611b09fa7a3a4cea393d043c22501f08d40e6735ca3"
+            },
+            "memsim_core.json": {
+              "path": "results/baseline-xpu/npu/memsim_core.json",
+              "sha256": "04c9197031b7b29af5992b54fbf74564036bd3fa4de0de0abd5557ad3b02a046"
+            },
+            "link_check_summary.json": {
+              "path": "results/baseline-xpu/npu/link_check_summary.json",
+              "sha256": "17dffa3c769ab383bbd77a5dc31f3bafff340e5c1eaf63e24bcdbfb929a96467"
+            }
+          },
+          "sources": {
+            "host": {
+              "transactions": 192,
+              "bytes": 768,
+              "first_tick_fs": 140491000000,
+              "last_tick_fs": 181492000000,
+              "roundtrip_sum_ns": 12159.5,
+              "roundtrip_mean_ns": 63.330729166666664
+            },
+            "coralnpu": {
+              "transactions": 128,
+              "bytes": 2048,
+              "first_tick_fs": 164638000000,
+              "last_tick_fs": 174494000000,
+              "roundtrip_sum_ns": 8198.0,
+              "roundtrip_mean_ns": 64.046875
+            }
+          },
+          "devices": {
+            "npu_cycles": 5049
+          }
+        },
+        "gpu": {
+          "status": "PASS",
+          "gate_enable": false,
+          "host_finish_tick_fs": 3167280000000,
+          "host_transactions": 9459,
+          "memsim_scale": 1,
+          "memsim_period_fs": 250000,
+          "axi_period_fs": 2000000,
+          "artifacts": {
+            "run.log": {
+              "path": "results/baseline-xpu/gpu/run.log",
+              "sha256": "ef13aafa058cf8fec357316b41cc6a6b5512f3fae5671e38c420680982c9bafd"
+            },
+            "config.json": {
+              "path": "results/baseline-xpu/gpu/config.json",
+              "sha256": "1b72624371c2f0e20e22d0877749e75aa535c6ae93b25f125448f642698adb21"
+            },
+            "stats.txt": {
+              "path": "results/baseline-xpu/gpu/stats.txt",
+              "sha256": "6dad2868c44481732257f058dcd4fa9e30deb0fea8f070ab470d0bd9b0561600"
+            },
+            "axi_events.csv": {
+              "path": "results/baseline-xpu/gpu/axi_events.csv",
+              "sha256": "eea1bea7c84a381c16c6aebe55c67392ecc6ad69dc73bcb4b509713d652ce227"
+            },
+            "axi_wave.vcd": {
+              "path": "results/baseline-xpu/gpu/axi_wave.vcd",
+              "sha256": "2992cac57b2cbb59573d388076311efe92e142bd890db333fa1823b8c8a2a38c"
+            },
+            "aou_events.csv": {
+              "path": "results/baseline-xpu/gpu/aou_events.csv",
+              "sha256": "3579aa2de52c7eca2c425bd7bc242f268c30e1a31e4d907eecf751de3d867d38"
+            },
+            "ucie_flits.csv": {
+              "path": "results/baseline-xpu/gpu/ucie_flits.csv",
+              "sha256": "2dd6f17738d3221635fbddf0bccf5d207c71e6b3b75a0660729a2130af1d7008"
+            },
+            "memsim_bridge.csv": {
+              "path": "results/baseline-xpu/gpu/memsim_bridge.csv",
+              "sha256": "355d1e67c6e3e7139fea21a392d7887bc4c888ed4f788807a8abead3d0587541"
+            },
+            "memsim_commands.csv": {
+              "path": "results/baseline-xpu/gpu/memsim_commands.csv",
+              "sha256": "7c2bbb86770ec8ce1f784b01f28b49373adb6f8a4f0774dac8c3e715eb30a9a9"
+            },
+            "memsim_dfi_signals.csv": {
+              "path": "results/baseline-xpu/gpu/memsim_dfi_signals.csv",
+              "sha256": "17c08f92bc33a46e3bc053b55ac4e4af5e20062addead56870c0777af471eddd"
+            },
+            "memsim_image.csv": {
+              "path": "results/baseline-xpu/gpu/memsim_image.csv",
+              "sha256": "f0f6a7f2151c91983c5d698c6aba56665c5d9ca1623dbf0e046676fb61ea87cd"
+            },
+            "check_summary.json": {
+              "path": "results/baseline-xpu/gpu/check_summary.json",
+              "sha256": "78a242ca872f033b1c4287bc3c310f8c0556717bbacecc36e73472c31c7a66da"
+            },
+            "aou_check_summary.json": {
+              "path": "results/baseline-xpu/gpu/aou_check_summary.json",
+              "sha256": "86809ba168c0cdd1229130aacb0b10d48f3753a0115f152b5787a25811101be5"
+            },
+            "memsim_check.json": {
+              "path": "results/baseline-xpu/gpu/memsim_check.json",
+              "sha256": "efd25aa8fe68e2d32e99e961d4602916b7b60c0baa999d0ca2033acb5139ee89"
+            },
+            "memsim_core.json": {
+              "path": "results/baseline-xpu/gpu/memsim_core.json",
+              "sha256": "8e5ec4ea5bdc6e62fffe20112e62470c6252c0fbbd09e05fb7721e7bf6ace330"
+            },
+            "link_check_summary.json": {
+              "path": "results/baseline-xpu/gpu/link_check_summary.json",
+              "sha256": "c3d4c37bf1e6db05d2949e93477166b0665bfa4b7ff260463944e3447cb9b6ba"
+            }
+          },
+          "sources": {
+            "host": {
+              "transactions": 9202,
+              "bytes": 73616,
+              "first_tick_fs": 2299393500000,
+              "last_tick_fs": 3136076000000,
+              "roundtrip_sum_ns": 579708.0,
+              "roundtrip_mean_ns": 62.99804390349924
+            },
+            "vortex": {
+              "transactions": 257,
+              "bytes": 14136,
+              "first_tick_fs": 2936529000000,
+              "last_tick_fs": 3136294000000,
+              "roundtrip_sum_ns": 35542.0,
+              "roundtrip_mean_ns": 138.29571984435796
+            }
+          },
+          "devices": {
+            "gpu_core_read": 6,
+            "gpu_core_write": 1,
+            "gpu_cp_read": 44,
+            "gpu_cp_write": 44,
+            "gpu_completed": 95,
+            "gpu_cp_cycles": 802,
+            "gpu_cycles": 626
+          }
+        },
+        "three": {
+          "status": "PASS",
+          "gate_enable": false,
+          "host_finish_tick_fs": 3161055500000,
+          "host_transactions": 9739,
+          "memsim_scale": 1,
+          "memsim_period_fs": 250000,
+          "axi_period_fs": 2000000,
+          "artifacts": {
+            "run.log": {
+              "path": "results/baseline-xpu/three/run.log",
+              "sha256": "af2772f7f63d1fd535dde2792ac4e4b5a1f668ade1848dac9493b8da2ace0628"
+            },
+            "config.json": {
+              "path": "results/baseline-xpu/three/config.json",
+              "sha256": "3b908fd6cae1addd0d89e528a04c0efec10fc543cdf513a96c6bcddc8a6e0fe4"
+            },
+            "stats.txt": {
+              "path": "results/baseline-xpu/three/stats.txt",
+              "sha256": "af9a704af6b275f5979097f9f4e3abe2b737b8121989575935a7941de34eb5c9"
+            },
+            "axi_events.csv": {
+              "path": "results/baseline-xpu/three/axi_events.csv",
+              "sha256": "499381a12e4a6dc41a5b3a9f840e7a6d550e3491cda2f06556fa35a89b89aab9"
+            },
+            "axi_wave.vcd": {
+              "path": "results/baseline-xpu/three/axi_wave.vcd",
+              "sha256": "15cd1bf53b00c5a46ea4eeae98807e05453642df686d1b36d47a514dc408cb75"
+            },
+            "aou_events.csv": {
+              "path": "results/baseline-xpu/three/aou_events.csv",
+              "sha256": "5e8d70082a263690083347aae7138eb5299fa68b0f7f57a7c118c7865f33d6b2"
+            },
+            "ucie_flits.csv": {
+              "path": "results/baseline-xpu/three/ucie_flits.csv",
+              "sha256": "af95b2c968033fe7d236b06543280b0eaebae25d8fd8daac9100e6ad78d83104"
+            },
+            "memsim_bridge.csv": {
+              "path": "results/baseline-xpu/three/memsim_bridge.csv",
+              "sha256": "e9c005c7ff08f72b3153e6a330236a2c4de9b6b8259eab29460aa7c803e0418a"
+            },
+            "memsim_commands.csv": {
+              "path": "results/baseline-xpu/three/memsim_commands.csv",
+              "sha256": "aed673679964b184760caca0abdd0a4e051a1ada5badd6102bc39d3c92f568e5"
+            },
+            "memsim_dfi_signals.csv": {
+              "path": "results/baseline-xpu/three/memsim_dfi_signals.csv",
+              "sha256": "416eebadc35d7c5e85a2c9e2c962c845debd538a36a1b56374ed1c439cf805cc"
+            },
+            "memsim_image.csv": {
+              "path": "results/baseline-xpu/three/memsim_image.csv",
+              "sha256": "25e2bf97adaf53829dd3370d75b9a5ad1600bf94e820b76dc0a8703cf989ba2b"
+            },
+            "check_summary.json": {
+              "path": "results/baseline-xpu/three/check_summary.json",
+              "sha256": "9c3a1f1bc3895af8c479acd205fbeef723a890bf9578c46680f0b9b5fd7ff7a3"
+            },
+            "aou_check_summary.json": {
+              "path": "results/baseline-xpu/three/aou_check_summary.json",
+              "sha256": "9fe51308ca94609e68e79bc36b171e5758c00ec7d458de0924389df676c94526"
+            },
+            "memsim_check.json": {
+              "path": "results/baseline-xpu/three/memsim_check.json",
+              "sha256": "1a8611d08b0b1b5a4565f2eabf6f85b6f33f16ebd410daf9e7c7b9c61ff41af3"
+            },
+            "memsim_core.json": {
+              "path": "results/baseline-xpu/three/memsim_core.json",
+              "sha256": "76f07cca539f2b2aa65cee64baa0fea878808ec8210f6b61cb7e225c932ca142"
+            },
+            "link_check_summary.json": {
+              "path": "results/baseline-xpu/three/link_check_summary.json",
+              "sha256": "6c6d42330f102a6b763b0ebe5d303e0f485ec26887f0d34d34af3576d9c0fd74"
+            }
+          },
+          "sources": {
+            "host": {
+              "transactions": 9362,
+              "bytes": 74128,
+              "first_tick_fs": 2212137000000,
+              "last_tick_fs": 3117460000000,
+              "roundtrip_sum_ns": 589569.0,
+              "roundtrip_mean_ns": 62.97468489638966
+            },
+            "vortex": {
+              "transactions": 249,
+              "bytes": 13848,
+              "first_tick_fs": 2941659000000,
+              "last_tick_fs": 3109804000000,
+              "roundtrip_sum_ns": 31870.0,
+              "roundtrip_mean_ns": 127.99196787148595
+            },
+            "coralnpu": {
+              "transactions": 128,
+              "bytes": 2048,
+              "first_tick_fs": 3061558000000,
+              "last_tick_fs": 3071884000000,
+              "roundtrip_sum_ns": 8653.5,
+              "roundtrip_mean_ns": 67.60546875
+            }
+          },
+          "devices": {
+            "npu_cycles": 5284,
+            "gpu_core_read": 6,
+            "gpu_core_write": 1,
+            "gpu_cp_read": 40,
+            "gpu_cp_write": 40,
+            "gpu_completed": 87,
+            "gpu_cp_cycles": 794,
+            "gpu_cycles": 638
+          }
+        },
+        "three_slow": {
+          "status": "PASS",
+          "gate_enable": false,
+          "host_finish_tick_fs": 3271973500000,
+          "host_transactions": 9739,
+          "memsim_scale": 4,
+          "memsim_period_fs": 1000000,
+          "axi_period_fs": 2000000,
+          "artifacts": {
+            "run.log": {
+              "path": "results/baseline-xpu/three_slow/run.log",
+              "sha256": "fd423155f858de5549f35dbe9987803cb8d54ae4fec2b5ad3d166f513d08cd09"
+            },
+            "config.json": {
+              "path": "results/baseline-xpu/three_slow/config.json",
+              "sha256": "6310d577a2f751b7c903f76678479d0fd5a01be7baf9d80eec22131c92785407"
+            },
+            "stats.txt": {
+              "path": "results/baseline-xpu/three_slow/stats.txt",
+              "sha256": "54b38b7b90374feba902b671bc3590a5e6422a1527e66f405379800f84ade1ca"
+            },
+            "axi_events.csv": {
+              "path": "results/baseline-xpu/three_slow/axi_events.csv",
+              "sha256": "b2527742f8c1f155a8304aa110cbe792e05c1f999976bef9347b1f8b019a3a86"
+            },
+            "axi_wave.vcd": {
+              "path": "results/baseline-xpu/three_slow/axi_wave.vcd",
+              "sha256": "f473a7b406ef925352960be393eb82a100f2406ee4767781fafed026db239592"
+            },
+            "aou_events.csv": {
+              "path": "results/baseline-xpu/three_slow/aou_events.csv",
+              "sha256": "ca9b9d2997aad52a63b3b2fd8a8c792c4127b7037e5455cf21086acbefb3c956"
+            },
+            "ucie_flits.csv": {
+              "path": "results/baseline-xpu/three_slow/ucie_flits.csv",
+              "sha256": "02a08dbc92225b21d3e1813527a118b1cce45d6a7216fa38b7e9f8397dfe3cde"
+            },
+            "memsim_bridge.csv": {
+              "path": "results/baseline-xpu/three_slow/memsim_bridge.csv",
+              "sha256": "746040243a98f776e752c56ff2a37755fe2de94338694e20607fec59ea499df7"
+            },
+            "memsim_commands.csv": {
+              "path": "results/baseline-xpu/three_slow/memsim_commands.csv",
+              "sha256": "8c0366466d159982b36e0b56bf8397fd460bf6a7e200af03512b99ec27614373"
+            },
+            "memsim_dfi_signals.csv": {
+              "path": "results/baseline-xpu/three_slow/memsim_dfi_signals.csv",
+              "sha256": "bf9c0f6c7158712dfceb64fb5d305970cf2f57e8c2e796e1c775b317de656506"
+            },
+            "memsim_image.csv": {
+              "path": "results/baseline-xpu/three_slow/memsim_image.csv",
+              "sha256": "a28813ad774d0eb7d35effd52eb2bb0fcd6a45d95a9a928f0f53ac4f5fc016fc"
+            },
+            "check_summary.json": {
+              "path": "results/baseline-xpu/three_slow/check_summary.json",
+              "sha256": "abde86a143c9c4e3b2719917996e4d2a8d61eab9e196fe42d03477c5ed1e2380"
+            },
+            "aou_check_summary.json": {
+              "path": "results/baseline-xpu/three_slow/aou_check_summary.json",
+              "sha256": "12b254f86aa86f02366c422339756ad738754bf774eb94a8739cc42a473350a0"
+            },
+            "memsim_check.json": {
+              "path": "results/baseline-xpu/three_slow/memsim_check.json",
+              "sha256": "a54b267443f1891bc96816287ddcf6e04089429f88912e89612175ae2c7ad78e"
+            },
+            "memsim_core.json": {
+              "path": "results/baseline-xpu/three_slow/memsim_core.json",
+              "sha256": "420b2022e285a9b2e332ad89a240b8d4422bf81eabbf60571619fbf945c3d965"
+            },
+            "link_check_summary.json": {
+              "path": "results/baseline-xpu/three_slow/link_check_summary.json",
+              "sha256": "b41f166996acb245684f5c4ca9edf7e04778df6b8243ccf65ab07529dfc24f9e"
+            }
+          },
+          "sources": {
+            "host": {
+              "transactions": 9362,
+              "bytes": 74128,
+              "first_tick_fs": 2212137000000,
+              "last_tick_fs": 3228378000000,
+              "roundtrip_sum_ns": 692595.0,
+              "roundtrip_mean_ns": 73.97938474684896
+            },
+            "vortex": {
+              "transactions": 249,
+              "bytes": 13848,
+              "first_tick_fs": 3022107000000,
+              "last_tick_fs": 3216814000000,
+              "roundtrip_sum_ns": 86039.5,
+              "roundtrip_mean_ns": 345.54016064257024
+            },
+            "coralnpu": {
+              "transactions": 128,
+              "bytes": 2048,
+              "first_tick_fs": 3151702000000,
+              "last_tick_fs": 3169626000000,
+              "roundtrip_sum_ns": 16237.0,
+              "roundtrip_mean_ns": 126.8515625
+            }
+          },
+          "devices": {
+            "npu_cycles": 9083,
+            "gpu_core_read": 6,
+            "gpu_core_write": 1,
+            "gpu_cp_read": 40,
+            "gpu_cp_write": 40,
+            "gpu_completed": 87,
+            "gpu_cp_cycles": 1190,
+            "gpu_cycles": 1034
+          }
+        }
+      },
+      "memory_feedback": {
+        "passed": true,
+        "scale": 4,
+        "host_finish_delta_ns": 110918.0,
+        "npu_cycles": [
+          5284,
+          9083
+        ],
+        "gpu_cycles": [
+          638,
+          1034
+        ],
+        "note": "CPU/CP polling counts may change; compare the same computation and actual source responses."
+      },
+      "xpu_environment_manifest": {
+        "path": "results/baseline-xpu/environment/xpu_manifest.json",
+        "sha256": "2754cbb7e73a77cde51b3db2525301bc69f518b74c803b16dde8026901f6bd08"
+      }
+    },
+    "cpu_synthetic": {
+      "status": "PASS",
+      "passed": true,
+      "fixture": "smoke",
+      "summary": {
+        "path": "results/sparse-gate-system-final-cpu/cpu_smoke/sparse_gate_check.json",
+        "sha256": "f44bb0a7d0493d10de04841cc6934dd3f8b4ee9b0680cc48f23395f1b571e6c1"
+      },
+      "suite_summary": {
+        "path": "results/sparse-gate-system-final-cpu/summary.json",
+        "sha256": "9937ce4e94025567fed3c9d98b1a07bb054f1f63cd7cf17e8821e7c8bafbfce5"
+      },
+      "environment_manifest": {
+        "path": "results/sparse-gate-system-final-cpu/environment/manifest.json",
+        "sha256": "8f65c73769a5ef4c3f81d37d49b7e180651b08ba7b052cee46ec0fa1c5780ace"
+      },
+      "gem5_binary_sha256": "aad39e795c50030c7eea8f7df3b53023e22920a7dd314becd2d4828419e694de",
+      "memsim_library_sha256": "382e40995e35f9d705cf4fa1d040244636ef6abffcae689155bc7efebc3ec5cd",
+      "integration_source_lock": {
+        "path": "results/sparse-gate-system-final-cpu/cpu_smoke/integration_sources.json",
+        "sha256": "b7b471b933d2bc960fba079d7e4516cc205efd400093b1cc28bff93e28a08858"
+      },
+      "source_sha256": {
+        "gem5_axi/Gem5Axi.py": "6d25dbd68f1039c96573b61006fb0de500fb45fe8c4baa7dee8987e304132e06",
+        "gem5_axi/SConscript": "69f3ede29b3fa891983f0b9342156f03ade7140ce42dffb4482cb03e8390a727",
+        "gem5_axi/axi_demo.cc": "7512115b8c4cf3ca86521deec443366e85c21e58f5f25157a449521a85007acb",
+        "gem5_axi/axi_master.cc": "de471cbb6c28589c3d6ea5651e108392503a5baaed336d775e30bcb98c55005a",
+        "gem5_axi/aou_backend.cc": "9f1400fd67b11177dfea381af9b7045202d41350ebf01ba1ee79b0c7dbe5bceb",
+        "gem5_axi/memsim_backend.cc": "33ef4e6bb557ba9674e637a1b670e2d997f759ffb4f92c0a48de357a05c835f2",
+        "gem5_axi/sparse_gate_backend.cc": "8af66a901bfed73c07f9e086a97f48180209f0ce9cfada13ed1a4fe37d274f4b",
+        "gem5_axi/sparse_gate_backend.hh": "5e1c99e1ef00d26df8e0da4357ef2374af27b09160b0f7506ce6484a889105b5",
+        "gem5_axi/sparse_gate_abi.h": "da8599cf7e788bbaa62072e06d5dda41e64908988f115bab02eb970a175da465",
+        "gem5_axi/sparse_gate_model.cpp": "8d73b476d3fdcdf285a1c57f18cd275296c549ba0eed9568f2c5ffa1ff1c3322",
+        "gem5_axi/configs/run.py": "2db49bbe175c8990356a45cb843e335402e7fe6f98b9e26926d89e2f3fb83827",
+        "gem5_axi/configs/run_xpu.py": "47e761cbdd4f23e3407f35f6dda802594b8f80a34b065a9c3578a62e75f2baf9",
+        "gem5_axi/workloads/sparse_gate_client.h": "05f5de7c44cc4d63fd5bfb7f492303615b4f7d019de515132a8f4ba1e5799692",
+        "gem5_axi/workloads/sparse_gate_check.c": "7f290e541e30cd55d7e57ed0c3ab807ef8ea6676abd5711c070e635be40288c4",
+        "gem5_new/workloads/three_source_gate/host_main.cpp": "74875270ed8fab3d9a610c350cef4d7f9cf825178b101ad1395538f38537e557",
+        "research/fixtures/system_smoke.h": "f770e26ad42292ca0a592698c74420e3667eca194d1844bfab2cc1be8813c41b",
+        "research/fixtures/csa2_real_weights_fixture.h": "17268ce504a41619983c2ba5066509afdfa185cb30f5a35713cd278d09b814e4",
+        "gem5_axi/scripts/check_sparse_gate.py": "d733d46aa124424482364199e7c703b91a25675106c07cf492239d8447109bc5",
+        "research/fixtures/csa2_top512_fixture.h": "45d677a32a2b6202c61eb9628da5c572a9f0a08d74c26f62b6cf74c73aadcf8a",
+        "gem5_axi/workloads/sparse_gate_top512.c": "c1c02237cb1a4ebaaa59aba143cd37245578f3e870d0b554abb6b03990e37379",
+        "gem5_axi/scripts/check_aou.py": "05cf29afef288d63c8e14749538b19083f527982092d7c5ea2327528437e2255",
+        "gem5_axi/scripts/inspect_link.py": "5e4a6b20e91ad85fe73774bcb2fea93d7e1711457407f281eeb02b0315bb07a6",
+        "env/run_sparse_gate.sh": "2b91006ce7901e33009be90448799676258d665bac702734c83a7ad7d819a870"
+      },
+      "guest_binary_sha256": "45c209760e03ccf38a0ded1faf34a66807468dae77beb4c6afc521b8dd32be57",
+      "host_finish_tick_fs": 2095586000000,
+      "host_transactions": 1693,
+      "mmio_transactions": 229,
+      "native_bursts": 1913,
+      "native_children": 1913,
+      "rtl_wave_handshakes": 1555,
+      "model_build_id": "5598ad5c138798c349084e01290be4d488c606ca89ee713fa743b96aa2648490",
+      "model_manifest": {
+        "path": "results/sparse-gate-system-final-cpu/environment/gate_model_build.json",
+        "sha256": "8d0bcfe1df74f3969f08b45fc00d87a48354b14c0b5d03c9591bbf4a783b4601"
+      },
+      "rtl_model_source_sha256": {
+        "rtl/sparse_gate/sg_fp32_pkg.sv": "54e4f21009646b1214236e73def967aefa9e1ebd6099fa483294a57699c65b9c",
+        "rtl/sparse_gate/sg_index_core.sv": "094b297eaabca45981dc31dd46661ca6fd39b77859ba9bf1c82681eb5444a3ab",
+        "rtl/sparse_gate_axi/sparse_gate_dma.sv": "0c7eb97e4fb64dbb70fb83f9401a45a4fa5aa3ae113799c97faceb7a30050332",
+        "rtl/sparse_gate_axi/sparse_gate_axi.sv": "978cd71cd0f8794410fcb326124a36262bf980a8bfb603a92760121bad994073",
+        "gem5_axi/sparse_gate_model.cpp": "8d73b476d3fdcdf285a1c57f18cd275296c549ba0eed9568f2c5ffa1ff1c3322",
+        "gem5_axi/sparse_gate_abi.h": "da8599cf7e788bbaa62072e06d5dda41e64908988f115bab02eb970a175da465",
+        "env/build_sparse_gate.sh": "6d6b29b8b42def635fe9fe9b7cbbdae31ada0461887f05716ca7632279394fe5"
+      },
+      "model_library_sha256": "de42616e3726c191733b49442f8a17c48079b00e2182aa2b1b4d37e6eed290bd",
+      "memsim_scale": 1,
+      "memsim_period_fs": 250000,
+      "axi_period_fs": 2000000,
+      "commands": [
+        {
+          "mode": "FULL",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 4,
+          "score_count": 16,
+          "cycles": 5017,
+          "dma_read_beats": 96,
+          "dma_write_beats": 40,
+          "dma_read_bytes": 3072,
+          "dma_write_bytes": 1280,
+          "rtl_interval": {
+            "start_tick_fs": 1141046000000,
+            "reads": 96,
+            "writes": 40,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 1151074000000,
+            "mode": 0,
+            "nkeys": 16,
+            "ncand": 4,
+            "topk": 4,
+            "heads": 4,
+            "context": 20903,
+            "epoch": 7,
+            "end_tick_fs": 1151080000000,
+            "cycles": 5017,
+            "status": 2,
+            "score_count": 16,
+            "result_count": 4,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 1151082000000,
+            "first_terminal_status_r_tick_fs": 1151084000000
+          }
+        },
+        {
+          "mode": "REUSE",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 4,
+          "score_count": 0,
+          "cycles": 920,
+          "dma_read_beats": 36,
+          "dma_write_beats": 40,
+          "dma_read_bytes": 1152,
+          "dma_write_bytes": 1280,
+          "rtl_interval": {
+            "start_tick_fs": 1362184000000,
+            "reads": 36,
+            "writes": 40,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 1364018000000,
+            "mode": 2,
+            "nkeys": 16,
+            "ncand": 4,
+            "topk": 4,
+            "heads": 4,
+            "context": 20903,
+            "epoch": 7,
+            "end_tick_fs": 1364024000000,
+            "cycles": 920,
+            "status": 2,
+            "score_count": 0,
+            "result_count": 4,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 1364160000000,
+            "first_terminal_status_r_tick_fs": 1364162000000
+          }
+        },
+        {
+          "mode": "REINDEX",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 4,
+          "score_count": 4,
+          "cycles": 2388,
+          "dma_read_beats": 61,
+          "dma_write_beats": 40,
+          "dma_read_bytes": 1952,
+          "dma_write_bytes": 1280,
+          "rtl_interval": {
+            "start_tick_fs": 1575398000000,
+            "reads": 61,
+            "writes": 40,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 1580168000000,
+            "mode": 1,
+            "nkeys": 16,
+            "ncand": 4,
+            "topk": 4,
+            "heads": 4,
+            "context": 20903,
+            "epoch": 8,
+            "end_tick_fs": 1580174000000,
+            "cycles": 2388,
+            "status": 2,
+            "score_count": 4,
+            "result_count": 4,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 1580294000000,
+            "first_terminal_status_r_tick_fs": 1580296000000
+          }
+        },
+        {
+          "mode": "REUSE",
+          "status": 516,
+          "expected_error": true,
+          "result_count": 4,
+          "score_count": 0,
+          "cycles": 2,
+          "dma_read_beats": 0,
+          "dma_write_beats": 0,
+          "dma_read_bytes": 0,
+          "dma_write_bytes": 0,
+          "rtl_interval": {
+            "start_tick_fs": 1791110000000,
+            "reads": 0,
+            "writes": 0,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": null,
+            "mode": 2,
+            "nkeys": 16,
+            "ncand": 4,
+            "topk": 4,
+            "heads": 4,
+            "context": 20903,
+            "epoch": 9,
+            "end_tick_fs": 1791114000000,
+            "cycles": 2,
+            "status": 516,
+            "score_count": 0,
+            "result_count": 4,
+            "cache_valid": 0,
+            "first_terminal_status_ar_tick_fs": 1791204000000,
+            "first_terminal_status_r_tick_fs": 1791206000000
+          }
+        },
+        {
+          "mode": "FULL",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 4,
+          "score_count": 16,
+          "cycles": 4907,
+          "dma_read_beats": 96,
+          "dma_write_beats": 40,
+          "dma_read_bytes": 3072,
+          "dma_write_bytes": 1280,
+          "rtl_interval": {
+            "start_tick_fs": 1792894000000,
+            "reads": 96,
+            "writes": 40,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 1802702000000,
+            "mode": 0,
+            "nkeys": 16,
+            "ncand": 4,
+            "topk": 4,
+            "heads": 4,
+            "context": 20903,
+            "epoch": 9,
+            "end_tick_fs": 1802708000000,
+            "cycles": 4907,
+            "status": 2,
+            "score_count": 16,
+            "result_count": 4,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 1802762000000,
+            "first_terminal_status_r_tick_fs": 1802764000000
+          }
+        }
+      ],
+      "artifacts": {
+        "integration_sources.json": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/integration_sources.json",
+          "sha256": "b7b471b933d2bc960fba079d7e4516cc205efd400093b1cc28bff93e28a08858"
+        },
+        "config.json": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/config.json",
+          "sha256": "9305aa169505093728078accb334fe8ae0e60e74986b7612cdae833d0d41df01"
+        },
+        "run.log": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/run.log",
+          "sha256": "7bc6d792b8e2203a5a3a48eae903000cf2ad2bb0bcf7543b9550e18b142ab2e5"
+        },
+        "protocol_summary.json": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/protocol_summary.json",
+          "sha256": "6a71634c28e61bab42032d5321acc5405f0c9c92f105e0446a9e27e1068f6f82"
+        },
+        "aou_summary.json": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/aou_summary.json",
+          "sha256": "a37b6f84e229b0cbdb8659f85728d812655e3f11f739eb3a8e5559ecb9fe90a3"
+        },
+        "sparse_gate_summary.json": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/sparse_gate_summary.json",
+          "sha256": "8d797d051a71f7333378250b494bf11ba7378ddf17118c6e34abf08bae6c6541"
+        },
+        "sparse_gate_events.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/sparse_gate_events.csv",
+          "sha256": "f5af660d83d83cbff62c1e46b5e451e0d7a0fac3f4e04014df6802279db59b14"
+        },
+        "sparse_gate.vcd": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/sparse_gate.vcd",
+          "sha256": "11c68d05dae636557c18b451728f271d6397608c2c478d33b1a4d5dc2a25ad30"
+        },
+        "axi_wave.vcd": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/axi_wave.vcd",
+          "sha256": "e205ff4a0c3828cd47fd6a4d0906ff138ff73a2acd396cf083ea8b3d50fee568"
+        },
+        "aou_events.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/aou_events.csv",
+          "sha256": "152e464d2841610cbe9e3e20e27a96ef9b344f9ce5babb0b562dcf1f17db3cf7"
+        },
+        "transactions.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/transactions.csv",
+          "sha256": "cc14622249fd2d03fca9bfb817b16228f0ece65dd6bc8a07e946ba6d931ddff9"
+        },
+        "ucie_flits.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/ucie_flits.csv",
+          "sha256": "c31166edb650a27c0bb949d7d8dcdc4a7dc8e71291991dbaaab1cceb4f2fa9bd"
+        },
+        "ucie_soc.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/ucie_soc.csv",
+          "sha256": "c486f165c5f1f468eb0746a2b2fb077884484da686501319d0035dca32f24eae"
+        },
+        "ucie_mem.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/ucie_mem.csv",
+          "sha256": "0d249a96ab26661ad83f26f137d3f063e9be0d17cf5c73068221bd3962c0f1bb"
+        },
+        "axi_flit_path.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/axi_flit_path.csv",
+          "sha256": "27561a61d4fab583907fe30a0c924da3ca36cea8ae4e679bc99d8b59bbcfb94e"
+        },
+        "link_check_summary.json": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/link_check_summary.json",
+          "sha256": "9a5eb92a1d1d2fd2fd08b5865791dcec2535d1de5202b4a02c52158f8e335d96"
+        },
+        "memsim_bridge.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/memsim_bridge.csv",
+          "sha256": "379ec45768aa007d45e5e79c3a4a1579a29dd0ed5447151952c1141272978e0e"
+        },
+        "memsim_bridge_summary.json": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/memsim_bridge_summary.json",
+          "sha256": "7935f19bc4941c1d0bfa44b6c7cba11d0752e98473355bce72bfff351ce290d8"
+        },
+        "memsim_core.json": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/memsim_core.json",
+          "sha256": "ae98c872c9a8f0aa7631234cf35835bb25a7e82f3d0ae2da7d4143c878cd6075"
+        },
+        "memsim_commands.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/memsim_commands.csv",
+          "sha256": "7a4db28fc60a1a32eff16c86c44194a43618c6da7dd0c1dc4b9fc8b43f162bf6"
+        },
+        "memsim_dfi_signals.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/memsim_dfi_signals.csv",
+          "sha256": "328c055234b45c038df53ebdf696e4b792d45b573c6f1dca74ae66f6aa482efe"
+        },
+        "memsim_image.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_smoke/memsim_image.csv",
+          "sha256": "7f835f3794df50df6f91ca27d47f53ffb592163608a8c426d558f8d10f4d1693"
+        }
+      }
+    },
+    "cpu_real_weights": {
+      "status": "PASS",
+      "passed": true,
+      "fixture": "real-weights",
+      "summary": {
+        "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/sparse_gate_check.json",
+        "sha256": "d300633392c3de993527300e13b3ae19b8241f7a30ec85ee99969084316dc66a"
+      },
+      "suite_summary": {
+        "path": "results/sparse-gate-system-final-cpu/summary.json",
+        "sha256": "9937ce4e94025567fed3c9d98b1a07bb054f1f63cd7cf17e8821e7c8bafbfce5"
+      },
+      "environment_manifest": {
+        "path": "results/sparse-gate-system-final-cpu/environment/manifest.json",
+        "sha256": "8f65c73769a5ef4c3f81d37d49b7e180651b08ba7b052cee46ec0fa1c5780ace"
+      },
+      "gem5_binary_sha256": "aad39e795c50030c7eea8f7df3b53023e22920a7dd314becd2d4828419e694de",
+      "memsim_library_sha256": "382e40995e35f9d705cf4fa1d040244636ef6abffcae689155bc7efebc3ec5cd",
+      "integration_source_lock": {
+        "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/integration_sources.json",
+        "sha256": "847f49e86cb526049064329c8b996e03d348be88fe5a0b0d45fbabfd62abedf1"
+      },
+      "source_sha256": {
+        "gem5_axi/Gem5Axi.py": "6d25dbd68f1039c96573b61006fb0de500fb45fe8c4baa7dee8987e304132e06",
+        "gem5_axi/SConscript": "69f3ede29b3fa891983f0b9342156f03ade7140ce42dffb4482cb03e8390a727",
+        "gem5_axi/axi_demo.cc": "7512115b8c4cf3ca86521deec443366e85c21e58f5f25157a449521a85007acb",
+        "gem5_axi/axi_master.cc": "de471cbb6c28589c3d6ea5651e108392503a5baaed336d775e30bcb98c55005a",
+        "gem5_axi/aou_backend.cc": "9f1400fd67b11177dfea381af9b7045202d41350ebf01ba1ee79b0c7dbe5bceb",
+        "gem5_axi/memsim_backend.cc": "33ef4e6bb557ba9674e637a1b670e2d997f759ffb4f92c0a48de357a05c835f2",
+        "gem5_axi/sparse_gate_backend.cc": "8af66a901bfed73c07f9e086a97f48180209f0ce9cfada13ed1a4fe37d274f4b",
+        "gem5_axi/sparse_gate_backend.hh": "5e1c99e1ef00d26df8e0da4357ef2374af27b09160b0f7506ce6484a889105b5",
+        "gem5_axi/sparse_gate_abi.h": "da8599cf7e788bbaa62072e06d5dda41e64908988f115bab02eb970a175da465",
+        "gem5_axi/sparse_gate_model.cpp": "8d73b476d3fdcdf285a1c57f18cd275296c549ba0eed9568f2c5ffa1ff1c3322",
+        "gem5_axi/configs/run.py": "2db49bbe175c8990356a45cb843e335402e7fe6f98b9e26926d89e2f3fb83827",
+        "gem5_axi/configs/run_xpu.py": "47e761cbdd4f23e3407f35f6dda802594b8f80a34b065a9c3578a62e75f2baf9",
+        "gem5_axi/workloads/sparse_gate_client.h": "05f5de7c44cc4d63fd5bfb7f492303615b4f7d019de515132a8f4ba1e5799692",
+        "gem5_axi/workloads/sparse_gate_check.c": "7f290e541e30cd55d7e57ed0c3ab807ef8ea6676abd5711c070e635be40288c4",
+        "gem5_new/workloads/three_source_gate/host_main.cpp": "74875270ed8fab3d9a610c350cef4d7f9cf825178b101ad1395538f38537e557",
+        "research/fixtures/system_smoke.h": "f770e26ad42292ca0a592698c74420e3667eca194d1844bfab2cc1be8813c41b",
+        "research/fixtures/csa2_real_weights_fixture.h": "17268ce504a41619983c2ba5066509afdfa185cb30f5a35713cd278d09b814e4",
+        "gem5_axi/scripts/check_sparse_gate.py": "d733d46aa124424482364199e7c703b91a25675106c07cf492239d8447109bc5",
+        "research/fixtures/csa2_top512_fixture.h": "45d677a32a2b6202c61eb9628da5c572a9f0a08d74c26f62b6cf74c73aadcf8a",
+        "gem5_axi/workloads/sparse_gate_top512.c": "c1c02237cb1a4ebaaa59aba143cd37245578f3e870d0b554abb6b03990e37379",
+        "gem5_axi/scripts/check_aou.py": "05cf29afef288d63c8e14749538b19083f527982092d7c5ea2327528437e2255",
+        "gem5_axi/scripts/inspect_link.py": "5e4a6b20e91ad85fe73774bcb2fea93d7e1711457407f281eeb02b0315bb07a6",
+        "env/run_sparse_gate.sh": "2b91006ce7901e33009be90448799676258d665bac702734c83a7ad7d819a870"
+      },
+      "guest_binary_sha256": "ba3562e0300071bc5fc3e75793dc7f12c31a34a88d92f7e41b3c457c17aa5532",
+      "host_finish_tick_fs": 6665264500000,
+      "host_transactions": 6352,
+      "mmio_transactions": 1600,
+      "native_bursts": 6082,
+      "native_children": 6082,
+      "rtl_wave_handshakes": 6219,
+      "model_build_id": "5598ad5c138798c349084e01290be4d488c606ca89ee713fa743b96aa2648490",
+      "model_manifest": {
+        "path": "results/sparse-gate-system-final-cpu/environment/gate_model_build.json",
+        "sha256": "8d0bcfe1df74f3969f08b45fc00d87a48354b14c0b5d03c9591bbf4a783b4601"
+      },
+      "rtl_model_source_sha256": {
+        "rtl/sparse_gate/sg_fp32_pkg.sv": "54e4f21009646b1214236e73def967aefa9e1ebd6099fa483294a57699c65b9c",
+        "rtl/sparse_gate/sg_index_core.sv": "094b297eaabca45981dc31dd46661ca6fd39b77859ba9bf1c82681eb5444a3ab",
+        "rtl/sparse_gate_axi/sparse_gate_dma.sv": "0c7eb97e4fb64dbb70fb83f9401a45a4fa5aa3ae113799c97faceb7a30050332",
+        "rtl/sparse_gate_axi/sparse_gate_axi.sv": "978cd71cd0f8794410fcb326124a36262bf980a8bfb603a92760121bad994073",
+        "gem5_axi/sparse_gate_model.cpp": "8d73b476d3fdcdf285a1c57f18cd275296c549ba0eed9568f2c5ffa1ff1c3322",
+        "gem5_axi/sparse_gate_abi.h": "da8599cf7e788bbaa62072e06d5dda41e64908988f115bab02eb970a175da465",
+        "env/build_sparse_gate.sh": "6d6b29b8b42def635fe9fe9b7cbbdae31ada0461887f05716ca7632279394fe5"
+      },
+      "model_library_sha256": "de42616e3726c191733b49442f8a17c48079b00e2182aa2b1b4d37e6eed290bd",
+      "memsim_scale": 1,
+      "memsim_period_fs": 250000,
+      "axi_period_fs": 2000000,
+      "commands": [
+        {
+          "mode": "FULL",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 8,
+          "score_count": 64,
+          "cycles": 55155,
+          "dma_read_beats": 360,
+          "dma_write_beats": 80,
+          "dma_read_bytes": 11520,
+          "dma_write_bytes": 2560,
+          "rtl_interval": {
+            "start_tick_fs": 4638230000000,
+            "reads": 360,
+            "writes": 80,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 4748534000000,
+            "mode": 0,
+            "nkeys": 64,
+            "ncand": 16,
+            "topk": 8,
+            "heads": 32,
+            "context": 20903,
+            "epoch": 7,
+            "end_tick_fs": 4748540000000,
+            "cycles": 55155,
+            "status": 2,
+            "score_count": 64,
+            "result_count": 8,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 4748600000000,
+            "first_terminal_status_r_tick_fs": 4748602000000
+          }
+        },
+        {
+          "mode": "REUSE",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 8,
+          "score_count": 0,
+          "cycles": 1949,
+          "dma_read_beats": 72,
+          "dma_write_beats": 80,
+          "dma_read_bytes": 2304,
+          "dma_write_bytes": 2560,
+          "rtl_interval": {
+            "start_tick_fs": 5168094000000,
+            "reads": 72,
+            "writes": 80,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 5171986000000,
+            "mode": 2,
+            "nkeys": 64,
+            "ncand": 16,
+            "topk": 8,
+            "heads": 32,
+            "context": 20903,
+            "epoch": 7,
+            "end_tick_fs": 5171992000000,
+            "cycles": 1949,
+            "status": 2,
+            "score_count": 0,
+            "result_count": 8,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 5172132000000,
+            "first_terminal_status_r_tick_fs": 5172134000000
+          }
+        },
+        {
+          "mode": "REINDEX",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 8,
+          "score_count": 16,
+          "cycles": 18788,
+          "dma_read_beats": 218,
+          "dma_write_beats": 80,
+          "dma_read_bytes": 6976,
+          "dma_write_bytes": 2560,
+          "rtl_interval": {
+            "start_tick_fs": 5591792000000,
+            "reads": 218,
+            "writes": 80,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 5629362000000,
+            "mode": 1,
+            "nkeys": 64,
+            "ncand": 16,
+            "topk": 8,
+            "heads": 32,
+            "context": 20903,
+            "epoch": 8,
+            "end_tick_fs": 5629368000000,
+            "cycles": 18788,
+            "status": 2,
+            "score_count": 16,
+            "result_count": 8,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 5629442000000,
+            "first_terminal_status_r_tick_fs": 5629444000000
+          }
+        },
+        {
+          "mode": "REUSE",
+          "status": 516,
+          "expected_error": true,
+          "result_count": 8,
+          "score_count": 0,
+          "cycles": 2,
+          "dma_read_beats": 0,
+          "dma_write_beats": 0,
+          "dma_read_bytes": 0,
+          "dma_write_bytes": 0,
+          "rtl_interval": {
+            "start_tick_fs": 6048532000000,
+            "reads": 0,
+            "writes": 0,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": null,
+            "mode": 2,
+            "nkeys": 64,
+            "ncand": 16,
+            "topk": 8,
+            "heads": 32,
+            "context": 20903,
+            "epoch": 9,
+            "end_tick_fs": 6048536000000,
+            "cycles": 2,
+            "status": 516,
+            "score_count": 0,
+            "result_count": 8,
+            "cache_valid": 0,
+            "first_terminal_status_ar_tick_fs": 6048624000000,
+            "first_terminal_status_r_tick_fs": 6048626000000
+          }
+        },
+        {
+          "mode": "FULL",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 8,
+          "score_count": 64,
+          "cycles": 54908,
+          "dma_read_beats": 360,
+          "dma_write_beats": 80,
+          "dma_read_bytes": 11520,
+          "dma_write_bytes": 2560,
+          "rtl_interval": {
+            "start_tick_fs": 6050308000000,
+            "reads": 360,
+            "writes": 80,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 6160118000000,
+            "mode": 0,
+            "nkeys": 64,
+            "ncand": 16,
+            "topk": 8,
+            "heads": 32,
+            "context": 20903,
+            "epoch": 9,
+            "end_tick_fs": 6160124000000,
+            "cycles": 54908,
+            "status": 2,
+            "score_count": 64,
+            "result_count": 8,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 6160164000000,
+            "first_terminal_status_r_tick_fs": 6160166000000
+          }
+        }
+      ],
+      "artifacts": {
+        "integration_sources.json": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/integration_sources.json",
+          "sha256": "847f49e86cb526049064329c8b996e03d348be88fe5a0b0d45fbabfd62abedf1"
+        },
+        "config.json": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/config.json",
+          "sha256": "06ffbebe8fed0a66adb01000ddf3431449ca0dbe3c4a276fc8e1d4b6d5159063"
+        },
+        "run.log": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/run.log",
+          "sha256": "af922c67f77a1676eacb62d599ecea0c872c39521599b4f4d24ca97b6179c767"
+        },
+        "protocol_summary.json": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/protocol_summary.json",
+          "sha256": "31705841b5e753ed200cb72e4025a417b3ff1e1ff3e567742c797083de94ccc1"
+        },
+        "aou_summary.json": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/aou_summary.json",
+          "sha256": "9bcef0fbf5ec612868898f3b0851761f36ffb4f781e6d62361ae52637fdbe4c7"
+        },
+        "sparse_gate_summary.json": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/sparse_gate_summary.json",
+          "sha256": "83fb2f46f6a5dee989cb0e682af89f6e8bee10cfabdb159c1471a72790b38bdd"
+        },
+        "sparse_gate_events.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/sparse_gate_events.csv",
+          "sha256": "86e0a0996ccbebd2c1e3d11548970aebfb41383996eb2f4ea4cbc857067049c5"
+        },
+        "sparse_gate.vcd": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/sparse_gate.vcd",
+          "sha256": "834ec3ea89aba0477a01f8036af4476294c7744757ea10522e00dcf75e676421"
+        },
+        "axi_wave.vcd": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/axi_wave.vcd",
+          "sha256": "bfe402dd8608fcab85f1d0d1688133c5403918e60c27f7b1ff62f4759ecec024"
+        },
+        "aou_events.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/aou_events.csv",
+          "sha256": "cc8611c22b7966a803b58bdcd7ad14cef5d9e4a43a67144efbd89fa0d8af5c27"
+        },
+        "transactions.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/transactions.csv",
+          "sha256": "157540fe16eec1bef8ef31205550001d4994581c20b6a662c0d8f378ecfc41e2"
+        },
+        "ucie_flits.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/ucie_flits.csv",
+          "sha256": "7cf755a410aef960877fb2e23777f1c8e7aa154a573b8efab904520c0753c1cf"
+        },
+        "ucie_soc.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/ucie_soc.csv",
+          "sha256": "9c06cbb098b8f77eae49abb45e3b10249370c67a49dc29d9fdee5663ed0e85ba"
+        },
+        "ucie_mem.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/ucie_mem.csv",
+          "sha256": "c2ff33a8a2a652bb2ebe156f6ebc9cc5485dabd26bfa84ce6f4c178e95f167e6"
+        },
+        "axi_flit_path.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/axi_flit_path.csv",
+          "sha256": "4e9b51e6a0ab67b4619960d2ba3096cf883e8eddcba5ab00313fadd5d668a91d"
+        },
+        "link_check_summary.json": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/link_check_summary.json",
+          "sha256": "8f3f3e404f9f873aaebf2d2a9ad2aed74dc1bbe485ad46f33b17284935cdfc69"
+        },
+        "memsim_bridge.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/memsim_bridge.csv",
+          "sha256": "1578dbfa9a2bc70a983d61c95f03b82cd6c1221a6857e5545441ee973c99f3b4"
+        },
+        "memsim_bridge_summary.json": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/memsim_bridge_summary.json",
+          "sha256": "bc8343d6f1ccf6717b3774c5ebd04234bdb1443026288f05b727ae9877a941aa"
+        },
+        "memsim_core.json": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/memsim_core.json",
+          "sha256": "adf2f305b2512f13fe5f94f24d3493235c5be665d27f0bcadac9877a7c6e31f6"
+        },
+        "memsim_commands.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/memsim_commands.csv",
+          "sha256": "b5a330825877075fdb7531135f15e0c735fb6bc9e205049785e5fec6e1d5f744"
+        },
+        "memsim_dfi_signals.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/memsim_dfi_signals.csv",
+          "sha256": "d9faf5b824214c5a22c6c3cfa5254371207b6453a99fce4df8c9beda99088f50"
+        },
+        "memsim_image.csv": {
+          "path": "results/sparse-gate-system-final-cpu/cpu_real-weights/memsim_image.csv",
+          "sha256": "9aeedce53eb414c19b6f488c455830679bfead56ff257cd68f710b43fdf02d8c"
+        }
+      }
+    },
+    "three_source_coexistence": {
+      "status": "PASS",
+      "passed": true,
+      "fixture": "smoke",
+      "summary": {
+        "path": "results/sparse-gate-system-final-three/three_smoke/sparse_gate_check.json",
+        "sha256": "b65b5def9e7a0fa8365f368fb5324433889daa8a946d949f0ea755aa07962a32"
+      },
+      "suite_summary": {
+        "path": "results/sparse-gate-system-final-three/summary.json",
+        "sha256": "4b174c39ad312e155df550620eb8645d521e54f88615b896554989f41b243404"
+      },
+      "environment_manifest": {
+        "path": "results/sparse-gate-system-final-three/environment/manifest.json",
+        "sha256": "8857ebdea2a4af6fe18db1e83e5a76970fcfa8aaf0373a00db6667be21176e61"
+      },
+      "gem5_binary_sha256": "aad39e795c50030c7eea8f7df3b53023e22920a7dd314becd2d4828419e694de",
+      "memsim_library_sha256": "382e40995e35f9d705cf4fa1d040244636ef6abffcae689155bc7efebc3ec5cd",
+      "integration_source_lock": {
+        "path": "results/sparse-gate-system-final-three/three_smoke/integration_sources.json",
+        "sha256": "eb6f5fb38ed9fd3f6b543d2d34387972f25ad4507121231fb5bf855cc3ef6945"
+      },
+      "source_sha256": {
+        "gem5_axi/Gem5Axi.py": "6d25dbd68f1039c96573b61006fb0de500fb45fe8c4baa7dee8987e304132e06",
+        "gem5_axi/SConscript": "69f3ede29b3fa891983f0b9342156f03ade7140ce42dffb4482cb03e8390a727",
+        "gem5_axi/axi_demo.cc": "7512115b8c4cf3ca86521deec443366e85c21e58f5f25157a449521a85007acb",
+        "gem5_axi/axi_master.cc": "de471cbb6c28589c3d6ea5651e108392503a5baaed336d775e30bcb98c55005a",
+        "gem5_axi/aou_backend.cc": "9f1400fd67b11177dfea381af9b7045202d41350ebf01ba1ee79b0c7dbe5bceb",
+        "gem5_axi/memsim_backend.cc": "33ef4e6bb557ba9674e637a1b670e2d997f759ffb4f92c0a48de357a05c835f2",
+        "gem5_axi/sparse_gate_backend.cc": "8af66a901bfed73c07f9e086a97f48180209f0ce9cfada13ed1a4fe37d274f4b",
+        "gem5_axi/sparse_gate_backend.hh": "5e1c99e1ef00d26df8e0da4357ef2374af27b09160b0f7506ce6484a889105b5",
+        "gem5_axi/sparse_gate_abi.h": "da8599cf7e788bbaa62072e06d5dda41e64908988f115bab02eb970a175da465",
+        "gem5_axi/sparse_gate_model.cpp": "8d73b476d3fdcdf285a1c57f18cd275296c549ba0eed9568f2c5ffa1ff1c3322",
+        "gem5_axi/configs/run.py": "2db49bbe175c8990356a45cb843e335402e7fe6f98b9e26926d89e2f3fb83827",
+        "gem5_axi/configs/run_xpu.py": "47e761cbdd4f23e3407f35f6dda802594b8f80a34b065a9c3578a62e75f2baf9",
+        "gem5_axi/workloads/sparse_gate_client.h": "05f5de7c44cc4d63fd5bfb7f492303615b4f7d019de515132a8f4ba1e5799692",
+        "gem5_axi/workloads/sparse_gate_check.c": "7f290e541e30cd55d7e57ed0c3ab807ef8ea6676abd5711c070e635be40288c4",
+        "gem5_new/workloads/three_source_gate/host_main.cpp": "74875270ed8fab3d9a610c350cef4d7f9cf825178b101ad1395538f38537e557",
+        "research/fixtures/system_smoke.h": "f770e26ad42292ca0a592698c74420e3667eca194d1844bfab2cc1be8813c41b",
+        "research/fixtures/csa2_real_weights_fixture.h": "17268ce504a41619983c2ba5066509afdfa185cb30f5a35713cd278d09b814e4",
+        "gem5_axi/scripts/check_sparse_gate.py": "d733d46aa124424482364199e7c703b91a25675106c07cf492239d8447109bc5",
+        "research/fixtures/csa2_top512_fixture.h": "45d677a32a2b6202c61eb9628da5c572a9f0a08d74c26f62b6cf74c73aadcf8a",
+        "gem5_axi/workloads/sparse_gate_top512.c": "c1c02237cb1a4ebaaa59aba143cd37245578f3e870d0b554abb6b03990e37379",
+        "gem5_axi/scripts/check_aou.py": "05cf29afef288d63c8e14749538b19083f527982092d7c5ea2327528437e2255",
+        "gem5_axi/scripts/inspect_link.py": "5e4a6b20e91ad85fe73774bcb2fea93d7e1711457407f281eeb02b0315bb07a6",
+        "env/run_sparse_gate.sh": "2b91006ce7901e33009be90448799676258d665bac702734c83a7ad7d819a870"
+      },
+      "guest_binary_sha256": "7042b7dab34fd8371a884b5c5db9edb2523c6377962ac3c5d9b6b9b0a4cc59f5",
+      "host_finish_tick_fs": 3385904500000,
+      "host_transactions": 11656,
+      "mmio_transactions": 453,
+      "native_bursts": 11652,
+      "native_children": 11862,
+      "rtl_wave_handshakes": 2003,
+      "model_build_id": "5598ad5c138798c349084e01290be4d488c606ca89ee713fa743b96aa2648490",
+      "model_manifest": {
+        "path": "results/sparse-gate-system-final-three/environment/gate_model_build.json",
+        "sha256": "8d0bcfe1df74f3969f08b45fc00d87a48354b14c0b5d03c9591bbf4a783b4601"
+      },
+      "rtl_model_source_sha256": {
+        "rtl/sparse_gate/sg_fp32_pkg.sv": "54e4f21009646b1214236e73def967aefa9e1ebd6099fa483294a57699c65b9c",
+        "rtl/sparse_gate/sg_index_core.sv": "094b297eaabca45981dc31dd46661ca6fd39b77859ba9bf1c82681eb5444a3ab",
+        "rtl/sparse_gate_axi/sparse_gate_dma.sv": "0c7eb97e4fb64dbb70fb83f9401a45a4fa5aa3ae113799c97faceb7a30050332",
+        "rtl/sparse_gate_axi/sparse_gate_axi.sv": "978cd71cd0f8794410fcb326124a36262bf980a8bfb603a92760121bad994073",
+        "gem5_axi/sparse_gate_model.cpp": "8d73b476d3fdcdf285a1c57f18cd275296c549ba0eed9568f2c5ffa1ff1c3322",
+        "gem5_axi/sparse_gate_abi.h": "da8599cf7e788bbaa62072e06d5dda41e64908988f115bab02eb970a175da465",
+        "env/build_sparse_gate.sh": "6d6b29b8b42def635fe9fe9b7cbbdae31ada0461887f05716ca7632279394fe5"
+      },
+      "model_library_sha256": "de42616e3726c191733b49442f8a17c48079b00e2182aa2b1b4d37e6eed290bd",
+      "memsim_scale": 1,
+      "memsim_period_fs": 250000,
+      "axi_period_fs": 2000000,
+      "commands": [
+        {
+          "mode": "FULL",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 4,
+          "score_count": 16,
+          "cycles": 5047,
+          "dma_read_beats": 96,
+          "dma_write_beats": 40,
+          "dma_read_bytes": 3072,
+          "dma_write_bytes": 1280,
+          "rtl_interval": {
+            "start_tick_fs": 3244806000000,
+            "reads": 96,
+            "writes": 40,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 3254894000000,
+            "mode": 0,
+            "nkeys": 16,
+            "ncand": 4,
+            "topk": 4,
+            "heads": 4,
+            "context": 20903,
+            "epoch": 7,
+            "end_tick_fs": 3254900000000,
+            "cycles": 5047,
+            "status": 2,
+            "score_count": 16,
+            "result_count": 4,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 3254908000000,
+            "first_terminal_status_r_tick_fs": 3254910000000
+          }
+        },
+        {
+          "mode": "REUSE",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 4,
+          "score_count": 0,
+          "cycles": 897,
+          "dma_read_beats": 36,
+          "dma_write_beats": 40,
+          "dma_read_bytes": 1152,
+          "dma_write_bytes": 1280,
+          "rtl_interval": {
+            "start_tick_fs": 3275650000000,
+            "reads": 36,
+            "writes": 40,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 3277438000000,
+            "mode": 2,
+            "nkeys": 16,
+            "ncand": 4,
+            "topk": 4,
+            "heads": 4,
+            "context": 20903,
+            "epoch": 7,
+            "end_tick_fs": 3277444000000,
+            "cycles": 897,
+            "status": 2,
+            "score_count": 0,
+            "result_count": 4,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 3277462000000,
+            "first_terminal_status_r_tick_fs": 3277464000000
+          }
+        },
+        {
+          "mode": "REINDEX",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 4,
+          "score_count": 4,
+          "cycles": 2393,
+          "dma_read_beats": 61,
+          "dma_write_beats": 40,
+          "dma_read_bytes": 1952,
+          "dma_write_bytes": 1280,
+          "rtl_interval": {
+            "start_tick_fs": 3298094000000,
+            "reads": 61,
+            "writes": 40,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 3302874000000,
+            "mode": 1,
+            "nkeys": 16,
+            "ncand": 4,
+            "topk": 4,
+            "heads": 4,
+            "context": 20903,
+            "epoch": 8,
+            "end_tick_fs": 3302880000000,
+            "cycles": 2393,
+            "status": 2,
+            "score_count": 4,
+            "result_count": 4,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 3302914000000,
+            "first_terminal_status_r_tick_fs": 3302916000000
+          }
+        },
+        {
+          "mode": "REUSE",
+          "status": 516,
+          "expected_error": true,
+          "result_count": 4,
+          "score_count": 0,
+          "cycles": 2,
+          "dma_read_beats": 0,
+          "dma_write_beats": 0,
+          "dma_read_bytes": 0,
+          "dma_write_bytes": 0,
+          "rtl_interval": {
+            "start_tick_fs": 3323266000000,
+            "reads": 0,
+            "writes": 0,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": null,
+            "mode": 2,
+            "nkeys": 16,
+            "ncand": 4,
+            "topk": 4,
+            "heads": 4,
+            "context": 20903,
+            "epoch": 9,
+            "end_tick_fs": 3323270000000,
+            "cycles": 2,
+            "status": 516,
+            "score_count": 0,
+            "result_count": 4,
+            "cache_valid": 0,
+            "first_terminal_status_ar_tick_fs": 3323326000000,
+            "first_terminal_status_r_tick_fs": 3323328000000
+          }
+        },
+        {
+          "mode": "FULL",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 4,
+          "score_count": 16,
+          "cycles": 4991,
+          "dma_read_beats": 96,
+          "dma_write_beats": 40,
+          "dma_read_bytes": 3072,
+          "dma_write_bytes": 1280,
+          "rtl_interval": {
+            "start_tick_fs": 3323942000000,
+            "reads": 96,
+            "writes": 40,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 3333918000000,
+            "mode": 0,
+            "nkeys": 16,
+            "ncand": 4,
+            "topk": 4,
+            "heads": 4,
+            "context": 20903,
+            "epoch": 9,
+            "end_tick_fs": 3333924000000,
+            "cycles": 4991,
+            "status": 2,
+            "score_count": 16,
+            "result_count": 4,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 3333938000000,
+            "first_terminal_status_r_tick_fs": 3333940000000
+          }
+        }
+      ],
+      "artifacts": {
+        "integration_sources.json": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/integration_sources.json",
+          "sha256": "eb6f5fb38ed9fd3f6b543d2d34387972f25ad4507121231fb5bf855cc3ef6945"
+        },
+        "config.json": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/config.json",
+          "sha256": "32c96e82e9a8c3cf1788f0c7cdc50e1072c1fef925af3c2c2f709dd60fa31f66"
+        },
+        "run.log": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/run.log",
+          "sha256": "7d180f2078c3d45ac30e8a621f9c029843dcaf16a788ab457148c444817bbe7e"
+        },
+        "protocol_summary.json": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/protocol_summary.json",
+          "sha256": "26e9162f8bba612dbcc3161d2d5bc16114f95ba7b2e20a67ef34ccd086a7df83"
+        },
+        "aou_summary.json": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/aou_summary.json",
+          "sha256": "14ab5dc10f0ba708b127d800045a49b6398cd6ab20c04d482c2bd0ff29cf3b4f"
+        },
+        "sparse_gate_summary.json": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/sparse_gate_summary.json",
+          "sha256": "a22a45355b90280ed9ee1c858c623ed891568bd7cf6c49509f13ba302cf5aa1e"
+        },
+        "sparse_gate_events.csv": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/sparse_gate_events.csv",
+          "sha256": "7c6fc9075c0342f7b29ef69928176338f9e2eef5b1c4741f86ed32f819ed3dc8"
+        },
+        "sparse_gate.vcd": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/sparse_gate.vcd",
+          "sha256": "498a7b17713285a680068d30b36aef67a6804632fdd5ce4a07debcc7663ba195"
+        },
+        "axi_wave.vcd": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/axi_wave.vcd",
+          "sha256": "6c2c33904e4c37215fca9e659df181107e132c514a3525b77b097ceab6849389"
+        },
+        "aou_events.csv": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/aou_events.csv",
+          "sha256": "a3d9b929af0d7cb4fc2565c9ca2691c430dbdbf27fd51f7d090115b713d12fe2"
+        },
+        "transactions.csv": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/transactions.csv",
+          "sha256": "f7f8286b5f1817fb932842eeb45dd842314658fa2ebf22ee7b0201cb11c45221"
+        },
+        "ucie_flits.csv": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/ucie_flits.csv",
+          "sha256": "bf6712e58120c92546682eea269fd2d81dbcdac9e30c11491a07c8565f2a6832"
+        },
+        "ucie_soc.csv": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/ucie_soc.csv",
+          "sha256": "fc26e489726618584572da30f9ba853763038447e18492658fa467fd47202993"
+        },
+        "ucie_mem.csv": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/ucie_mem.csv",
+          "sha256": "1eadacc88697f04f6bae6b2517ad984facc44d6e0d8e6a8bcb964ba3a68f7c53"
+        },
+        "axi_flit_path.csv": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/axi_flit_path.csv",
+          "sha256": "cfb6521a80492b35439a7c48965bddba20134dc9beca7855930a16e30c9d47bb"
+        },
+        "link_check_summary.json": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/link_check_summary.json",
+          "sha256": "9cb8732a8b41fc4218a95117e57386cff5008edfb78d23a748c9bb7b43315668"
+        },
+        "memsim_bridge.csv": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/memsim_bridge.csv",
+          "sha256": "8529ae6900d5ecb91f0e1d8e9c5cce475006c76329d0711ca1b7834789608925"
+        },
+        "memsim_bridge_summary.json": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/memsim_bridge_summary.json",
+          "sha256": "4da24ee8dfbd4ddab3119769f061074e0ccbe6bbb32a348f8a6fce49fa0a7672"
+        },
+        "memsim_core.json": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/memsim_core.json",
+          "sha256": "b7ef6f0d3a8470ce83814edb4c50f4d7755db6a8270b3578905b7ddd2437b8c7"
+        },
+        "memsim_commands.csv": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/memsim_commands.csv",
+          "sha256": "55985b76dedc6d6f0b40e20d677e8ccd8eb9506562cd58de244dc350464fa1c7"
+        },
+        "memsim_dfi_signals.csv": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/memsim_dfi_signals.csv",
+          "sha256": "c5f1c6e842630bf023880d198bd400ec7a3a29c135bcafe9302c087e54d3182e"
+        },
+        "memsim_image.csv": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/memsim_image.csv",
+          "sha256": "a31a7d9d42bcc315cf1e383c08728886ce3388bcea47649e8f8c5df7f704c2fa"
+        }
+      },
+      "sources": {
+        "host": {
+          "transactions": 11279,
+          "bytes": 87620,
+          "first_tick_fs": 2197394000000,
+          "last_tick_fs": 3353780000000,
+          "events_during_gate_busy": 763,
+          "raw_trace": {
+            "path": "results/sparse-gate-system-final-three/three_smoke/hettrace/host.hettrace",
+            "sha256": "01767c63dd18fb6001ebcfbde973eaaf4765140d00c5896756c1d9fca042cb5e"
+          }
+        },
+        "vortex": {
+          "transactions": 249,
+          "bytes": 13848,
+          "first_tick_fs": 2929959000000,
+          "last_tick_fs": 3104456000000,
+          "events_during_gate_busy": 0,
+          "raw_trace": {
+            "path": "results/sparse-gate-system-final-three/three_smoke/hettrace/vortex.hettrace",
+            "sha256": "894d3903c3318c36d45fbdb45b88ef7fd3eed87bc6ad6f55efe767320fb33db9"
+          }
+        },
+        "coralnpu": {
+          "transactions": 128,
+          "bytes": 2048,
+          "first_tick_fs": 3057340000000,
+          "last_tick_fs": 3068734000000,
+          "events_during_gate_busy": 0,
+          "raw_trace": {
+            "path": "results/sparse-gate-system-final-three/three_smoke/hettrace/coralnpu.hettrace",
+            "sha256": "e7e972e2eb24561a859d35b9cbfac1b7c3363c2cb68b5fed5c0796a1df2aebc8"
+          }
+        }
+      },
+      "accelerator_binaries": {
+        "vortex": {
+          "path": "vortex-gpu/vxbuild/sim/simx/libvortex-gem5.so",
+          "sha256": "3e85693bd659890760f5e3b7552c6273e4e8722cea1dc52d015e321c2d344515"
+        },
+        "coralnpu": {
+          "path": "build/bazel/9b3f4f6dfcbbcc27cb9ce323f5a5d9de/execroot/coralnpu_hw/bazel-out/k8-fastbuild/bin/gem5int/libcoralnpu-gem5.so",
+          "sha256": "e34e93e10dae73c1f5af14a5c6c2ba9569b2f3fcd50decedfe16c63f60f55a85"
+        },
+        "runtime": {
+          "path": "vortex-gpu/vxbuild/sw/runtime/libvortex.so",
+          "sha256": "b574ee872bd72689940064bb5d238386b311abcb9530a7f30e0992a3568df5f3"
+        },
+        "runtime_backend": {
+          "path": "vortex-gpu/vxbuild/sw/runtime/libvortex-gem5-x86_64.so",
+          "sha256": "7f1b41e022a7d49fadc3563b329c39255d1d940f28747d5b7869787d72b0d97a"
+        },
+        "gpu_kernel": {
+          "path": "vortex-gpu/vxbuild/tests/regression/vecadd/kernel.vxbin",
+          "sha256": "1e35b87b5c96ce2961a1c6be2b542a2edbfc5d805810fcd273aa074e8d4eb10e"
+        },
+        "npu_kernel": {
+          "path": "build/xpu/ddr_touch.elf",
+          "sha256": "2580987b9a36fe9bbfc26871ae9088302af8f4c730a65d29be62d7608c4ae7c8"
+        }
+      },
+      "accelerator_baseline_manifest": {
+        "path": "results/baseline-xpu/environment/xpu_manifest.json",
+        "sha256": "2754cbb7e73a77cde51b3db2525301bc69f518b74c803b16dde8026901f6bd08"
+      },
+      "original_three_source": {
+        "path": "gem5_new/workloads/three_source/host_main.cpp",
+        "sha256": "3ef0a1868f5b1c94c51aa41e382f4644c03a47261398fce97b552eb8f1365845"
+      },
+      "trace_validation_sources": {
+        "gem5_new/tools/hettrace/reader.py": "a98c9e2462388971e09f1f90412f245216447ac045c7a8fd6e01a69acb7773e1",
+        "gem5_new/tools/hettrace/validate.py": "143337a0eecaf62084fce710d594e854b7aa6489a7fad024860b988349c3852e"
+      },
+      "trace_metadata": {
+        "vortex.hettrace.meta.json": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/hettrace/vortex.hettrace.meta.json",
+          "sha256": "c00d94a793e8e2c1ea7942994364a320692cec8822205e8cbd7e92c2b55274d2"
+        },
+        "coralnpu.hettrace.meta.json": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/hettrace/coralnpu.hettrace.meta.json",
+          "sha256": "0d9701127a3a316d8a9c2654cb5c81e7426f821fdcdd7d5a8cc1d04a20f3cd7c"
+        },
+        "host.hettrace.meta.json": {
+          "path": "results/sparse-gate-system-final-three/three_smoke/hettrace/host.hettrace.meta.json",
+          "sha256": "1387a0dff8b46f44f10e3d157c8bf5165ed3492e8acefd7dab99bc3126566d2c"
+        }
+      },
+      "coexistence_scope": "Same configuration; raw event counts during busy report actual overlap, not assumed concurrent contention"
+    },
+    "cpu_top512": {
+      "status": "PASS",
+      "passed": true,
+      "fixture": "top512",
+      "summary": {
+        "path": "results/sparse-gate-system-final-top512/cpu_top512/sparse_gate_check.json",
+        "sha256": "0a58fbe4eb8375693689e9499db3312a16eb01a60cd103f258f6e6e493c7b7aa"
+      },
+      "suite_summary": {
+        "path": "results/sparse-gate-system-final-top512/summary.json",
+        "sha256": "85e9834e1d1181133476b375f4811ffc07f5bc4700a7cfb1515ba39023a37aa0"
+      },
+      "environment_manifest": {
+        "path": "results/sparse-gate-system-final-top512/environment/manifest.json",
+        "sha256": "6a0f8d80e8c1a8222bfd465338c91452d273d53c10fc9d6fd42ffb6a88e58cf4"
+      },
+      "gem5_binary_sha256": "aad39e795c50030c7eea8f7df3b53023e22920a7dd314becd2d4828419e694de",
+      "memsim_library_sha256": "382e40995e35f9d705cf4fa1d040244636ef6abffcae689155bc7efebc3ec5cd",
+      "integration_source_lock": {
+        "path": "results/sparse-gate-system-final-top512/cpu_top512/integration_sources.json",
+        "sha256": "0d813eead01ef61624f25da41cf493e05c43f8a29b644e71f2866a61c2e48037"
+      },
+      "source_sha256": {
+        "gem5_axi/Gem5Axi.py": "6d25dbd68f1039c96573b61006fb0de500fb45fe8c4baa7dee8987e304132e06",
+        "gem5_axi/SConscript": "69f3ede29b3fa891983f0b9342156f03ade7140ce42dffb4482cb03e8390a727",
+        "gem5_axi/axi_demo.cc": "7512115b8c4cf3ca86521deec443366e85c21e58f5f25157a449521a85007acb",
+        "gem5_axi/axi_master.cc": "de471cbb6c28589c3d6ea5651e108392503a5baaed336d775e30bcb98c55005a",
+        "gem5_axi/aou_backend.cc": "9f1400fd67b11177dfea381af9b7045202d41350ebf01ba1ee79b0c7dbe5bceb",
+        "gem5_axi/memsim_backend.cc": "33ef4e6bb557ba9674e637a1b670e2d997f759ffb4f92c0a48de357a05c835f2",
+        "gem5_axi/sparse_gate_backend.cc": "8af66a901bfed73c07f9e086a97f48180209f0ce9cfada13ed1a4fe37d274f4b",
+        "gem5_axi/sparse_gate_backend.hh": "5e1c99e1ef00d26df8e0da4357ef2374af27b09160b0f7506ce6484a889105b5",
+        "gem5_axi/sparse_gate_abi.h": "da8599cf7e788bbaa62072e06d5dda41e64908988f115bab02eb970a175da465",
+        "gem5_axi/sparse_gate_model.cpp": "8d73b476d3fdcdf285a1c57f18cd275296c549ba0eed9568f2c5ffa1ff1c3322",
+        "gem5_axi/configs/run.py": "2db49bbe175c8990356a45cb843e335402e7fe6f98b9e26926d89e2f3fb83827",
+        "gem5_axi/configs/run_xpu.py": "47e761cbdd4f23e3407f35f6dda802594b8f80a34b065a9c3578a62e75f2baf9",
+        "gem5_axi/workloads/sparse_gate_client.h": "05f5de7c44cc4d63fd5bfb7f492303615b4f7d019de515132a8f4ba1e5799692",
+        "gem5_axi/workloads/sparse_gate_check.c": "7f290e541e30cd55d7e57ed0c3ab807ef8ea6676abd5711c070e635be40288c4",
+        "gem5_new/workloads/three_source_gate/host_main.cpp": "74875270ed8fab3d9a610c350cef4d7f9cf825178b101ad1395538f38537e557",
+        "research/fixtures/system_smoke.h": "f770e26ad42292ca0a592698c74420e3667eca194d1844bfab2cc1be8813c41b",
+        "research/fixtures/csa2_real_weights_fixture.h": "17268ce504a41619983c2ba5066509afdfa185cb30f5a35713cd278d09b814e4",
+        "gem5_axi/scripts/check_sparse_gate.py": "d733d46aa124424482364199e7c703b91a25675106c07cf492239d8447109bc5",
+        "research/fixtures/csa2_top512_fixture.h": "45d677a32a2b6202c61eb9628da5c572a9f0a08d74c26f62b6cf74c73aadcf8a",
+        "gem5_axi/workloads/sparse_gate_top512.c": "c1c02237cb1a4ebaaa59aba143cd37245578f3e870d0b554abb6b03990e37379",
+        "gem5_axi/scripts/check_aou.py": "05cf29afef288d63c8e14749538b19083f527982092d7c5ea2327528437e2255",
+        "gem5_axi/scripts/inspect_link.py": "5e4a6b20e91ad85fe73774bcb2fea93d7e1711457407f281eeb02b0315bb07a6",
+        "env/run_sparse_gate.sh": "2b91006ce7901e33009be90448799676258d665bac702734c83a7ad7d819a870"
+      },
+      "guest_binary_sha256": "1681342dbe033017ddcc7bf0ef6dd99f4b8c16debc8ec8402c5aded4d24d94f6",
+      "host_finish_tick_fs": 98278446500000,
+      "host_transactions": 81278,
+      "mmio_transactions": 9214,
+      "native_bursts": 93536,
+      "native_children": 93536,
+      "rtl_wave_handshakes": 71639,
+      "model_build_id": "5598ad5c138798c349084e01290be4d488c606ca89ee713fa743b96aa2648490",
+      "model_manifest": {
+        "path": "results/sparse-gate-system-final-top512/environment/gate_model_build.json",
+        "sha256": "8d0bcfe1df74f3969f08b45fc00d87a48354b14c0b5d03c9591bbf4a783b4601"
+      },
+      "rtl_model_source_sha256": {
+        "rtl/sparse_gate/sg_fp32_pkg.sv": "54e4f21009646b1214236e73def967aefa9e1ebd6099fa483294a57699c65b9c",
+        "rtl/sparse_gate/sg_index_core.sv": "094b297eaabca45981dc31dd46661ca6fd39b77859ba9bf1c82681eb5444a3ab",
+        "rtl/sparse_gate_axi/sparse_gate_dma.sv": "0c7eb97e4fb64dbb70fb83f9401a45a4fa5aa3ae113799c97faceb7a30050332",
+        "rtl/sparse_gate_axi/sparse_gate_axi.sv": "978cd71cd0f8794410fcb326124a36262bf980a8bfb603a92760121bad994073",
+        "gem5_axi/sparse_gate_model.cpp": "8d73b476d3fdcdf285a1c57f18cd275296c549ba0eed9568f2c5ffa1ff1c3322",
+        "gem5_axi/sparse_gate_abi.h": "da8599cf7e788bbaa62072e06d5dda41e64908988f115bab02eb970a175da465",
+        "env/build_sparse_gate.sh": "6d6b29b8b42def635fe9fe9b7cbbdae31ada0461887f05716ca7632279394fe5"
+      },
+      "model_library_sha256": "de42616e3726c191733b49442f8a17c48079b00e2182aa2b1b4d37e6eed290bd",
+      "memsim_scale": 1,
+      "memsim_period_fs": 250000,
+      "axi_period_fs": 2000000,
+      "commands": [
+        {
+          "mode": "FULL",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 512,
+          "score_count": 640,
+          "cycles": 670572,
+          "dma_read_beats": 6624,
+          "dma_write_beats": 5120,
+          "dma_read_bytes": 211968,
+          "dma_write_bytes": 163840,
+          "rtl_interval": {
+            "start_tick_fs": 43273038000000,
+            "reads": 6624,
+            "writes": 5120,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 44614176000000,
+            "mode": 0,
+            "nkeys": 640,
+            "ncand": 0,
+            "topk": 512,
+            "heads": 32,
+            "context": 85116322,
+            "epoch": 7,
+            "end_tick_fs": 44614182000000,
+            "cycles": 670572,
+            "status": 2,
+            "score_count": 640,
+            "result_count": 512,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 44614264000000,
+            "first_terminal_status_r_tick_fs": 44614266000000
+          }
+        },
+        {
+          "mode": "REUSE",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 512,
+          "score_count": 0,
+          "cycles": 115776,
+          "dma_read_beats": 4608,
+          "dma_write_beats": 5120,
+          "dma_read_bytes": 147456,
+          "dma_write_bytes": 163840,
+          "rtl_interval": {
+            "start_tick_fs": 71305684000000,
+            "reads": 4608,
+            "writes": 5120,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 71537230000000,
+            "mode": 2,
+            "nkeys": 640,
+            "ncand": 0,
+            "topk": 512,
+            "heads": 32,
+            "context": 85116322,
+            "epoch": 7,
+            "end_tick_fs": 71537236000000,
+            "cycles": 115776,
+            "status": 2,
+            "score_count": 0,
+            "result_count": 512,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 71537298000000,
+            "first_terminal_status_r_tick_fs": 71537300000000
+          }
+        }
+      ],
+      "artifacts": {
+        "integration_sources.json": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/integration_sources.json",
+          "sha256": "0d813eead01ef61624f25da41cf493e05c43f8a29b644e71f2866a61c2e48037"
+        },
+        "config.json": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/config.json",
+          "sha256": "9c7149444f9453e5d88d56b3ad81d04f6f65ebde4e0ec7a51c7bf40702b0f275"
+        },
+        "run.log": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/run.log",
+          "sha256": "0e2a21c389704519bcef8255c4ec568a4a0ca0c356683029f62326744fa2cd07"
+        },
+        "protocol_summary.json": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/protocol_summary.json",
+          "sha256": "8664bcea12932ed6d0f0dfea939d580ea8596bf47419752902d964a4bd102b75"
+        },
+        "aou_summary.json": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/aou_summary.json",
+          "sha256": "859eb520c62c899212df782e9c8e6b64d35417147ef98fee79b6569bd78cede1"
+        },
+        "sparse_gate_summary.json": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/sparse_gate_summary.json",
+          "sha256": "eeb5e3ab39b3ef314c7e10d4ebfbb2aedbab32088974816843c35f452978dca4"
+        },
+        "sparse_gate_events.csv": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/sparse_gate_events.csv",
+          "sha256": "c5e0bac7594988a5b07f83d74e4fa0625fef686cea11c67ace31af01015515d1"
+        },
+        "sparse_gate.vcd": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/sparse_gate.vcd",
+          "sha256": "78c559c5a8e383d01d5877250dd10fac08bc5b38100521997420571fc87f34bd"
+        },
+        "axi_wave.vcd": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/axi_wave.vcd",
+          "sha256": "3f27c15ac0b6797a309bcb2e25cd9fc840f0a2d62e2e0d6c5ef828d3a2164b19"
+        },
+        "aou_events.csv": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/aou_events.csv",
+          "sha256": "6f1220e0972a7f488f58640e2b9da3253209909f800303daf9045c1c2788227f"
+        },
+        "transactions.csv": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/transactions.csv",
+          "sha256": "c89c82817d63e8da53ae83c5f6fc041b8b55fa40b24dbecd157624eeb011291a"
+        },
+        "ucie_flits.csv": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/ucie_flits.csv",
+          "sha256": "a4155251f2c339c2a2ddec98548b42c5d840e573517d340ebb60b3f6c625b90b"
+        },
+        "ucie_soc.csv": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/ucie_soc.csv",
+          "sha256": "82518e9860dccc02e54c875941e841d2dfec412f15def179b489aba2fc50e8ac"
+        },
+        "ucie_mem.csv": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/ucie_mem.csv",
+          "sha256": "55b94dc2daaa387f126f12c5ac4e40eb7b8c2243ac67d49f2778e3a72bd14537"
+        },
+        "axi_flit_path.csv": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/axi_flit_path.csv",
+          "sha256": "f45b58209659a952f25e13c047c09b125c2eff407998040ddac634f6f8b73b6b"
+        },
+        "link_check_summary.json": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/link_check_summary.json",
+          "sha256": "ae32215c8b8a348dcfcade8baf8097565ae240f8d66e22c3b79e85cf6541d9ef"
+        },
+        "memsim_bridge.csv": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/memsim_bridge.csv",
+          "sha256": "dc8c6e90a113cac5c718079049b3be8ba288520a65021b179c92b049b520b089"
+        },
+        "memsim_bridge_summary.json": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/memsim_bridge_summary.json",
+          "sha256": "3afa5d6b48bac6c404c9838f4783209f911e3e04435bf6a92a9aa3e2d9ae7cf0"
+        },
+        "memsim_core.json": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/memsim_core.json",
+          "sha256": "58e8795fef5d359fd69dafdf82a2b4318582ffc4b4a3966d15ab5ba124418cd6"
+        },
+        "memsim_commands.csv": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/memsim_commands.csv",
+          "sha256": "cfa61491382cfe34995bbbf0d72c63e4c7279808f040d317fd95653dbc501518"
+        },
+        "memsim_dfi_signals.csv": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/memsim_dfi_signals.csv",
+          "sha256": "fbbfbe18a2a2a74c3a7e49e4fef0df52b3c65ab7a35fef40510b394e8df617c1"
+        },
+        "memsim_image.csv": {
+          "path": "results/sparse-gate-system-final-top512/cpu_top512/memsim_image.csv",
+          "sha256": "f4e8f5984dcfb750093e252c8fcf6a114f0466c0dadf5f569323d0d30cf0a4bb"
+        }
+      }
+    }
+  },
+  "gate_memory_feedback": {
+    "status": "PASS",
+    "passed": true,
+    "scale": 4,
+    "host_finish_delta_fs": 181530000000,
+    "host_finish_delta_ns": 181530.0,
+    "command_cycle_deltas": [
+      12814,
+      3834,
+      7571,
+      0,
+      14327
+    ],
+    "slow_case": {
+      "status": "PASS",
+      "passed": true,
+      "fixture": "real-weights",
+      "summary": {
+        "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/sparse_gate_check.json",
+        "sha256": "44998700d79ac1c1370d9a9dfa4a9bebeecd1cdb3128615589c2ace7540a106c"
+      },
+      "suite_summary": {
+        "path": "results/sparse-gate-system-final-slow/summary.json",
+        "sha256": "ca484f68b441c1f61e02999656778397215b2a7fade7602ccf3c9320400b708a"
+      },
+      "environment_manifest": {
+        "path": "results/sparse-gate-system-final-slow/environment/manifest.json",
+        "sha256": "29636db3e72404e8286f710330af73c35d9344be76635a63e73af303866e6fb2"
+      },
+      "gem5_binary_sha256": "aad39e795c50030c7eea8f7df3b53023e22920a7dd314becd2d4828419e694de",
+      "memsim_library_sha256": "382e40995e35f9d705cf4fa1d040244636ef6abffcae689155bc7efebc3ec5cd",
+      "integration_source_lock": {
+        "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/integration_sources.json",
+        "sha256": "734a92c990daeec1dad7574c34fa92b22e21b4c1080fae371b4238f3bc15c8f7"
+      },
+      "source_sha256": {
+        "gem5_axi/Gem5Axi.py": "6d25dbd68f1039c96573b61006fb0de500fb45fe8c4baa7dee8987e304132e06",
+        "gem5_axi/SConscript": "69f3ede29b3fa891983f0b9342156f03ade7140ce42dffb4482cb03e8390a727",
+        "gem5_axi/axi_demo.cc": "7512115b8c4cf3ca86521deec443366e85c21e58f5f25157a449521a85007acb",
+        "gem5_axi/axi_master.cc": "de471cbb6c28589c3d6ea5651e108392503a5baaed336d775e30bcb98c55005a",
+        "gem5_axi/aou_backend.cc": "9f1400fd67b11177dfea381af9b7045202d41350ebf01ba1ee79b0c7dbe5bceb",
+        "gem5_axi/memsim_backend.cc": "33ef4e6bb557ba9674e637a1b670e2d997f759ffb4f92c0a48de357a05c835f2",
+        "gem5_axi/sparse_gate_backend.cc": "8af66a901bfed73c07f9e086a97f48180209f0ce9cfada13ed1a4fe37d274f4b",
+        "gem5_axi/sparse_gate_backend.hh": "5e1c99e1ef00d26df8e0da4357ef2374af27b09160b0f7506ce6484a889105b5",
+        "gem5_axi/sparse_gate_abi.h": "da8599cf7e788bbaa62072e06d5dda41e64908988f115bab02eb970a175da465",
+        "gem5_axi/sparse_gate_model.cpp": "8d73b476d3fdcdf285a1c57f18cd275296c549ba0eed9568f2c5ffa1ff1c3322",
+        "gem5_axi/configs/run.py": "2db49bbe175c8990356a45cb843e335402e7fe6f98b9e26926d89e2f3fb83827",
+        "gem5_axi/configs/run_xpu.py": "47e761cbdd4f23e3407f35f6dda802594b8f80a34b065a9c3578a62e75f2baf9",
+        "gem5_axi/workloads/sparse_gate_client.h": "05f5de7c44cc4d63fd5bfb7f492303615b4f7d019de515132a8f4ba1e5799692",
+        "gem5_axi/workloads/sparse_gate_check.c": "7f290e541e30cd55d7e57ed0c3ab807ef8ea6676abd5711c070e635be40288c4",
+        "gem5_new/workloads/three_source_gate/host_main.cpp": "74875270ed8fab3d9a610c350cef4d7f9cf825178b101ad1395538f38537e557",
+        "research/fixtures/system_smoke.h": "f770e26ad42292ca0a592698c74420e3667eca194d1844bfab2cc1be8813c41b",
+        "research/fixtures/csa2_real_weights_fixture.h": "17268ce504a41619983c2ba5066509afdfa185cb30f5a35713cd278d09b814e4",
+        "gem5_axi/scripts/check_sparse_gate.py": "d733d46aa124424482364199e7c703b91a25675106c07cf492239d8447109bc5",
+        "research/fixtures/csa2_top512_fixture.h": "45d677a32a2b6202c61eb9628da5c572a9f0a08d74c26f62b6cf74c73aadcf8a",
+        "gem5_axi/workloads/sparse_gate_top512.c": "c1c02237cb1a4ebaaa59aba143cd37245578f3e870d0b554abb6b03990e37379",
+        "gem5_axi/scripts/check_aou.py": "05cf29afef288d63c8e14749538b19083f527982092d7c5ea2327528437e2255",
+        "gem5_axi/scripts/inspect_link.py": "5e4a6b20e91ad85fe73774bcb2fea93d7e1711457407f281eeb02b0315bb07a6",
+        "env/run_sparse_gate.sh": "2b91006ce7901e33009be90448799676258d665bac702734c83a7ad7d819a870"
+      },
+      "guest_binary_sha256": "ba3562e0300071bc5fc3e75793dc7f12c31a34a88d92f7e41b3c457c17aa5532",
+      "host_finish_tick_fs": 6846794500000,
+      "host_transactions": 6801,
+      "mmio_transactions": 2049,
+      "native_bursts": 6082,
+      "native_children": 6082,
+      "rtl_wave_handshakes": 7117,
+      "model_build_id": "5598ad5c138798c349084e01290be4d488c606ca89ee713fa743b96aa2648490",
+      "model_manifest": {
+        "path": "results/sparse-gate-system-final-slow/environment/gate_model_build.json",
+        "sha256": "8d0bcfe1df74f3969f08b45fc00d87a48354b14c0b5d03c9591bbf4a783b4601"
+      },
+      "rtl_model_source_sha256": {
+        "rtl/sparse_gate/sg_fp32_pkg.sv": "54e4f21009646b1214236e73def967aefa9e1ebd6099fa483294a57699c65b9c",
+        "rtl/sparse_gate/sg_index_core.sv": "094b297eaabca45981dc31dd46661ca6fd39b77859ba9bf1c82681eb5444a3ab",
+        "rtl/sparse_gate_axi/sparse_gate_dma.sv": "0c7eb97e4fb64dbb70fb83f9401a45a4fa5aa3ae113799c97faceb7a30050332",
+        "rtl/sparse_gate_axi/sparse_gate_axi.sv": "978cd71cd0f8794410fcb326124a36262bf980a8bfb603a92760121bad994073",
+        "gem5_axi/sparse_gate_model.cpp": "8d73b476d3fdcdf285a1c57f18cd275296c549ba0eed9568f2c5ffa1ff1c3322",
+        "gem5_axi/sparse_gate_abi.h": "da8599cf7e788bbaa62072e06d5dda41e64908988f115bab02eb970a175da465",
+        "env/build_sparse_gate.sh": "6d6b29b8b42def635fe9fe9b7cbbdae31ada0461887f05716ca7632279394fe5"
+      },
+      "model_library_sha256": "de42616e3726c191733b49442f8a17c48079b00e2182aa2b1b4d37e6eed290bd",
+      "memsim_scale": 4,
+      "memsim_period_fs": 1000000,
+      "axi_period_fs": 2000000,
+      "commands": [
+        {
+          "mode": "FULL",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 8,
+          "score_count": 64,
+          "cycles": 67969,
+          "dma_read_beats": 360,
+          "dma_write_beats": 80,
+          "dma_read_bytes": 11520,
+          "dma_write_bytes": 2560,
+          "rtl_interval": {
+            "start_tick_fs": 4652970000000,
+            "reads": 360,
+            "writes": 80,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 4788902000000,
+            "mode": 0,
+            "nkeys": 64,
+            "ncand": 16,
+            "topk": 8,
+            "heads": 32,
+            "context": 20903,
+            "epoch": 7,
+            "end_tick_fs": 4788908000000,
+            "cycles": 67969,
+            "status": 2,
+            "score_count": 64,
+            "result_count": 8,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 4789062000000,
+            "first_terminal_status_r_tick_fs": 4789064000000
+          }
+        },
+        {
+          "mode": "REUSE",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 8,
+          "score_count": 0,
+          "cycles": 5783,
+          "dma_read_beats": 72,
+          "dma_write_beats": 80,
+          "dma_read_bytes": 2304,
+          "dma_write_bytes": 2560,
+          "rtl_interval": {
+            "start_tick_fs": 5231264000000,
+            "reads": 72,
+            "writes": 80,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 5242824000000,
+            "mode": 2,
+            "nkeys": 64,
+            "ncand": 16,
+            "topk": 8,
+            "heads": 32,
+            "context": 20903,
+            "epoch": 7,
+            "end_tick_fs": 5242830000000,
+            "cycles": 5783,
+            "status": 2,
+            "score_count": 0,
+            "result_count": 8,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 5242846000000,
+            "first_terminal_status_r_tick_fs": 5242848000000
+          }
+        },
+        {
+          "mode": "REINDEX",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 8,
+          "score_count": 16,
+          "cycles": 26359,
+          "dma_read_beats": 218,
+          "dma_write_beats": 80,
+          "dma_read_bytes": 6976,
+          "dma_write_bytes": 2560,
+          "rtl_interval": {
+            "start_tick_fs": 5684832000000,
+            "reads": 218,
+            "writes": 80,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 5737544000000,
+            "mode": 1,
+            "nkeys": 64,
+            "ncand": 16,
+            "topk": 8,
+            "heads": 32,
+            "context": 20903,
+            "epoch": 8,
+            "end_tick_fs": 5737550000000,
+            "cycles": 26359,
+            "status": 2,
+            "score_count": 16,
+            "result_count": 8,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 5737576000000,
+            "first_terminal_status_r_tick_fs": 5737578000000
+          }
+        },
+        {
+          "mode": "REUSE",
+          "status": 516,
+          "expected_error": true,
+          "result_count": 8,
+          "score_count": 0,
+          "cycles": 2,
+          "dma_read_beats": 0,
+          "dma_write_beats": 0,
+          "dma_read_bytes": 0,
+          "dma_write_bytes": 0,
+          "rtl_interval": {
+            "start_tick_fs": 6178872000000,
+            "reads": 0,
+            "writes": 0,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": null,
+            "mode": 2,
+            "nkeys": 64,
+            "ncand": 16,
+            "topk": 8,
+            "heads": 32,
+            "context": 20903,
+            "epoch": 9,
+            "end_tick_fs": 6178876000000,
+            "cycles": 2,
+            "status": 516,
+            "score_count": 0,
+            "result_count": 8,
+            "cache_valid": 0,
+            "first_terminal_status_ar_tick_fs": 6178964000000,
+            "first_terminal_status_r_tick_fs": 6178966000000
+          }
+        },
+        {
+          "mode": "FULL",
+          "status": 2,
+          "expected_error": false,
+          "result_count": 8,
+          "score_count": 64,
+          "cycles": 69235,
+          "dma_read_beats": 360,
+          "dma_write_beats": 80,
+          "dma_read_bytes": 11520,
+          "dma_write_bytes": 2560,
+          "rtl_interval": {
+            "start_tick_fs": 6180648000000,
+            "reads": 360,
+            "writes": 80,
+            "read_outstanding": 0,
+            "write_outstanding": 0,
+            "last_b_tick_fs": 6319112000000,
+            "mode": 0,
+            "nkeys": 64,
+            "ncand": 16,
+            "topk": 8,
+            "heads": 32,
+            "context": 20903,
+            "epoch": 9,
+            "end_tick_fs": 6319118000000,
+            "cycles": 69235,
+            "status": 2,
+            "score_count": 64,
+            "result_count": 8,
+            "cache_valid": 1,
+            "first_terminal_status_ar_tick_fs": 6319140000000,
+            "first_terminal_status_r_tick_fs": 6319142000000
+          }
+        }
+      ],
+      "artifacts": {
+        "integration_sources.json": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/integration_sources.json",
+          "sha256": "734a92c990daeec1dad7574c34fa92b22e21b4c1080fae371b4238f3bc15c8f7"
+        },
+        "config.json": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/config.json",
+          "sha256": "0e7224adce0a71ea5d86ea1279a0340cd7033c6610ace4fa27913c4dcedf1b9a"
+        },
+        "run.log": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/run.log",
+          "sha256": "9c079447df4a945711137b4967707de4682d935212618cd835289cd53e2bd1f9"
+        },
+        "protocol_summary.json": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/protocol_summary.json",
+          "sha256": "e733730b9f0fb6e5d73da0605dfb19bde73c4498a6b8380e5d009999772c85e5"
+        },
+        "aou_summary.json": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/aou_summary.json",
+          "sha256": "88cec02260fe85f6cb95b90bde948754dfcde2e80e5b29b82bc3dd97b8f62f81"
+        },
+        "sparse_gate_summary.json": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/sparse_gate_summary.json",
+          "sha256": "584005a9d8d914b2fccf48311699fd1b9dd3f05b3b0bdf04253757633c7b2e62"
+        },
+        "sparse_gate_events.csv": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/sparse_gate_events.csv",
+          "sha256": "0b63fa1f2a350b9e3b9a50f750ef934c888ef450c05d39756cbaf261787bcae3"
+        },
+        "sparse_gate.vcd": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/sparse_gate.vcd",
+          "sha256": "d0594c86eb31d799aa7a1498f251f693f14e9458877b66217eccf8df44fc82eb"
+        },
+        "axi_wave.vcd": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/axi_wave.vcd",
+          "sha256": "d7a9fb7ae4076de663d60e5fd3d886d570267f6387251af80005f400460321e7"
+        },
+        "aou_events.csv": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/aou_events.csv",
+          "sha256": "167d9d9aea79ccef5a4ec8d5edfa1235a84a7a1562360e8c4c0a7eb6a5cf41f7"
+        },
+        "transactions.csv": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/transactions.csv",
+          "sha256": "e5daf8a8f812defc1844636b2b25d8d4fc8cfa809468f9a00a473345f1dd484d"
+        },
+        "ucie_flits.csv": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/ucie_flits.csv",
+          "sha256": "fecbe9dcf667ebb38bfc34733ecd7f517ff31f59c890a33287a6d523cdfbbd94"
+        },
+        "ucie_soc.csv": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/ucie_soc.csv",
+          "sha256": "669a20c4c67b38d101b118bc4ffc651c9e581fff1baf5b2601726500449070b5"
+        },
+        "ucie_mem.csv": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/ucie_mem.csv",
+          "sha256": "e1890cd25dd86330a689f0240a33c00eb6f7a7f59d252243532da472261d9a71"
+        },
+        "axi_flit_path.csv": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/axi_flit_path.csv",
+          "sha256": "2967e684a8f5ea4c0954e08000c8f29bcbae937b564e7c8d993508099b593771"
+        },
+        "link_check_summary.json": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/link_check_summary.json",
+          "sha256": "5c90dc590be4e948648a01901fa7b873f82fc991b2bc13f8f46edde7955b906f"
+        },
+        "memsim_bridge.csv": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/memsim_bridge.csv",
+          "sha256": "cc43507f9a80ccdd93807749f0545f511014cbf91e25751e759c8f04725c6043"
+        },
+        "memsim_bridge_summary.json": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/memsim_bridge_summary.json",
+          "sha256": "8d15308fde0657481f4495f0a032b3e6adbb43022a77be64863a4b5f6d919bec"
+        },
+        "memsim_core.json": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/memsim_core.json",
+          "sha256": "2002288b244359623edbb5b60e2bc1d07cb8676de1a944bbb5401c103ca32514"
+        },
+        "memsim_commands.csv": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/memsim_commands.csv",
+          "sha256": "05c156b0cd8fc85505407dfaa29c8bd30e629d0d55b31b9c2dade9e6ac51a11e"
+        },
+        "memsim_dfi_signals.csv": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/memsim_dfi_signals.csv",
+          "sha256": "1d00769827a51ef7c01183eb3f3f4cd4f9148d7369065547431bf1c6106a0590"
+        },
+        "memsim_image.csv": {
+          "path": "results/sparse-gate-system-final-slow/cpu_real-weights_slow/memsim_image.csv",
+          "sha256": "978962bb04ddda1c717d46d0c0eb56168bdfb3ca52c3e655da9dff1ffa5d9164"
+        }
+      }
+    },
+    "scope": "Same executable, RTL and data; polling traffic may change; compare observed completed command latency and host exit"
+  },
+  "adapter_contract": {
+    "status": "PASS",
+    "passed": true,
+    "summary": {
+      "path": "results/sparse-gate-backend-contract-portable/summary.json",
+      "sha256": "2304e24af2387d26241364c4b987e194461a2432c140905a10b7c090d5f80b10"
+    },
+    "cases": 7,
+    "exclusive_rejections": 4,
+    "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "scope": "Actual C++ adapter plus actual RTL DLL under standalone SystemC; test-only curTick shim, no gem5 or memory performance claim",
+    "source_sha256": {
+      "gem5_axi/sparse_gate_backend.cc": "8af66a901bfed73c07f9e086a97f48180209f0ce9cfada13ed1a4fe37d274f4b",
+      "gem5_axi/sparse_gate_backend.hh": "5e1c99e1ef00d26df8e0da4357ef2374af27b09160b0f7506ce6484a889105b5",
+      "gem5_axi/tests/sparse_gate_backend_test.cc": "608c026a18796b6bd400a893ab690e744218a3e245072c351c5ac38c41ed4237",
+      "gem5_axi/tests/clock_shim/sim/cur_tick.hh": "8d2bd74c75dd1d2b7f3029501ddf1e4982698027e9e14bf0b512aab06c396566",
+      "env/test_sparse_gate_backend.sh": "9185073a59629f77f23482f71a760a78eec8ea02c941047eb6bea765f78f8538"
+    },
+    "library_sha256": "de42616e3726c191733b49442f8a17c48079b00e2182aa2b1b4d37e6eed290bd",
+    "artifacts_sha256": {
+      "compiler.txt": "59d1cbef41d4ae78d5063d525b7aa13d18dc0493ea00537efc19b2ee398cb5a8",
+      "run.log": "771ef8bd23ea8183228272a70b7c76224fa5cd960507703e515a1a871c753aae",
+      "sparse_gate.vcd": "3c84c698a8775a5f574b6cde15b0322c2725bbec0f9d9bce1b27539b873c20a5",
+      "sparse_gate_summary.json": "45cdc1a0b0d1bfc5b2fdad7a758f0b6922fa98fd39ffaa2fea15ad7bc8ac96b5",
+      "test": "7a22cc08a672059f33e6097689610c6e4fa83c8b118ebdb5a9f22d0780b1f8fb",
+      "sparse_gate_events.csv": "da77bb65ecb8972a387d04c4ded4ae9957763767bdb0cf9dd6921f969df21026"
+    }
+  },
+  "wave_controls": {
+    "summary": {
+      "path": "results/sparse-gate-wave-controls/summary.json",
+      "sha256": "3c283f7682751852cd9399580846c05a2710296436c3001c2a15762cd7d64fb3"
+    },
+    "passed": true,
+    "positive_handshakes": 1555,
+    "positive_commands": 5,
+    "negative_controls": [
+      {
+        "name": "cycles_plus_one",
+        "detected": true,
+        "reason": "busy interval differs from RTL cycles"
+      },
+      {
+        "name": "read_count_plus_one",
+        "detected": true,
+        "reason": "per-command RTL DMA count mismatch"
+      },
+      {
+        "name": "done_same_edge_as_final_b",
+        "detected": true,
+        "reason": "DONE precedes final DMA B response"
+      }
+    ],
+    "scope": "In-memory overlays of actual VCD records; original simulation artifacts unchanged",
+    "locked_sha256": {
+      "results/sparse-gate-system-cpu/cpu_smoke/sparse_gate.vcd": "11c68d05dae636557c18b451728f271d6397608c2c478d33b1a4d5dc2a25ad30",
+      "results/sparse-gate-system-cpu/cpu_smoke/sparse_gate_events.csv": "f5af660d83d83cbff62c1e46b5e451e0d7a0fac3f4e04014df6802279db59b14",
+      "/home/hy258/hy/lunwen_ruitai/StorageStacked-SparseGate/gem5_axi/scripts/check_sparse_gate.py": "d733d46aa124424482364199e7c703b91a25675106c07cf492239d8447109bc5",
+      "gem5_axi/scripts/test_sparse_gate_wave.py": "20c86c9afae7de539429eebf339ed73ccfe0f2cfcaa6f6163a6000dc31606da7"
+    },
+    "elapsed_seconds": 61.17087811883539
+  },
+  "failures": [],
+  "limitations": [
+    "Post-projection index selection and packed KV gather only; no full LLM or projection acceleration",
+    "Real-weight fixture uses seeded random activations, not text-derived full-model traces",
+    "Three-source gate case runs after the original GPU/NPU computations: configuration coexistence, not concurrent gate contention",
+    "HBM4 provisional behavioral timing; no PHY or silicon performance claim",
+    "Software-managed epoch/invalidate; no cache coherence or in-flight reset recovery"
+  ]
+}

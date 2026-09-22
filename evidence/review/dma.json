@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "tested_date": "2026-09-22",
+  "source_sha256": {
+    "rtl/sparse_gate_axi/sparse_gate_dma.sv": "0c7eb97e4fb64dbb70fb83f9401a45a4fa5aa3ae113799c97faceb7a30050332",
+    "research/review/tb_dma_review.sv": "ca2d0839d704cc2b34813697abd2d3d2bb310cad95e95fd36ca2e7e968710c76",
+    "research/review/run_dma_review.py": "1c884ad6e231d6bf8ca1cfa0a400464016c2d798d54e2fd1ea38b1e9c621c753"
+  },
+  "command": [
+    "iverilog",
+    "-g2012",
+    "-s",
+    "tb_dma_review",
+    "-o",
+    "/home/hy258/hy/lunwen_ruitai/StorageStacked-SparseGate/results/research/dma-review/dma.vvp",
+    "/home/hy258/hy/lunwen_ruitai/StorageStacked-SparseGate/rtl/sparse_gate_axi/sparse_gate_dma.sv",
+    "/home/hy258/hy/lunwen_ruitai/StorageStacked-SparseGate/research/review/tb_dma_review.sv"
+  ],
+  "iverilog": "Icarus Verilog version 12.0 (stable) ()",
+  "binary_sha256": "c7686b8f07fb8a7316c2b251b21b0dadec91edc4bab2cd8ab7ed29eddd43818e",
+  "log_sha256": "20b6d065aa564329ed6ae43ac0deccd6b2a7e231d2520524084047d77206a9b9",
+  "build_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "counts": {
+    "cycles": 65,
+    "jobs": 10,
+    "errors": 5,
+    "read_beats": 7,
+    "write_beats": 4
+  },
+  "checks": [
+    "wrong_RID_then_read_recovery",
+    "nonlast_R_then_last_R_drain_and_recovery",
+    "wrong_BID_then_write_recovery",
+    "RRESP_then_read_recovery",
+    "BRESP_then_write_recovery"
+  ],
+  "scope": "Standalone real DMA RTL: incorrect RID/BID, a nonlast R beat followed after a gap by last R, RRESP/BRESP, and immediate legal-request recovery. Not general arbitrary AXI violation recovery or native-memory service."
+}

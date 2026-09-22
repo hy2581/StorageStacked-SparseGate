@@ -1,0 +1,13 @@
+{
+  "status": "UNSUPPORTED_FRONTEND",
+  "passed": false,
+  "reason": "Installed Yosys Verilog frontend rejects SystemVerilog int cast in package; native DC SystemVerilog flow used next. No structural acceptance claimed.",
+  "source_sha256": {
+    "rtl/sparse_gate/sg_fp32_pkg.sv": "54e4f21009646b1214236e73def967aefa9e1ebd6099fa483294a57699c65b9c",
+    "rtl/sparse_gate/sg_index_core.sv": "094b297eaabca45981dc31dd46661ca6fd39b77859ba9bf1c82681eb5444a3ab"
+  },
+  "version": "Yosys 0.33 (git sha1 2584903a060)",
+  "private_log_path": "results/sparse-gate/yosys-front-end/frontend.log",
+  "log_sha256": "387f68399eb76b900f47f0c7a018e4c24ea3022b7521948537cd5db09b8d7ddd",
+  "original_status_sha256": "c7e752e1a4d919d1601075f4be5ab6b76b8cb0ee5ae60cd13c18a10ce2e255e5"
+}

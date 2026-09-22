@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 source "$(dirname -- "${BASH_SOURCE[0]}")/activate.sh"
+# CPU/native builds can overlap independent XPU dependency compilation, but two
+# SCons/CMake invocations must never mutate the same build tree concurrently.
+mkdir -p "$SS_ROOT/build"
+exec 9>"$SS_ROOT/build/unified-build.lock"
+flock 9
 "$AXI_PYTHON" "$SS_ROOT/env/check_sources.py"
 "$AXI_PYTHON" "$AXI_PROJECT_DIR/scripts/patch_gem5.py" "$GEM5_HOME"
 bash "$HET_PROJECT_ROOT/gem5int/install_devices.sh"

@@ -1,0 +1,27 @@
+{
+  "schema": "sparse_gate_top512_header_v1",
+  "passed": true,
+  "scope": "Input/header readback only; native-system execution recorded separately",
+  "input_scope": "Independent seeded Gaussian x[1,5120], qr[1,1280], latent[N,512]; real pretrained indexer weights; NOT full-model hidden states or text traces",
+  "fixture_path": "results/research/inputs/pretrained-layer20-random-activation-top512.json",
+  "fixture_sha256": "5a172b3053b85ea79b0626208cb41d0fcd70dd6d44897cec535acf90e3979b1e",
+  "source_sha256": {
+    "research/fixtures/csa2_top512_fixture.h": "45d677a32a2b6202c61eb9628da5c572a9f0a08d74c26f62b6cf74c73aadcf8a",
+    "research/export_top512_header.py": "01d2e5a0183cd46c36b389446334dc90e40d1ecbf8792a2e11dc80006e82e665"
+  },
+  "readback": {
+    "c99": {
+      "passed": true,
+      "bytes": 68608,
+      "sha256": "fd5590c7245b503161985357dcac77adb656d5b9adda9f22a43044ab9d7d8904"
+    },
+    "c++17": {
+      "passed": true,
+      "bytes": 68608,
+      "sha256": "fd5590c7245b503161985357dcac77adb656d5b9adda9f22a43044ab9d7d8904"
+    }
+  },
+  "heads": 32,
+  "positions": 640,
+  "topk": 512
+}

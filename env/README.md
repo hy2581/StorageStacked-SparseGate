@@ -165,7 +165,7 @@ CPU 旧 libc workload 的默认 watchdog 为 10ms；新的 freestanding workload
 ## 迁移与交接
 
 五个内部模块和必要的外部适配补丁由主仓库管理。新机器使用
-`git clone --recurse-submodules https://github.com/fmq03/StorageStacked.git`，
+`git clone --recurse-submodules https://github.com/hy2581/StorageStacked-SparseGate.git`，
 再执行上述bootstrap/build；构建会将补丁和系统内设备源码安装到外部依赖。
 原维护机器上的results和integrate_doc不会出现在新克隆中，文档里的这些路径是本地历史证据。
 
