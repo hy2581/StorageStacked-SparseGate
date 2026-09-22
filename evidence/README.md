@@ -16,8 +16,11 @@
 | [在线统一系统](system/summary.json) | 原系统回归、实际 RTL 门控、CPU 输出核对、协议/波形证据、慢内存反馈、输入/源码/二进制一致性 | 全芯片 RTL、硬件缓存一致性、未测量的 GPU/NPU 同时争用 |
 | [真实完成波形](system/completion_window.json) | 从已核查原生 VCD 导出的最后 DMA B、DONE 和状态响应窗口 | 硅片示波结果 |
 | [原仓库撤回](cleanup.json) | 旧交付、Release/tag 和本次创建分支的撤回范围与保留基线 | 删除用户原有分支或历史 |
+| [GitHub 发布回执](publication.json) | 新仓库内容提交、公开 README/PDF/系统摘要的实际回读及原仓库状态 | 替代实验或物理签核 |
 
 综合文件将**映射完成**、**时序满足约束**与**电气设计规则**分开记录；`mapping_passed=true` 不能覆盖负 slack 或电气规则违例。系统汇总要求完整 Top-512 回执以及基线、错误/恢复、内存反馈等检查，局部 PASS 不会提升为总 PASS。
+
+实验在提交前冻结的工作树中执行，运行摘要保留当时的 Git HEAD 与实际源码哈希。不能仅凭其中的基线 revision 判断门控实现身份；应同时核对源码、模型和二进制摘要。发布回执另外记录包含这些已完成实验的正式内容提交。
 
 面积单位核查入口是 `python3 scripts/check_library_area_units.py --help`。它读取本地授权的 Liberty、LEF、发布说明和数据库读回 TSV，精确比较逻辑/物理面积，再按显式容差核对数据库数值；公开摘要只保留统计与输入哈希。仅有 Liberty/LEF 对应、尚未关联实际 DC 数据库时，总状态仍为未完成。
 
