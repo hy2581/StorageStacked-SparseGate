@@ -7,12 +7,12 @@
 \setlength{\dbltextfloatsep}{12pt plus 2pt minus 2pt}
 \newcommand{\code}[1]{\texttt{#1}}
 \input{generated/results.tex}
-\title{FP4 Sparse Indexing on a Unified\newline CPU/GPU/NPU--UCIe Memory System}
+\title{Vortex-Initiated FP4 Sparse Indexing\newline on an AXI--UCIe Memory System}
 \author{\IEEEauthorblockN{Anonymous Artifact Authors}\IEEEauthorblockA{Digital hardware design and reproducibility study}}
 \begin{document}
 \maketitle
 \begin{abstract}
-Learned sparse-attention indexing combines low-precision arithmetic, selection, and data movement. We implement a post-projection CSA2 indexer as synthesizable digital hardware connected to CPU/Vortex/CoralNPU through native 256-bit AXI, AXI2Flit, UCIe, and one online memory simulator. A 16-lane E2M1 FP4 datapath with E8M0 group scales computes signed weighted-ReLU scores across 32 heads. One shared key buffer, a stable Top-512 heap, an explicit FP32 rounding contract, and a DMA endpoint support full scan, candidate-only scan, and committed-index reuse. Completion depends on actual memory responses. \input{generated/abstract_results.tex} Validation includes \CoreCaseCount{} core cases, \FpCaseCount{} floating-point cases, learned-weight operator fixtures, and AXI fault/backpressure checks. Projection, candidate-block generation, final attention, full-model quality, and SRAM-CIM physical implementation remain outside the demonstrated scope.
+Learned sparse-attention indexing combines low-precision arithmetic, selection, and data movement. We implement a post-projection CSA2 indexer as synthesizable digital hardware on a Vortex-to-memory path with native 256-bit AXI, AXI2Flit, UCIe, and one online memory simulator. Vortex command-processor DMA issues the gate's register requests; the memory-side RTL issues its own data DMA. A 16-lane E2M1 FP4 datapath with E8M0 group scales computes signed weighted-ReLU scores across 32 heads. One shared key buffer, a stable Top-512 heap, an explicit FP32 rounding contract, and a DMA endpoint support full scan, candidate-only scan, and committed-index reuse. Completion depends on actual memory responses. \input{generated/abstract_results.tex} Validation includes \CoreCaseCount{} core cases, \FpCaseCount{} floating-point cases, learned-weight operator fixtures, and AXI fault/backpressure checks. Projection, candidate-block generation, final attention, full-model quality, and SRAM-CIM physical implementation remain outside the demonstrated scope.
 \end{abstract}
 \begin{IEEEkeywords}
 Digital IC, sparse attention, FP4, near-memory computing, RTL, AXI, UCIe
@@ -29,7 +29,7 @@ We make three concrete engineering contributions. First, a complete FP4 score-to
 
 \begin{figure*}[t]
 \centering\includegraphics[width=\textwidth]{system.png}
-\caption{System placement. SparseGate is after UCIe; ordinary accesses retain a bypass. The C++ memory-side dispatcher is a verification adapter, while the register endpoint, score/selection core, and DMA are synthesizable RTL. Return data and completion follow the original protocol path. Conceptual illustration; exact protocol contracts are in the artifact.}
+\caption{System placement. Vortex command-processor DMA sends the gate's AXI register requests; CPU and CoralNPU remain ordinary traffic sources on the shared link. SparseGate is after UCIe; ordinary accesses retain a bypass. The C++ memory-side dispatcher is a verification adapter, while the register endpoint, score/selection core, and DMA are synthesizable RTL. Return data and completion follow the original protocol path. Conceptual illustration; exact protocol contracts are in the artifact.}
 \label{fig:system}
 \end{figure*}
 
@@ -84,6 +84,8 @@ A min-heap holds at most 512 pairs of a 32-bit score and a 32-bit index, for 4 K
 \subsection{RTL boundary and protocol adapter}
 The original storage target produces whole-burst C++ FIFO objects rather than RTL AXI pins. A new dispatcher translates register requests into actual slave-channel handshakes and RTL DMA traffic back into requests for the same MemSimBackend. It does not calculate scores, maintain a private data image, or predict memory completion. Native mem\_sim accepts a request and later returns its bytes and completion event; those events drive the RTL response channels.
 
+For Vortex-initiated commands, host software configures Vortex's command processor, but the processor's DMA master is the bus requestor for input uploads, gate register writes and status reads, and result readback. Its device address \code{0x900f0000} maps through the Vortex BAR to physical \code{0x1900f0000}. The RTL model in this configuration has a matching high-address 1-MiB data window. The CPU-initiated programs reported below are retained as separate earlier integration cases; they do not establish the Vortex command source.
+
 The RTL top has 64-bit addresses, 16-bit IDs, 256-bit data, and 32-bit WSTRB. The acceptance memory aperture is 1 MiB with a reserved 4-KiB MMIO window; buffer ranges must fit this configured aperture. Exclusive requests are rejected by the dispatcher. AW and W are buffered independently; response payloads hold through backpressure. The supported slave subset accepts naturally aligned single-beat accesses up to 32 B. Unsupported bursts return an error and are drained. The DMA emits one aligned 32-B INCR beat at a time. Internal response tags are distinct from the original processor-side IDs, avoiding aliasing when the DMA uses ID 1.
 
 All Verilator evaluation occurs on the existing SystemC clock edges, using the same femtosecond time as gem5. No second SystemC kernel is linked. Standard traffic keeps its own queue and shares the online backend with DMA traffic. The first implementation has one outstanding DMA request, a deliberate throughput limitation.
@@ -123,6 +125,7 @@ For the learned-weight N640 case, executing the two official score expressions o
 The wrapper test drives W-before-AW and AW-before-W transactions, randomized DMA acceptance/response delay, held slave responses, stale epochs, duplicate/out-of-range candidates, invalid formats, R/B failures, output/input overlap, and address wrap. It verifies each selected score and each gathered byte, and checks that stalled channel payloads remain stable. Its byte-addressed test memory is separate from the subsequent native-system evidence.
 
 \input{generated/system_results.tex}
+\input{generated/vortex_results.tex}
 
 \subsection{Parallelism and implementation cost}
 For a lane count $L$ dividing 32, the implemented sequential schedule has

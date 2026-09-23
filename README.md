@@ -4,7 +4,7 @@
 
 ![统一系统与存储侧门控电路](paper/figures/generated/system.png)
 
-本项目重点是实际门控数据通路和系统接入：FP4 数据进入 RTL，完成多头点积、ReLU、有符号加权归约、Top-K，再从同一个在线存储镜像读取选中的 KV 数据并写回。CPU 提交的命令也经过 AXI2Flit/UCIe。C++ 适配器负责协议和时钟，不替代 RTL 计算分数。
+本项目重点是实际门控数据通路和系统接入：FP4 数据进入 RTL，完成多头点积、ReLU、有符号加权归约、Top-K，再从同一个在线存储镜像读取选中的 KV 数据并写回。门控命令可由 CPU 或 Vortex 命令处理器 DMA 经 AXI2Flit/UCIe 提交。C++ 适配器负责协议和时钟，不替代 RTL 计算分数。
 
 ## 算法和电路
 
@@ -21,6 +21,8 @@
 ## 本次验证结果
 
 核心回归通过 **42 个用例和 130,009 个浮点算术用例**。原系统独立重验通过 19 项 native 测试、7 组 CPU/tester 和 4 组 XPU 用例；新增门控的 5 个原生运行用例完成 22 条命令，其中 4 条是按预期拒绝的过期版本命令。快、慢内存对照使用同一个 guest 可执行文件。验证包含实际 CPU 上传、结果回读、完整 Flit/AXI/RTL 波形及在线存储数据闭合，详见 [系统回执](evidence/system/summary.json)。
+
+新增的 [Vortex 命令处理器用例](evidence/system/vortex_gate_cp.json)独立完成 H4/N16/K4 FULL 命令：Vortex 源轨迹有 31 笔门控寄存器请求，host 源轨迹为 0；RTL 忙区间为 5201 周期，DMA 读取 96 拍、写入 40 拍，4 条结果和 1152 B 聚集输出逐字节核对通过。主机软件配置 Vortex 命令处理器，实际 AXI 请求由其 DMA 主设备发出。本用例 GPU 核函数执行周期为 0，不能据此宣称 GPU 核函数直接发起命令。上段 CPU 等结果对应较早的封存源码快照。
 
 完整 **H32/N640/K512** 在线用例的实测结果如下。每条命令均核对 512 个分数/索引记录、零填充和 **147,456 B** 的 gather 输出，FULL 与 REUSE 使用不同的输出地址。
 
@@ -46,6 +48,7 @@
 | 算法选型、官方来源和独立 oracle | [research](research/) |
 | 中文论文 PDF（正文、图表与学术润色） | [SparseGate-paper-zh.pdf](paper/SparseGate-paper-zh.pdf) |
 | 英文 IEEE 论文 PDF | [SparseGate-paper.pdf](paper/SparseGate-paper.pdf) |
+| Vortex 发起命令后的中英文审阅稿 | [中文](paper/SparseGate-Vortex-review-zh.pdf) · [English](paper/SparseGate-Vortex-review.pdf) |
 | 中文 LaTeX、图表与复现入口 | [paper/zh](paper/zh/) |
 | LaTeX、测量作图与生成图片提示词 | [paper](paper/) |
 | 在线适配、时钟与命令完成规则 | [system_adapter.md](docs/sparse_gate/system_adapter.md) |
@@ -63,6 +66,12 @@ export SS_DEPS_ROOT="$HOME/.local/share/storagestacked-unified"
 bash env/bootstrap_xpu.sh
 bash env/build_xpu.sh
 bash env/build_sparse_gate.sh
+
+# 单独生成 Vortex 地址窗口的门控 RTL 模型，并由 Vortex CP DMA 发起命令。
+SPARSE_GATE_BUILD_DIR="$PWD/build/sparse_gate_model_vortex" \
+SPARSE_GATE_MEM_BASE=0x190000000 SPARSE_GATE_REG_BASE=0x1900f0000 \
+  bash env/build_sparse_gate.sh
+bash env/run_vortex_gate.sh results/vortex-gate-cp
 
 # 原路径独立重验：19 项 native、7 组 CPU/tester、4 组 XPU。
 bash env/run_memsim.sh results/baseline-memsim

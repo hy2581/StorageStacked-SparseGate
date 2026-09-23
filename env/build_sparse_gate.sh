@@ -7,13 +7,19 @@ import hashlib, json, os, pathlib, re, shutil, subprocess, time
 root=pathlib.Path(os.environ['SS_ROOT'])
 out=pathlib.Path(os.environ['SPARSE_GATE_BUILD_DIR']).resolve()
 out.mkdir(parents=True,exist_ok=True)
+mem_base=int(os.environ.get('SPARSE_GATE_MEM_BASE','0x90000000'),0)
+mem_bytes=int(os.environ.get('SPARSE_GATE_MEM_BYTES','0x100000'),0)
+reg_base=int(os.environ.get('SPARSE_GATE_REG_BASE','0x900f0000'),0)
+if mem_base & 4095 or mem_bytes != 0x100000 or reg_base != mem_base+0xf0000:
+ raise RuntimeError('SparseGate requires an aligned 1 MiB window with the register page at +0xf0000')
 obj=out/'obj'; obj.mkdir(exist_ok=True)
 sources=['rtl/sparse_gate/sg_fp32_pkg.sv','rtl/sparse_gate/sg_index_core.sv',
  'rtl/sparse_gate_axi/sparse_gate_dma.sv','rtl/sparse_gate_axi/sparse_gate_axi.sv',
  'gem5_axi/sparse_gate_model.cpp','gem5_axi/sparse_gate_abi.h','env/build_sparse_gate.sh']
 sha=lambda p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()
 before={p:sha(root/p) for p in sources}
-identity=hashlib.sha256(json.dumps(before,sort_keys=True).encode()).hexdigest()
+parameters=dict(mem_base=mem_base,mem_bytes=mem_bytes,reg_base=reg_base)
+identity=hashlib.sha256(json.dumps(dict(sources=before,parameters=parameters),sort_keys=True).encode()).hexdigest()
 (obj/'sparse_gate_build_id.h').write_text('#define SPARSE_GATE_BUILD_ID "'+identity+'"\n')
 (obj/'exports.map').write_text('{ global: sparse_gate_*; local: *; };\n')
 compiler=os.environ['AXI_CXX']
@@ -29,6 +35,8 @@ if not all(p.is_file() for p in runtime_sources+[runtime/'verilated.h']):
 runtime_before={str(p):sha(p) for p in runtime_sources+[runtime/'verilated.h']}
 commands=[[verilator,'--cc','--assert','--trace','--timescale-override','1fs/1fs',
  '--top-module','sparse_gate_axi','--Mdir',str(obj),'-Wno-fatal','-CFLAGS','-fPIC -O2 -std=c++17',
+ "-GMEM_BASE=64'h"+format(mem_base,'x'),"-GMEM_BYTES=64'h"+format(mem_bytes,'x'),
+ "-GREG_BASE=64'h"+format(reg_base,'x'),
  *[str(root/p) for p in sources[:4]]],
  ['make','-C',str(obj),'-f','Vsparse_gate_axi.mk','-j'+os.environ.get('SPARSE_GATE_JOBS','4'),
   'CXX='+compiler,'OPT_FAST=-O2'],
@@ -38,7 +46,7 @@ commands=[[verilator,'--cc','--assert','--trace','--timescale-override','1fs/1fs
   str(obj/'Vsparse_gate_axi__ALL.a'),'-pthread','-Wl,--version-script='+str(obj/'exports.map'),
   '-o',str(out/'libsparse_gate_model.so.tmp')]]
 record={'schema':'sparse_gate_model_build_v1','status':'BUILDING','build_id':identity,
- 'source_sha256':before,'commands':commands,'time_unit':'1fs',
+ 'source_sha256':before,'parameters':parameters,'commands':commands,'time_unit':'1fs',
  'scope':'Verilator cycle model; no SystemC or private memory image',
  'verilator':subprocess.check_output([verilator,'--version'],text=True).strip(),
  'verilator_executable':verilator,'verilator_root':str(verilator_root),'verilator_runtime_sha256':runtime_before,
