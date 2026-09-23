@@ -69,7 +69,7 @@ def main():
     combined=chinese_body+'\n'+''.join(p.read_text() for p in (ZH/'generated').glob('*.tex'))
     figure_count=len(re.findall(r'\\begin\{figure\*?\}',combined))
     table_count=len(re.findall(r'\\begin\{table\*?\}',combined))
-    assert figure_count==7 and table_count==4
+    assert figure_count==7 and table_count==3
     log=(ROOT/'paper/build/zh/main.log').read_text()
     for marker in ['Overfull \\hbox','Overfull \\vbox','There were undefined references','Citation `','Reference `','Missing character:']:
         assert marker not in log, 'Unresolved Chinese TeX issue: '+marker

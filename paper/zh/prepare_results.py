@@ -168,15 +168,6 @@ def generate():
 \label{fig:completion}
 \end{figure*}
 """
-    rows = []
-    for name, label in [("cpu_synthetic", "CPU 合成输入"), ("cpu_real_weights", "CPU 权重派生"),
-                        ("three_source_coexistence", "三处理源共存"), ("cpu_top512", "CPU Top-512")]:
-        case = cases[name]
-        rows.append([label, f"{case['host_transactions']:,}", f"{case['host_finish_tick_fs']/1e9:.3f}", "通过"])
-    sys_text += table("system", "完整被测程序的结束时间，包含上传、轮询、回读及错误／恢复命令；"
-                      "三处理源程序还包含 GPU／NPU 计算。请求数在原协议入口对各处理源求和，不含存储侧 DMA。"
-                      "这些程序的工作量不同，不能据此比较加速比。", "lrrl",
-                      ["程序", "请求数", r"结束时间（$\mu$s）", "检查"], rows)
     case, slow = cases["cpu_real_weights"], feedback["slow_case"]
     cmds, slow_cmds = case["commands"][:3], slow["commands"][:3]
     require(slow["passed"] and [c["mode"] for c in cmds] == [c["mode"] for c in slow_cmds]

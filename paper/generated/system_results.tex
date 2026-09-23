@@ -10,18 +10,6 @@ The waveform checker also rejects three controlled corruptions of a recorded tra
 \label{fig:completion}
 \end{figure*}
 \begin{table}[t]
-\centering\caption{Complete guest-run finish time, including upload, polling, readback, error/recovery commands and, for three sources, GPU/NPU work. Requests are summed at the original protocol entry across processing sources, excluding memory-side DMA. These unequal programs are not a speedup comparison.}
-\label{tab:system}
-\small
-\begin{tabular}{lrrl}\toprule
-Program & Requests & Finish ($\mu$s) & Check\\\midrule
-CPU synthetic & 1,693 & 2095.586 & PASS\\
-CPU learned & 6,352 & 6665.265 & PASS\\
-Three sources & 11,656 & 3385.905 & PASS\\
-CPU Top-512 & 81,278 & 98278.447 & PASS\\
-\bottomrule\end{tabular}
-\end{table}
-\begin{table}[t]
 \centering\caption{Measured RTL command counters in the learned-weight-derived H32/N64/K8 program; REINDEX has 16 candidates. R/W are DMA beat counts, unchanged across the two memory periods. Each result gathers 288 B.}
 \label{tab:modes}
 \small
