@@ -21,6 +21,7 @@ p.add_argument('--npu-library',default='')
 p.add_argument('--npu-kernel',default='')
 p.add_argument('--gate-enable',action='store_true')
 p.add_argument('--gate-library',default='')
+p.add_argument('--gate-base',type=lambda x:int(x,0),default=0x900f0000)
 p.add_argument('--num-cpus',type=int,default=4)
 p.add_argument('--memsim-scale',type=int,default=1)
 p.add_argument('--max-ticks',type=int,default=20_000_000_000_000)
@@ -52,7 +53,7 @@ ranges=[AddrRange(front.SHARED_BUFFER[0],size=front.SHARED_BUFFER[1]),
 if a.vortex_library:ranges.append(AddrRange(front.VORTEX_BAR[0],size=front.VORTEX_BAR[1]))
 size=0x170000000 if a.vortex_library else 0x30000000
 system.axi=AxiDemo(backend='aou',memory_backend='memsim',base=0x90000000,size=size,
-    gate_enable=a.gate_enable,gate_library=str(Path(a.gate_library).resolve()) if a.gate_library else '',
+    gate_enable=a.gate_enable,gate_library=str(Path(a.gate_library).resolve()) if a.gate_library else '',gate_base=a.gate_base,
     memsim_channels=8 if a.vortex_library else 2,memsim_scale=a.memsim_scale,
     memsim_queue=4,memsim_slots=8,outstanding=16,planes=2,stalls=True,replay=a.replay,
     trace_dir=str(out))

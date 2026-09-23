@@ -14,6 +14,7 @@
 | [算法与输入](research/summary.json) | 固定官方源码/权重切片、独立 oracle、真实权重加随机激活、数值差异与 ties | 文本推理、困惑度或官方 CUDA 逐 bit 等价 |
 | [大例 C 输入](research/top512_header.json) | 完整 H32/N640/K512 头文件与研究 fixture 的字节一致性 | 单独证明硬件执行正确 |
 | [在线统一系统](system/summary.json) | 原系统回归、实际 RTL 门控、CPU 输出核对、协议/波形证据、慢内存反馈、输入/源码/二进制一致性 | 全芯片 RTL、硬件缓存一致性、未测量的 GPU/NPU 同时争用 |
+| [Vortex 发起门控](system/vortex_gate_cp.json) | Vortex CP DMA 发起寄存器请求、独立源轨迹、RTL FULL 完成及逐字节输出核对 | GPU 核函数直接发起命令、全部三种模式或并发争用 |
 | [真实完成波形](system/completion_window.json) | 从已核查原生 VCD 导出的最后 DMA B、DONE 和状态响应窗口 | 硅片示波结果 |
 | [原仓库撤回](cleanup.json) | 旧交付、Release/tag 和本次创建分支的撤回范围与保留基线 | 删除用户原有分支或历史 |
 | [GitHub 发布回执](publication.json) | 新仓库内容提交、公开 README/PDF/系统摘要的实际回读及原仓库状态 | 替代实验或物理签核 |
@@ -24,4 +25,4 @@
 
 面积单位核查入口是 `python3 scripts/check_library_area_units.py --help`。它读取本地授权的 Liberty、LEF、发布说明和数据库读回 TSV，精确比较逻辑/物理面积，再按显式容差核对数据库数值；公开摘要只保留统计与输入哈希。仅有 Liberty/LEF 对应、尚未关联实际 DC 数据库时，总状态仍为未完成。
 
-论文数值由 [prepare.py](../paper/prepare.py) 从上述摘要导入，正式构建拒绝缺少必需证据。[delivery.json](../paper/delivery.json) 记录最终 PDF 和论文源文件哈希。四张概念图与实际测量图分别保留来源，概念图不作为实验数据。
+旧版论文数值由 [prepare.py](../paper/prepare.py) 从上述摘要导入，正式构建拒绝缺少必需证据。[delivery.json](../paper/delivery.json) 记录旧版最终 PDF 和论文源文件哈希。Vortex 新用例由 [prepare_vortex.py](../paper/prepare_vortex.py) 独立核查并生成审阅稿段落，回执见 [vortex_review.json](../paper/vortex_review.json)。四张概念图与实际测量图分别保留来源，概念图不作为实验数据。

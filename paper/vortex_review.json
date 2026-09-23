@@ -1,0 +1,25 @@
+{
+  "schema": "vortex_paper_review_v1",
+  "status": "REVIEW_DRAFT",
+  "legacy_english_manifest_sha256": "09b6441982e5b37ac540d939bd7622c50b4a14b87c3ea0e72d605b52e4e11da5",
+  "legacy_chinese_manifest_sha256": "29161655ca301ec8716c8c2439eb05be0b4370f9b756aba535a71e58393ea7bd",
+  "vortex_receipt_sha256": "961778cb5490ee85d978662fd99a3fbcb8e76adcd9f0cdaebe1804c7e4c17222",
+  "source_sha256": {
+    "paper/main.tex": "120dbf2841fa4f6a86cb642d1d50598771d7d841006ff702bb8479eecb29568c",
+    "paper/zh/main.tex": "accfbf5251dea9b2d2a2073f7fd9883b275fa4055404a390173a23ff93b1fd42",
+    "paper/zh/body.tex": "cc1e14e25a0360f398bf47c12482b2fd7c40b2395a467a740c03426e140b61e1",
+    "paper/prepare_vortex.py": "a3e56296fad2a2c65705031660a22a35e4e783371b9323e0d395e413af759e9c",
+    "paper/build_vortex_review.sh": "bac148de2311b8f28cbbdf360f26e26e7f2f45aebd7a59d3486f56962eebea78"
+  },
+  "pdfs": {
+    "SparseGate-Vortex-review.pdf": {
+      "sha256": "1a12238b434e254fea04f654b42626bc896e58e7b1ad5fa7478390424290017a",
+      "pages": 8
+    },
+    "SparseGate-Vortex-review-zh.pdf": {
+      "sha256": "6e01e6706244230afe394ad8370b44dfcfc0a39689b5abb30746ba4791538043",
+      "pages": 7
+    }
+  },
+  "scope": "Updated Vortex CP DMA case; legacy measured tables remain tied to their earlier source snapshots"
+}
