@@ -7,10 +7,18 @@ mkdir -p "$root/paper/build"
 import hashlib,json,sys
 from pathlib import Path
 root=Path(sys.argv[1])
-for name in ('paper/generated/manifest.json','paper/zh/generated/manifest.json'):
+for name,generator in (('paper/generated/manifest.json','paper/prepare.py'),
+                       ('paper/zh/generated/manifest.json','paper/zh/prepare_results.py')):
     record=json.loads((root/name).read_text())
     assert not record.get('preview',False) and not record.get('missing_evidence',[])
+    assert hashlib.sha256((root/generator).read_bytes()).hexdigest()==record['generator_sha256'],generator
     for path,digest in record['outputs'].items():
+        assert hashlib.sha256((root/path).read_bytes()).hexdigest()==digest,path
+figures=json.loads((root/'paper/zh/figures/manifest.json').read_text())
+assert figures['source_manifest_sha256']==hashlib.sha256((root/'paper/generated/manifest.json').read_bytes()).hexdigest()
+assert figures['generator_sha256']==hashlib.sha256((root/'paper/zh/generate_figures.py').read_bytes()).hexdigest()
+for group in ('input_sha256','output_sha256'):
+    for path,digest in figures[group].items():
         assert hashlib.sha256((root/path).read_bytes()).hexdigest()==digest,path
 PY
 "$python_bin" "$root/paper/prepare_vortex.py" > "$root/paper/build/vortex_preparation.json"
@@ -33,15 +41,20 @@ for sub in ('vortex-en','vortex-zh'):
     for marker in ('Overfull \\hbox','Overfull \\vbox','Missing character:','There were undefined references'):
         assert marker not in log,(sub,marker)
 record={'schema':'vortex_paper_review_v1','status':'REVIEW_DRAFT',
+        'legacy_source_commit':'4815f85eed64a5cd37584bb358a4a05b620c6800',
         'legacy_english_manifest_sha256':sha(root/'paper/generated/manifest.json'),
         'legacy_chinese_manifest_sha256':sha(root/'paper/zh/generated/manifest.json'),
+        'legacy_chinese_figures_manifest_sha256':sha(root/'paper/zh/figures/manifest.json'),
         'vortex_receipt_sha256':sha(root/'evidence/system/vortex_gate_cp.json'),
         'source_sha256':{name:sha(root/name) for name in
             ('paper/main.tex','paper/zh/main.tex','paper/zh/body.tex','paper/prepare_vortex.py',
              'paper/build_vortex_review.sh','paper/compile_tex.sh')},'pdfs':pdfs,
         'figures_sha256':{name:sha(root/name) for name in
             ('paper/figures/generated/system.png','paper/zh/figures/generated/system.png')},
-        'scope':'Updated Vortex CP DMA case; legacy measured tables remain tied to their earlier source snapshots'}
+        'measured_figures_sha256':{name:sha(root/name) for name in
+            (f'paper/{prefix}figures/{figure}.pdf' for prefix in ('','zh/')
+             for figure in ('lane_sweep','completion_wave','native_modes'))},
+        'scope':'Vortex CP DMA review draft; older measured tables regenerated from the sealed source snapshot with the incomparable guest-finish table omitted'}
 (root/'paper/vortex_review.json').write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps(record,ensure_ascii=False,indent=2))
 PY

@@ -172,10 +172,6 @@ def main():
 \label{fig:completion}
 \end{figure*}
 '''
-  rows=[]
-  for name,label in [('cpu_synthetic','CPU synthetic'),('cpu_real_weights','CPU learned'),('three_source_coexistence','Three sources'),('cpu_top512','CPU Top-512')]:
-   v=cases[name];rows.append([label,format(v['host_transactions'],','),f"{v['host_finish_tick_fs']/1e9:.3f}",'PASS'])
-  sys_text+=table('system','Complete guest-run finish time, including upload, polling, readback, error/recovery commands and, for three sources, GPU/NPU work. Requests are summed at the original protocol entry across processing sources, excluding memory-side DMA. These unequal programs are not a speedup comparison.','lrrl',['Program','Requests',r'Finish ($\mu$s)','Check'],rows)
   v=cases['cpu_real_weights'];cmds=v['commands'][:3];slow_cmds=feedback['slow_case']['commands'][:3]
   assert [c['mode'] for c in cmds]==['FULL','REUSE','REINDEX']
   rows=[[c['mode'],c['score_count'],c['dma_read_beats'],c['dma_write_beats'],format(c['cycles'],','),format(slow['cycles'],',')] for c,slow in zip(cmds,slow_cmds)]

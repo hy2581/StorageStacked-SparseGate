@@ -10,18 +10,6 @@
 \label{fig:completion}
 \end{figure*}
 \begin{table}[t]
-\centering\caption{完整被测程序的结束时间，包含上传、轮询、回读及错误／恢复命令；三处理源程序还包含 GPU／NPU 计算。请求数在原协议入口对各处理源求和，不含存储侧 DMA。这些程序的工作量不同，不能据此比较加速比。}
-\label{tab:system}
-\small
-\begin{tabular}{lrrl}\toprule
-程序 & 请求数 & 结束时间（$\mu$s） & 检查\\\midrule
-CPU 合成输入 & 1,693 & 2095.586 & 通过\\
-CPU 权重派生 & 6,352 & 6665.265 & 通过\\
-三处理源共存 & 11,656 & 3385.905 & 通过\\
-CPU Top-512 & 81,278 & 98278.447 & 通过\\
-\bottomrule\end{tabular}
-\end{table}
-\begin{table}[t]
 \centering\caption{预训练权重派生 H32/N64/K8 程序的实测 RTL 命令计数。REINDEX 包含 16 个候选。R／W 为 DMA 读／写数据拍数，在两种存储周期下保持一致；每个选中索引对应搬运 288 B KV 数据。}
 \label{tab:modes}
 \small

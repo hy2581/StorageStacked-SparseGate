@@ -1,6 +1,6 @@
 {
   "schema": "sparse_gate_chinese_measurement_figures_v1",
-  "source_manifest_sha256": "09b6441982e5b37ac540d939bd7622c50b4a14b87c3ea0e72d605b52e4e11da5",
+  "source_manifest_sha256": "9a59c0dcb29de5915c5a3ac09a18aa23631b92c6a4e241918d6cbd1e9253a170",
   "generator_sha256": "5cf353ed6cbf7d5da5fb171d2a567687269117229396a004ec1c988fda026407",
   "input_sha256": {
     "evidence/core/lane_sweep.json": "8345cf4f6ba52f8f69565bb85212e09330647bbe680d65ee5d794a5b8c67b6b4",
@@ -14,11 +14,11 @@
     "latin_family": "DejaVu Sans"
   },
   "output_sha256": {
-    "paper/zh/figures/completion_wave.pdf": "1d8ceda52b8f3d3edd65df7b525229da8be43051bd78045f0d573b732009c8ab",
+    "paper/zh/figures/completion_wave.pdf": "9f3130ad277dd9f1afb4a63de6ab24dc363aed1a6ae206356f63901737cd8990",
     "paper/zh/figures/completion_wave.png": "a110f112bb9ae25e2bc095021acf3d7bb58fae710f81f3dcada4d9d5a3ac16a0",
-    "paper/zh/figures/lane_sweep.pdf": "4f5c35562190b901fd08982f4c96afc0d1aa7dbf72a9c8f41e1f5639ea0bc8b3",
+    "paper/zh/figures/lane_sweep.pdf": "92842eeda75cde896446aa6e791a8c2782ec6efaf5b1cb3b53fd319b291fcd9a",
     "paper/zh/figures/lane_sweep.png": "4ebf6543be58d6833012dfef88655f1d1e421b747d9e72f5eb21aece6efbf8d9",
-    "paper/zh/figures/native_modes.pdf": "a361b5ed4df721e66db1b7661d5a06d35f15548277512a5ee99c524b4b9b614a",
+    "paper/zh/figures/native_modes.pdf": "86343eeec0e311ad4effcfe4fb9c0fd72acaaf13e1b38a642834de0b45784bd8",
     "paper/zh/figures/native_modes.png": "f5c0fa413d0b569ebb9992e3ada413c0f7cba11f981dbc4a6e155222939fdbb7"
   }
 }
