@@ -4,7 +4,7 @@
 
 ![统一系统与存储侧门控电路](paper/figures/generated/system.png)
 
-本项目重点是实际门控数据通路和系统接入：FP4 数据进入 RTL，完成多头点积、ReLU、有符号加权归约、Top-K，再从同一个在线存储镜像读取选中的 KV 数据并写回。门控命令可由 CPU 或 Vortex 命令处理器 DMA 经 AXI2Flit/UCIe 提交。C++ 适配器负责协议和时钟，不替代 RTL 计算分数。
+本项目重点是实际门控数据通路和系统接入：FP4 数据进入 RTL，完成多头点积、ReLU、有符号加权归约、Top-K，再从同一个在线存储镜像读取选中的 KV 数据并写回。当前论文图示与新增验收用例采用 Vortex 命令处理器 DMA 经 AXI2Flit/UCIe 提交门控命令；较早的 CPU 发起用例作为独立集成证据保留。C++ 适配器负责协议和时钟，不替代 RTL 计算分数。
 
 ## 算法和电路
 
@@ -46,9 +46,8 @@
 | 可综合算术核与 Top-K | [rtl/sparse_gate](rtl/sparse_gate/) |
 | AXI256 寄存器与 DMA 电路 | [rtl/sparse_gate_axi](rtl/sparse_gate_axi/) |
 | 算法选型、官方来源和独立 oracle | [research](research/) |
-| 中文论文 PDF（正文、图表与学术润色） | [SparseGate-paper-zh.pdf](paper/SparseGate-paper-zh.pdf) |
-| 英文 IEEE 论文 PDF | [SparseGate-paper.pdf](paper/SparseGate-paper.pdf) |
-| Vortex 发起命令后的中英文审阅稿 | [中文](paper/SparseGate-Vortex-review-zh.pdf) · [English](paper/SparseGate-Vortex-review.pdf) |
+| 当前 Vortex 命令路径中英文论文审阅稿 | [中文](paper/SparseGate-Vortex-review-zh.pdf) · [English](paper/SparseGate-Vortex-review.pdf) |
+| 此前封存的中英文最终版（旧图与旧源码快照） | [中文](paper/SparseGate-paper-zh.pdf) · [English](paper/SparseGate-paper.pdf) |
 | 中文 LaTeX、图表与复现入口 | [paper/zh](paper/zh/) |
 | LaTeX、测量作图与生成图片提示词 | [paper](paper/) |
 | 在线适配、时钟与命令完成规则 | [system_adapter.md](docs/sparse_gate/system_adapter.md) |

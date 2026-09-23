@@ -12,6 +12,21 @@
     {
       "edit": "system.png",
       "prompt": "Edit this existing academic digital-hardware architecture figure. Make ONLY this surgical correction: erase the entire orphan dark-blue vertical bus at the extreme left of the picture (x approximately 20 to 65), together with its three right-pointing arrowheads/short wires entering the LEFT edges of CPU, Vortex SimX, and CoralNPU RTL boxes. Fill erased areas with the same clean white background. The three processor boxes must connect ONLY from their RIGHT edges to the existing shared bus and Native AXI256. Keep all boxes, right-side connections, bidirectional native AXI256 / AXI2Flit / UCIe path, memory-side dispatcher, ordinary-access bypass, online mem_sim, SparseGate RTL blocks, arrows, text, layout, colors, resolution, white background and academic style unchanged. Do not introduce a bottom return wire or a new connection. No other changes."
+    },
+    {
+      "edit": "system.png",
+      "prompt": "Edit the attached English academic architecture diagram as a crisp, precise wide 2055×765 white-background technical figure. Preserve its navy/teal thin-line style and downstream topology. On the LEFT, REMOVE the CPU and CoralNPU RTL boxes and every wire from them. Replace the left Vortex SimX box with a single prominent box EXACTLY labeled 'Vortex CP DMA'. It is the ONLY command sender. Draw a bidirectional line from that box to 'Native AXI256', then bidirectional 'AXI2Flit', 'UCIe', and 'Memory-side dispatcher'. From dispatcher, upper bidirectional path labeled 'Ordinary accesses' goes to 'Online mem_sim'; lower path labeled 'Gate MMIO requests / responses' goes into the 'AXI256 registers' inside 'SparseGate RTL'. Preserve dashed SparseGate RTL enclosure containing, left-to-right, 'AXI256 registers', 'FP4 index core', 'Stable Top-K', 'AXI256 DMA', linked in sequence. Keep bidirectional vertical DMA-to-Online mem_sim connection labeled 'Index reads / KV gather / result writes'. Do not show CPU or CoralNPU anywhere. Do not add a second command sender, a bypass around UCIe, or a GPU core. Ensure arrows and all text are clean, legible, accurately spelled. At bottom, write 'Vortex CP DMA sends gate commands through AXI/UCIe' and 'One event timeline; one memory image'. Match the original aspect ratio and publication-quality schematic clarity.",
+      "input_sha256": "170ef95b512789f5d021d96ae836ea41716b45efaa89d5f8a147330f3f8b1aa3",
+      "output_sha256": "b00f8f2f0dc5160d90b0fdc21cb1e5ccdd2124e5295fdaa8be418be1386f8e09",
+      "output_dimensions": [
+        2055,
+        765
+      ],
+      "tool": "built_in_image_gen",
+      "tool_generation_session": "01a0cbf5-bfb9-7f32-910a-a99d1485e309",
+      "tool_output_basename": "exec-6aa0bcd6-870d-440b-899e-656825c72bda.png",
+      "status": "VISUALLY_REVIEWED",
+      "note": "Vortex CP DMA is the only illustrated gate command source; CPU and CoralNPU ordinary sources are omitted."
     }
   ]
 }
