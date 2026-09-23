@@ -5,19 +5,20 @@
   "legacy_chinese_manifest_sha256": "29161655ca301ec8716c8c2439eb05be0b4370f9b756aba535a71e58393ea7bd",
   "vortex_receipt_sha256": "961778cb5490ee85d978662fd99a3fbcb8e76adcd9f0cdaebe1804c7e4c17222",
   "source_sha256": {
-    "paper/main.tex": "c85bb710b91a306e8afe57bea643a99cd1e7aef8ad6a6acf4a74b1b23ff8aef9",
-    "paper/zh/main.tex": "accfbf5251dea9b2d2a2073f7fd9883b275fa4055404a390173a23ff93b1fd42",
-    "paper/zh/body.tex": "6f339a24a6deeccc20e79df9bbaeb0e6a67435dda1d19320f85c4c92c3ed0f0d",
-    "paper/prepare_vortex.py": "a3e56296fad2a2c65705031660a22a35e4e783371b9323e0d395e413af759e9c",
-    "paper/build_vortex_review.sh": "9f3e2219a1466321830be0a2d09edeb496113dbef2218caa4152137492749bcb"
+    "paper/main.tex": "1a919ba5b20acc199626800f505e1c2cdb4c13a280ae051acc6a37c41c9da90e",
+    "paper/zh/main.tex": "5fa01c99988d6acbff114751a291b276fd85441c4d4397ec49c6bd61f97dd802",
+    "paper/zh/body.tex": "2732255f16ca3a46ba23b0eff4d7c66183e8cc8969e1aa30faa46d75a1c8d696",
+    "paper/prepare_vortex.py": "4417f69286d08a3e32481dad27de1f2950e1aaf59da24f4e08becbc862b5eeea",
+    "paper/build_vortex_review.sh": "d5db6e3d09d70777f155ce2502968412615425b2097ed31950c39e84e5feb1a8",
+    "paper/compile_tex.sh": "bd7e90e145b4170984f7d7b4ee0378c5336e2bcddfa3329c479bd7507097e3a8"
   },
   "pdfs": {
     "SparseGate-Vortex-review.pdf": {
-      "sha256": "83eee717a3bff38919e7753495a0d21aa1ac9c1b317f7fd3e7e2cdb81bf9dd3c",
+      "sha256": "253e2e23a187f00c0bfb39d9e3aa17781fdd8b740f40202c0a912815d0e963fc",
       "pages": 8
     },
     "SparseGate-Vortex-review-zh.pdf": {
-      "sha256": "80b7145ae3c7eaf9cbf506c04330336e1021ac7d57a6433a8378e420b6b98398",
+      "sha256": "a92f2b7b9cfab04cc727dfb81dfd5d709d6c8ceebfc44445c695bb205c6e8cee",
       "pages": 7
     }
   },

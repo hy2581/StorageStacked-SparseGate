@@ -2,7 +2,7 @@
 set -euo pipefail
 root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
 python_bin=${PAPER_PYTHON:-python3}
-mkdir -p "$root/paper/build/vortex-en" "$root/paper/build/vortex-zh"
+mkdir -p "$root/paper/build"
 "$python_bin" - "$root" <<'PY'
 import hashlib,json,sys
 from pathlib import Path
@@ -14,18 +14,8 @@ for name in ('paper/generated/manifest.json','paper/zh/generated/manifest.json')
         assert hashlib.sha256((root/path).read_bytes()).hexdigest()==digest,path
 PY
 "$python_bin" "$root/paper/prepare_vortex.py" > "$root/paper/build/vortex_preparation.json"
-cd "$root/paper"
-pdflatex -interaction=nonstopmode -halt-on-error -output-directory=build/vortex-en main.tex > build/vortex-en/latex.stdout
-(cd build/vortex-en && BIBINPUTS=../..: bibtex main > bibtex.stdout)
-pdflatex -interaction=nonstopmode -halt-on-error -output-directory=build/vortex-en main.tex >> build/vortex-en/latex.stdout
-pdflatex -interaction=nonstopmode -halt-on-error -output-directory=build/vortex-en main.tex >> build/vortex-en/latex.stdout
-cp build/vortex-en/main.pdf SparseGate-Vortex-review.pdf
-cd "$root/paper/zh"
-xelatex -interaction=nonstopmode -halt-on-error -output-directory="$root/paper/build/vortex-zh" main.tex > "$root/paper/build/vortex-zh/latex.stdout"
-(cd "$root/paper/build/vortex-zh" && BIBINPUTS="$root/paper/zh": bibtex main > bibtex.stdout)
-xelatex -interaction=nonstopmode -halt-on-error -output-directory="$root/paper/build/vortex-zh" main.tex >> "$root/paper/build/vortex-zh/latex.stdout"
-xelatex -interaction=nonstopmode -halt-on-error -output-directory="$root/paper/build/vortex-zh" main.tex >> "$root/paper/build/vortex-zh/latex.stdout"
-cp "$root/paper/build/vortex-zh/main.pdf" "$root/paper/SparseGate-Vortex-review-zh.pdf"
+"$root/paper/compile_tex.sh" "$root/paper" "$root/paper/build/vortex-en" pdflatex "$root/paper/SparseGate-Vortex-review.pdf"
+"$root/paper/compile_tex.sh" "$root/paper/zh" "$root/paper/build/vortex-zh" xelatex "$root/paper/SparseGate-Vortex-review-zh.pdf"
 "$python_bin" - "$root" <<'PY'
 import hashlib,json,re,subprocess,sys
 from pathlib import Path
@@ -48,7 +38,7 @@ record={'schema':'vortex_paper_review_v1','status':'REVIEW_DRAFT',
         'vortex_receipt_sha256':sha(root/'evidence/system/vortex_gate_cp.json'),
         'source_sha256':{name:sha(root/name) for name in
             ('paper/main.tex','paper/zh/main.tex','paper/zh/body.tex','paper/prepare_vortex.py',
-             'paper/build_vortex_review.sh')},'pdfs':pdfs,
+             'paper/build_vortex_review.sh','paper/compile_tex.sh')},'pdfs':pdfs,
         'figures_sha256':{name:sha(root/name) for name in
             ('paper/figures/generated/system.png','paper/zh/figures/generated/system.png')},
         'scope':'Updated Vortex CP DMA case; legacy measured tables remain tied to their earlier source snapshots'}
