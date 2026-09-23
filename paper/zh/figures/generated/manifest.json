@@ -2,29 +2,29 @@
   "schema": "sparse_gate_zh_generated_images_manifest_v1",
   "status": "VISUALLY_REVIEWED",
   "png_frozen": true,
-  "actual_imagegen_calls": 4,
-  "successful_calls": 4,
+  "actual_imagegen_calls": 5,
+  "successful_calls": 5,
   "repair_calls": 0,
   "selected_outputs": 4,
   "prompts": {
     "file": "prompts.json",
-    "sha256": "75d72d8b06ebcdc3d84856c157427b36c5797c28c50b68e75b2b1ac7631d5638"
+    "sha256": "810d90f753c3e3f7830752627dd06b52d340891abf5e031e91ee45b839358940"
   },
   "readme": {
     "file": "README.md",
-    "sha256": "6b685a114565b6cfcd11e2d8bd820070fb9aebb4549de205e10ebf81ca54f559"
+    "sha256": "31ce140d119b6a5216644baef812b935f7c424d60d3732a6cf01e9dfd27d4be3"
   },
   "outputs": {
     "system": {
       "file": "system.png",
-      "sha256": "d6eaa04dc2e53b48ebac367738b900cd87442395ac21021e5d4cf828cd810470",
+      "sha256": "1d6a0e73647c3eb9fbe6efd300c8f670277a7366d82c15d0e7d33234e9c62339",
       "dimensions": [
-        2055,
+        2056,
         765
       ],
       "source": "paper/figures/generated/system.png",
-      "source_sha256": "170ef95b512789f5d021d96ae836ea41716b45efaa89d5f8a147330f3f8b1aa3",
-      "tool_call_index": 1,
+      "source_sha256": "b00f8f2f0dc5160d90b0fdc21cb1e5ccdd2124e5295fdaa8be418be1386f8e09",
+      "tool_call_index": 5,
       "selected": true,
       "status": "VISUALLY_REVIEWED"
     },

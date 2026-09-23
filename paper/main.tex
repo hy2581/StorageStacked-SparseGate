@@ -29,7 +29,7 @@ We make three concrete engineering contributions. First, a complete FP4 score-to
 
 \begin{figure*}[t]
 \centering\includegraphics[width=\textwidth]{system.png}
-\caption{System placement. Vortex command-processor DMA sends the gate's AXI register requests; CPU and CoralNPU remain ordinary traffic sources on the shared link. SparseGate is after UCIe; ordinary accesses retain a bypass. The C++ memory-side dispatcher is a verification adapter, while the register endpoint, score/selection core, and DMA are synthesizable RTL. Return data and completion follow the original protocol path. Conceptual illustration; exact protocol contracts are in the artifact.}
+\caption{System placement and the validated Vortex command path. Vortex command-processor DMA sends the gate's AXI register requests. CPU and CoralNPU remain ordinary traffic sources on the shared link but are omitted from this command-path diagram. SparseGate is after UCIe; ordinary accesses retain a bypass. The C++ memory-side dispatcher is a verification adapter, while the register endpoint, score/selection core, and DMA are synthesizable RTL. Return data and completion follow the original protocol path. Conceptual illustration; exact protocol contracts are in the artifact.}
 \label{fig:system}
 \end{figure*}
 

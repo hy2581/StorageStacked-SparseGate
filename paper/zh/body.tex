@@ -9,7 +9,7 @@
 
 \begin{figure*}[t]
 \centering\includegraphics[width=\textwidth]{system.png}
-\caption{SparseGate 在统一系统中的部署位置。Vortex 命令处理器的 DMA 发出门控寄存器 AXI 请求；CPU 与 CoralNPU 在共享链路上保留普通访存来源。门控电路位于 UCIe 之后，普通访问保留旁路。存储侧 C++ 分发器是验证适配层；寄存器端点、评分与选择核心以及 DMA 均由可综合 RTL 实现。返回数据与完成状态沿原有协议路径传递。本图为架构示意，精确的协议约定见配套仓库。}
+\caption{SparseGate 在统一系统中的部署位置及已验证的 Vortex 命令路径。Vortex 命令处理器的 DMA 发出门控寄存器 AXI 请求。CPU 与 CoralNPU 在共享链路上保留普通访存来源，但未画入这张命令路径图。门控电路位于 UCIe 之后，普通访问保留旁路。存储侧 C++ 分发器是验证适配层；寄存器端点、评分与选择核心以及 DMA 均由可综合 RTL 实现。返回数据与完成状态沿原有协议路径传递。本图为架构示意，精确的协议约定见配套仓库。}
 \label{fig:system}
 \end{figure*}
 

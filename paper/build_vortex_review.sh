@@ -49,6 +49,8 @@ record={'schema':'vortex_paper_review_v1','status':'REVIEW_DRAFT',
         'source_sha256':{name:sha(root/name) for name in
             ('paper/main.tex','paper/zh/main.tex','paper/zh/body.tex','paper/prepare_vortex.py',
              'paper/build_vortex_review.sh')},'pdfs':pdfs,
+        'figures_sha256':{name:sha(root/name) for name in
+            ('paper/figures/generated/system.png','paper/zh/figures/generated/system.png')},
         'scope':'Updated Vortex CP DMA case; legacy measured tables remain tied to their earlier source snapshots'}
 (root/'paper/vortex_review.json').write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps(record,ensure_ascii=False,indent=2))

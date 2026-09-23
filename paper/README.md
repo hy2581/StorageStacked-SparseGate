@@ -2,7 +2,7 @@
 
 The English IEEE-style manuscript accompanies the independently implemented digital hardware and its online system integration. It is an engineering research draft, not a peer-reviewed publication. Algorithm attribution, hardware boundaries, evidence limitations and measured timing margins are retained explicitly.
 
-The Vortex CP DMA update is available as [an English review PDF](SparseGate-Vortex-review.pdf) and [a Chinese review PDF](SparseGate-Vortex-review-zh.pdf). They add the independently checked Vortex command-source case. The older final PDFs and measured tables remain tied to their earlier source snapshot; the review PDFs have their own receipt in `vortex_review.json` and are not a new all-suite finalization.
+The Vortex CP DMA update is available as [an English review PDF](SparseGate-Vortex-review.pdf) and [a Chinese review PDF](SparseGate-Vortex-review-zh.pdf). They include a revised system figure showing Vortex CP DMA as the gate-command sender and the independently checked Vortex command-source case. The older final PDFs and measured tables remain tied to their earlier source snapshot; the review PDFs have their own receipt in `vortex_review.json` and are not a new all-suite finalization.
 
 Rebuild the review editions after producing `evidence/system/vortex_gate_cp.json` with `PAPER_PYTHON=python3 bash paper/build_vortex_review.sh` from the repository root. The script checks the frozen older tables and the new Vortex source receipt before compiling either PDF.
 
