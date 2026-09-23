@@ -1,8 +1,7 @@
 from m5.objects.SystemC import SystemC_ScModule
 from m5.objects.Tlm import TlmTargetSocket
-from m5.SimObject import SimObject, PyBindMethod
+from m5.SimObject import PyBindMethod
 from m5.params import *
-from m5.proxy import Parent
 
 
 class AxiDemo(SystemC_ScModule):
@@ -17,7 +16,7 @@ class AxiDemo(SystemC_ScModule):
     memory_backend = Param.String('simple', 'simple or memsim after UCIe')
     gate_enable = Param.Bool(False, 'Route reserved MMIO through real SparseGate RTL')
     gate_library = Param.String('', 'Verilator C ABI shared object; required when gate_enable')
-    gate_base = Param.Addr(0x900f0000, 'Fixed SparseGate v1 register aperture base')
+    gate_base = Param.Addr(0x1900f0000, 'Vortex BAR SparseGate register aperture base')
     memsim_channels = Param.Unsigned(2, 'HBM4 channel count for integration')
     memsim_scale = Param.Unsigned(1, 'Multiply native HBM clock period')
     memsim_queue = Param.Unsigned(4, 'Native ingress/controller/response capacity')
@@ -30,14 +29,3 @@ class AxiDemo(SystemC_ScModule):
     latency = Param.Unsigned(3, 'RAM response latency in AXI cycles')
     stalls = Param.Bool(True, 'Deterministic stalls on all five channels')
     trace_dir = Param.String('', 'Directory for CSV/VCD traces')
-
-
-class AxiPacketTester(SimObject):
-    type = 'AxiPacketTester'
-    cxx_class = 'gem5::AxiPacketTester'
-    cxx_header = 'gem5_axi/packet_tester.hh'
-    system = Param.System(Parent.any, 'Parent system')
-    port = RequestPort('Timing/functional request source')
-    base = Param.Addr(0x90000000, 'Target base')
-    trace_dir = Param.String('', 'Result directory')
-    response_hold = Param.Latency('7ns', 'Hold each response before retry')

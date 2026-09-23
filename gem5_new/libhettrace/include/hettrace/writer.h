@@ -1,28 +1,26 @@
 // libhettrace — trace 写出器。header-only。
 //
-// 配置全部走环境变量，这样三个 tap 都不必把选项一路透传下来：
+// 配置全部走环境变量，这样两个 tap 都不必把选项一路透传下来：
 //
 //   HETTRACE_DIR      输出目录。未设置 => 完全关闭，Emit() 退化为一次分支判断。
 //   HETTRACE_FORMAT   bin(默认) | text
 //   HETTRACE_FILTER   dram(默认) | all
 //                     dram: 只记录落在 addrmap 的 trace_windows 里的访问 ——
-//                     DRAM 窗口，加上 Vortex 的 BAR（经 BAR 的访问也是真实内存
-//                     流量）。NPU 的 TCM 命中、CP 寄存器读写等不是内存流量，
-//                     混进来会让带宽统计虚高。判据是 IsTraced()，不是 IsDram()：
-//                     后者只表示 CoralNPU 的 DDR 判定区间，两者含义不同。
+//                     仅记录 Vortex BAR 内的目标存储流量，避免把宿主本地页池
+//                     或 CP 寄存器操作计入远端存储带宽。判据为 IsTraced()。
 //   HETTRACE_BUFSZ    缓冲记录条数，默认 65536
 //
 // 两级保真度，写同一种记录（见 record.h）：
 //
 //   Emit()/EmitBurst()  只写数据通道（W/R）。语义与 v1 格式逐字段等价，条数
-//                       也一致。设备库里的 tap 用这一级 —— 它们看到的是"一次
+//                       也一致。Vortex 内部 tap 用这一级 —— 它看到的是"一次
 //                       访问"，本来就观察不到独立的地址通道和响应通道，硬造
 //                       AW/B 记录等于把推测写成观测。
 //   BeginWrite() 等     写全部五个通道。gem5 的 HetAxiMonitor 用这一级：它在
 //                       packet 路径上，请求与响应是两个不同时刻的事件，能如实
 //                       记下 AW→W…→B 的因果与时间差。
 //
-// 线程安全：无。三个 tap 都在 gem5 事件循环线程上被调用（见
+// 线程安全：无。两个 tap 都在 gem5 事件循环线程上被调用（见
 // vortex_gpgpu.h 的 "Concurrency" 注释），故不加锁。
 
 #ifndef HETTRACE_WRITER_H_

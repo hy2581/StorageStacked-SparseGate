@@ -100,12 +100,10 @@ struct AouBackend::Fabric : sc_module {
                 p.memsim_slots, p.memsim_channels, p.memsim_scale,
                 p.memsim_queue, p.memsim_response_hold, p.trace_dir);
             if (p.gate_enable) {
-                const bool cpu_page = p.gate_base == 0x900f0000ULL;
                 const bool vortex_page = p.gate_base == 0x1900f0000ULL;
                 if (p.gate_library.empty() || p.base != 0x90000000ULL ||
-                    p.size < (vortex_page ? 0x100100000ULL : 0x100000ULL) ||
-                    !(cpu_page || vortex_page))
-                    throw std::invalid_argument("SparseGate requires a supported 1 MiB CPU or Vortex target window and model library");
+                    p.size < 0x100100000ULL || !vortex_page)
+                    throw std::invalid_argument("SparseGate requires the Vortex BAR target window and model library");
                 gate = std::make_unique<SparseGateBackend>("sparse_gate", p.gate_library,
                     p.gate_base, p.trace_dir);
                 gate->clk(o.clk); gate->resetn(o.resetn);

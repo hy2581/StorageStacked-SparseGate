@@ -122,7 +122,7 @@ NSA 的优势是块规整，缺点是以当前目标衡量，真正实现三分�
 
 Prefill 还需区分原始 block mask 与物理可读 ID：官方 mask 会保留最新 partial block 内尚不可见的槽位，但它们已在 score 中被因果掩码设为负无穷。Python 外部 producer 显式再取 `position < visible` 的交集，防止真实 DMA 去读未来记录。decode 的 `N=visible` 情况无需额外裁剪。独立读回与官方完整候选函数比较的是该可见性交集，不宣称 prefill 原始 block bitmap 完全相同。
 
-CPU、Vortex 和 CoralNPU 通过真实命令与 query payload 发起；RTL 从在线 mem_sim 的物理地址读 index K，经 MAC/排序后发起 selected main-KV gather，返回真正 bytes。完成时刻沿原链路唤醒请求方，不以离线 trace 或 Python mask 替代电路结果。新的 index K 与主 KV 写入要受同一版本/可见长度约束。
+Vortex CP DMA 通过真实命令与 query payload 发起；RTL 从在线 mem_sim 的物理地址读 index K，经 MAC/排序后发起 selected main-KV gather，返回真正 bytes。完成时刻沿原链路返回，不以离线 trace 或 Python mask 替代电路结果。新的 index K 与主 KV 写入要受同一版本/可见长度约束。
 
 ### 5.2 确切数字格式与舍入（新硬件合同，不冒称 CUDA bit-exact）
 

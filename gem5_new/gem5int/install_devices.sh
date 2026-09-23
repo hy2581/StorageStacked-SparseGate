@@ -7,7 +7,7 @@ if ! patch -R -p1 -s -f --dry-run -d "$GEM5_HOME" -i "$patch_file" >/dev/null 2>
     patch -p1 -s -f --dry-run -d "$GEM5_HOME" -i "$patch_file"
     patch -p1 -s -d "$GEM5_HOME" -i "$patch_file"
 fi
-for component in dev/coralnpu dev/vortex mem/unified_timing; do
+for component in dev/vortex; do
     mkdir -p "$GEM5_HOME/src/$component"
     cp "$self/src/$component/"* "$GEM5_HOME/src/$component/"
 done

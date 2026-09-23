@@ -22,11 +22,11 @@ binary="$destination/sparse_gate_vortex_cp"
 export LD_LIBRARY_PATH="$SS_DEPS_ROOT/xpu-native/lib:$VORTEX_HOME/third_party/ramulator:$LD_LIBRARY_PATH"
 case_dir="$destination/case"
 mkdir -p "$case_dir"
-"$AXI_GEM5_BIN" --listener-mode=off -d "$case_dir" "$AXI_PROJECT_DIR/configs/run_xpu.py" \
+"$AXI_GEM5_BIN" --listener-mode=off -d "$case_dir" "$AXI_PROJECT_DIR/configs/run_vortex.py" \
     --cmd "$binary" \
     --vortex-library "$VORTEX_BUILD/sim/simx/libvortex-gem5.so" \
     --vortex-host-rt-dir "$VORTEX_BUILD/sw/runtime" \
-    --gate-enable --gate-library "$model/libsparse_gate_model.so" \
+    --gate-library "$model/libsparse_gate_model.so" \
     --gate-base 0x1900f0000 --max-ticks 100000000000000 \
     > "$case_dir/run.log" 2>&1
 "$AXI_PYTHON" "$AXI_PROJECT_DIR/scripts/inspect_link.py" "$case_dir" > "$case_dir/link_verification.log"

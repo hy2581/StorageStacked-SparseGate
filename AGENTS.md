@@ -1,28 +1,9 @@
-# StorageStacked-SparseGate 独立硬件研究系统
+# StorageStacked-SparseGate 工作约定
 
-接手先读 integrate_doc/HANDOFF.md 和 integrate_doc/09_migration.md（本地交接资料），
-再读 README.md 和 docs/development.md。若交接资料未分发，以已提交文档为准。
-
-- 本仓库独立于 fmq03/StorageStacked；upstream 只用于追溯主线 3be39b697bdc315ae0be08ed2162c322bcf59462。
-- 新仓库目标为 hy2581/StorageStacked-SparseGate；用户已明确授权创建并上传。提交说明用中文，禁止向原仓库推送。
-- ucie-model、axi2flit、gem5_axi、mem_sim、gem5_new 是主仓库普通目录，直接维护源码。
-  不重新建立内部 .git、gitlink 或构建时向内部模块应用补丁。
-- gem5、coralnpu、vortex-gpu/vortex 是外部子模块，按 env/sources.lock.json 固定版本。
-  外部必要改动在系统内保存补丁；不要擅自更新它们的上游版本或 reset 本地适配。
-- CPU/GPU/NPU → gem5原生TLM → AXI256 → AXI2Flit → UCIe → 在线mem_sim，沿原链路返回。
-  WDATA/RDATA=256bit，WSTRB=32bit，TLM Bridge64名称不表示AXI为64bit。
-- 单进程、gem5主事件队列、gem5原生SystemC、统一1fs；不得链接第二套SystemC。
-- 统一入口 env/bootstrap.sh、env/build.sh、env/run_memsim.sh；设备环境另见
-  env/bootstrap_xpu.sh、env/build_xpu.sh、env/run_xpu.sh。完整链路显式选择backend aou及memory-backend memsim。
-- gem5设备源码统一维护于gem5_new/gem5int/src/dev，构建自动刷新gem5中的副本。
-  共享AoU帧格式在protocol/include。Vortex补丁只改外部SimX和ABI内部。
-- 配置和依赖包说明见docs/setup.md，打包/恢复入口env/dependency_bundle.py。
-  dist/依赖包不入Git；SS_OFFLINE=1仅约束bootstrap下载，Bazel构建的离线性需另行验证。
-- 验收入口显式使用--listener-mode=off，避免交互终端中的GDB连接令仿真停住。
-  HTML优先通过本机HTTP服务查看；直接打开WSL文件路径可能无法加载数据分块。
-- 原目录 /mnt/d/storagestacked 禁止清理。integrate_doc、运行结果、构建产物不提交。
-  已有AXI256结果及本次迁移备份保留；新验证使用独立结果目录。
-- 仿真必须保留AXI五通道VCD、两端带时间戳的完整Flit日志及离线数据校验。
-  HTML按需加载，交接复制整个用例目录及其_data目录、view_store.js。
-- 当前GPU为Vortex SimX、NPU为CoralNPU RTL；CPU程序/栈在本地主存。
-  尚无通用functional/atomic、checkpoint、跨设备缓存一致性、NPU重复启动支持。
+- 本仓库仅维护 Vortex CP DMA 发起的 SparseGate 在线路径。gem5 的 SE 宿主 CPU 只运行 Vortex 软件；门控 MMIO 与数据请求由 Vortex CP DMA 发出。
+- 外部子模块仅有 `gem5` 与 `vortex-gpu/vortex`，版本见 `env/sources.lock.json`。不要重置其本地适配，也不要向 `fmq03/StorageStacked` 推送。
+- 内部 `gem5_axi`、`gem5_new`、`axi2flit`、`ucie-model`、`mem_sim` 是普通源码目录。
+- 保持 AXI256 数据宽度、AXI2Flit/UCIe 请求与返回、同一个在线 mem_sim 镜像和 gem5/SystemC 单时间轴。
+- 构建入口依次为 `env/bootstrap_vortex.sh`、`env/build_vortex.sh`、`env/build_sparse_gate.sh`；运行入口为 `env/run_vortex_gate.sh`。
+- 论文只维护 `paper/SparseGate-final.pdf` 与其中文 LaTeX 源码。系统结果不得把独立核心实验或已移除的 CPU/NPU 用例算作 Vortex 在线系统测量。
+- 交付核对使用源码提交号或版本、文件名和大小、实际构建与运行结果；不生成文件摘要清单。

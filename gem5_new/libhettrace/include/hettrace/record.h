@@ -9,12 +9,12 @@
 // 取 chan ∈ {W, R} 的记录，其 (tick, addr, size, op) 与旧格式逐字段等价。
 // 因此 stats/convert/merge 等工具的默认行为不变，见 IsDataChan()。
 //
-// 三个产生者（gem5 HetAxiMonitor、Vortex tap、CoralNPU AXI master tap）写同一
+// 两个产生者（gem5 HetAxiMonitor、Vortex tap）写同一
 // 种格式，每个源一个独立文件。归并留给下游 Python 工具，理由见
 // docs/02-trace-format.md：单文件交织写入在多时钟域下无法保证 tick 单调，
 // 而排序错误一旦写进文件就不可恢复。
 //
-// header-only。gem5 用 SCons、CoralNPU 用 bazel、Vortex 用 make——
+// header-only。gem5 用 SCons、Vortex 用 make——
 // 三套构建系统各自 include 即可，无需产出库文件。
 
 #ifndef HETTRACE_RECORD_H_
@@ -143,10 +143,9 @@ constexpr uint8_t kFlagLast      = 1u << 5;  // WLAST / RLAST；B 上表示写�
 constexpr uint8_t kFlagSynth     = 1u << 6;  // 本条的 AXI 字段是**推导**出来的，
                                              // 不是从一组可直接采样的五通道
                                              // AXI 信号上读到的。统一 gem5 monitor
-                                             // 看到的三个源都是 packet，因而都带
-                                             // 这个位。CoralNPU 的原生 seam 可保留
-                                             // 地址/ID/WSTRB，但五通道事件、时序与
-                                             // 其余属性仍由 monitor 重构。任何拿本
+                                             // 看到的两个源都是 packet，因而都带
+                                             // 这个位。五通道事件、时序与其余属性
+                                             // 均由 monitor 重构。任何拿本
                                              // trace 当"协议证据"的分析都必须先按
                                              // 这一位分开看。
 
@@ -158,7 +157,7 @@ struct Record {
     uint64_t strb;      // WSTRB，bit i = byte lane i。只对 chan==W 有意义。
                         // 读通道与地址通道恒为 0。
     uint32_t size;      // 本条覆盖的字节数。AW/AR = 整笔字节数；W/R = 一拍字节数。
-    uint32_t ctx;       // 源内上下文：host=requestorId, vortex=hart_id, npu=AXI id。
+    uint32_t ctx;       // 源内上下文：host=requestorId, vortex=hart_id。
                         // 与 axi_id 不是一回事 —— 保留它是因为多核 host 的
                         // requestorId 空间比 4 位 AXI ID 宽。
     uint32_t seq;       // 源内单调序号。用于稳定排序，并检测缓冲区溢出丢记录。

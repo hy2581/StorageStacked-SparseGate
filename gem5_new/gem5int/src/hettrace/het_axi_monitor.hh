@@ -47,7 +47,6 @@ class HetAxiMonitor : public SimObject
     {
         Host,
         Vortex,
-        CoralNpu,
     };
 
     struct LoggedTxn
@@ -168,27 +167,24 @@ class HetAxiMonitor : public SimObject
     const bool enable;
     const bool traceHost;
     const bool traceVortex;
-    const bool traceCoralNpu;
     const bool traceInstFetch;
     const unsigned axiDataBytes;
     const unsigned axiIdBits;
     const bool uniquePacketIds;
-    std::array<std::set<uint16_t>, 3> liveIds;
-    std::array<uint32_t, 3> nextIds{};
+    std::array<std::set<uint16_t>, 2> liveIds;
+    std::array<uint32_t, 2> nextIds{};
     const std::vector<std::string> vortexPatterns;
-    const std::vector<std::string> coralNpuPatterns;
     bool active = false;
 
     // sendAtomic() returns a delay without advancing curTick() in the current
     // call stack.  Keep its synthetic R/B events pending so later AW/AR/W
     // events at the real current tick can be written before those responses.
     // The sequence component makes equal-tick completion order deterministic.
-    std::array<AtomicCompletionQueue, 3> pendingAtomicCompletions;
+    std::array<AtomicCompletionQueue, 2> pendingAtomicCompletions;
     uint64_t nextAtomicCompletionSequence = 0;
 
     hettrace::TraceWriter hostWriter;
     hettrace::TraceWriter vortexWriter;
-    hettrace::TraceWriter coralNpuWriter;
 };
 
 } // namespace gem5

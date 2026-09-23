@@ -98,7 +98,7 @@ private:
     // request stream. The library cannot call curTick() -- it is dlopen'd
     // and does not link gem5 -- so it gets the clock through this
     // trampoline. That is what puts Vortex's records on the same time base
-    // as the host and CoralNPU traces, which is the whole point.
+    // as the host trace, which is the purpose of the common time axis.
     static uint64_t curTickTrampoline(void* ctx);
 
     // No-op if trace_enable=false, if the library predates the trace ABI,

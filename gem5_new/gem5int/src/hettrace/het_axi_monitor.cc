@@ -37,13 +37,11 @@ HetAxiMonitor::HetAxiMonitor(const Params &p)
       enable(p.trace_enable),
       traceHost(p.trace_host),
       traceVortex(p.trace_vortex),
-      traceCoralNpu(p.trace_coralnpu),
       traceInstFetch(p.trace_inst_fetch),
       axiDataBytes(p.axi_data_bytes),
       axiIdBits(p.axi_id_bits),
       uniquePacketIds(p.unique_packet_ids),
-      vortexPatterns(p.vortex_requestor_patterns),
-      coralNpuPatterns(p.coralnpu_requestor_patterns)
+      vortexPatterns(p.vortex_requestor_patterns)
 {
     fatal_if(axiDataBytes == 0 || axiDataBytes > 64 ||
              (axiDataBytes & (axiDataBytes - 1)) != 0,
@@ -94,23 +92,14 @@ HetAxiMonitor::startup()
         hettrace::kSrcVortex, "vortex", hettrace::kLevelInterconnect,
         period(hettrace::kClockPeriodTicks_vortex), axiDataBytes,
         hettrace::kMapAddrBits, true, frequency);
-    const bool npu_open = traceCoralNpu && coralNpuWriter.Open(
-        hettrace::kSrcCoralnpu, "coralnpu", hettrace::kLevelInterconnect,
-        period(hettrace::kClockPeriodTicks_coralnpu), axiDataBytes,
-        // CoralNPU 的 timing seam 保留原生地址/ID/WSTRB，但到这个
-        // 统一点时已是 gem5 Packet。AW/W/B/AR/R 事件、LEN/SIZE/
-        // BURST/USER 与响应时刻都由 monitor 重构，不能冒充 pin trace。
-        hettrace::kNpuAddrBits, true, frequency);
-    active = host_open || vortex_open || npu_open;
+    active = host_open || vortex_open;
     if (!active)
         return;
 
-    fatal_if((traceHost && !host_open) || (traceVortex && !vortex_open) ||
-             (traceCoralNpu && !npu_open),
+    fatal_if((traceHost && !host_open) || (traceVortex && !vortex_open),
              "HetAxiMonitor could not open every requested source trace");
-    inform("HetAxiMonitor: one interconnect tap enabled for %s%s%s",
-           host_open ? "host " : "", vortex_open ? "vortex " : "",
-           npu_open ? "coralnpu" : "");
+    inform("HetAxiMonitor: one interconnect tap enabled for %s%s",
+           host_open ? "host " : "", vortex_open ? "vortex" : "");
     registerExitCallback([this] { closeTrace(); });
 }
 
@@ -132,8 +121,6 @@ HetAxiMonitor::Source
 HetAxiMonitor::classify(RequestorID requestor_id) const
 {
     const std::string requestor_name = system->getRequestorName(requestor_id);
-    if (containsPattern(requestor_name, coralNpuPatterns))
-        return Source::CoralNpu;
     if (containsPattern(requestor_name, vortexPatterns))
         return Source::Vortex;
     return Source::Host;
@@ -147,8 +134,6 @@ HetAxiMonitor::writer(Source source)
         return hostWriter;
       case Source::Vortex:
         return vortexWriter;
-      case Source::CoralNpu:
-        return coralNpuWriter;
     }
     panic("HetAxiMonitor: invalid source classification");
 }
@@ -166,8 +151,7 @@ HetAxiMonitor::makeTraceState(PacketPtr pkt) const
     auto state = std::make_unique<TraceSenderState>();
     state->source = classify(pkt->req->requestorId());
     if ((state->source == Source::Host && !traceHost) ||
-        (state->source == Source::Vortex && !traceVortex) ||
-        (state->source == Source::CoralNpu && !traceCoralNpu)) {
+        (state->source == Source::Vortex && !traceVortex)) {
         return nullptr;
     }
     state->write = pkt->isWrite();
@@ -191,8 +175,7 @@ HetAxiMonitor::makeTraceState(PacketPtr pkt) const
     const uint32_t id_mask = (uint32_t(1) << axiIdBits) - 1;
     const uint16_t axi_id = static_cast<uint16_t>(stream & id_mask);
     const uint8_t user = state->source == Source::Host ?
-        hettrace::kSrcHost : state->source == Source::Vortex ?
-        hettrace::kSrcVortex : hettrace::kSrcCoralnpu;
+        hettrace::kSrcHost : hettrace::kSrcVortex;
 
     const auto &byte_enable = pkt->req->getByteEnable();
     Addr address = pkt->getAddr();
@@ -333,7 +316,6 @@ HetAxiMonitor::flushAllAtomicCompletions()
     constexpr Tick last_tick = std::numeric_limits<Tick>::max();
     flushAtomicCompletions(Source::Host, last_tick);
     flushAtomicCompletions(Source::Vortex, last_tick);
-    flushAtomicCompletions(Source::CoralNpu, last_tick);
 }
 
 void
@@ -521,7 +503,6 @@ HetAxiMonitor::closeTrace()
     active = false;
     closeWriter("host", hostWriter);
     closeWriter("vortex", vortexWriter);
-    closeWriter("coralnpu", coralNpuWriter);
 }
 
 } // namespace gem5

@@ -4,9 +4,9 @@ The independent project starts at `fmq03/StorageStacked` commit `3be39b697bdc315
 
 CSA2, its pretrained indexer, cross-layer reuse and candidate construction are DeepSeek-AI work. Primary sources and exact revisions appear in `research/csa2_sources.lock.json`. Bounded download scripts preserve the official source/license text under ignored `results/research/reference/`. The corresponding official MIT notice is reproduced below for attribution of the reference-derived research material. The checkpoint tensors themselves are not committed. The small committed fixture contains generated intermediate numeric inputs from learned weights and seeded random activations, not copied weight tensors.
 
-Wang Ruitai's thesis is a referenced, user-provided source. The original PDF and its illustrations are not republished. `docs/sparse_gate/thesis_redesign.md` gives pages, the original file hash, and the specific architectural ideas studied. The new RTL is an independent implementation informed by those documented ideas; no unavailable author RTL or SRAM macro is claimed as included.
+Wang Ruitai's thesis is a referenced, user-provided source. The original PDF and its illustrations are not republished. `docs/sparse_gate/thesis_redesign.md` records the architectural ideas studied. The new RTL is an independent implementation informed by those documented ideas; no unavailable author RTL or SRAM macro is claimed as included.
 
-Generated conceptual figures use the image-generation tool, with prompts and review records retained in `paper/figures/generated/`. Numerical figures come from repository evidence. Proprietary technology libraries and their derived library databases remain local and are excluded from Git.
+Generated conceptual figures use the image-generation tool; the selected images are in `paper/zh/figures/generated/`. The numerical lane-sweep figure comes from repository evidence. Proprietary technology libraries and their derived library databases remain local and are excluded from Git.
 
 ## Official DeepSeek-V4.1-Flash license notice
 

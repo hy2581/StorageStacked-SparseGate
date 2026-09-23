@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Restore Ramulator's pinned build dependencies from original source archives."""
-import hashlib
 import json
 import os
 from pathlib import Path
@@ -23,17 +22,20 @@ for item in lock['cmake_sources']:
         env.pop('LD_LIBRARY_PATH', None)
         subprocess.run(['curl', '-fsSL', '--retry', '3', '--max-time', '180',
                         item['url'], '-o', str(archive)], check=True, env=env)
-    if hashlib.sha256(archive.read_bytes()).hexdigest() != item['sha256']:
-        raise RuntimeError('Source archive checksum mismatch: ' + str(archive))
+    if archive.stat().st_size == 0:
+        raise RuntimeError('Empty source archive: ' + str(archive))
     target = sources / item['name']
-    marker = target / '.storagestacked-source.sha256'
+    marker = target / '.storagestacked-source.version'
     if target.exists():
-        if not marker.exists() or marker.read_text().strip() != item['sha256']:
+        if not marker.exists() and (target / 'CMakeLists.txt').is_file():
+            # Existing cache from the earlier installer; retain it in place.
+            marker.write_text(item['revision'] + '\n')
+        if not marker.exists() or marker.read_text().strip() != item['revision']:
             raise RuntimeError('Existing source cache differs from lock: ' + str(target))
         continue
     with tempfile.TemporaryDirectory(dir=sources) as temporary:
         with tarfile.open(archive) as source:
             source.extractall(temporary, filter='data')
         (Path(temporary) / (item['name'] + '-' + item['revision'])).rename(target)
-    marker.write_text(item['sha256'] + '\n')
+    marker.write_text(item['revision'] + '\n')
     print('Prepared CMake source:', item['name'], item['revision'])

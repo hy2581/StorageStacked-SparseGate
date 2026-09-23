@@ -20,19 +20,19 @@
 \graphicspath{{figures/}{figures/generated/}}
 \newcommand{\code}[1]{\texttt{#1}}
 \input{generated/results.tex}
-\hypersetup{pdftitle={Vortex 发起的 AXI–UCIe 存储系统 FP4 稀疏索引电路},pdfauthor={匿名作者},pdfsubject={数字门控电路、统一系统集成及可复现实验研究：中文译稿}}
+\hypersetup{pdftitle={Vortex 发起的 AXI–UCIe 存储系统 FP4 稀疏索引电路},pdfauthor={匿名作者},pdfsubject={数字门控电路与 Vortex 在线系统集成研究}}
 \begin{document}
 \twocolumn[{
 \begin{center}
 {\LARGE\bfseries Vortex 发起的 AXI–UCIe 存储系统\\[.25em] FP4 稀疏索引电路\par}
 \vspace{.8em}
 {\normalsize 匿名作者\par}
-{\small 数字硬件设计与可复现实验研究\quad 中文译稿\par}
+{\small 数字硬件设计与可复现实验研究\quad 最终整理稿\par}
 \end{center}
 \vspace{.3em}
 \begin{minipage}{\textwidth}
 \small
-\textbf{摘\quad 要：}本文面向 CSA2 投影后的索引算子，在 Vortex 到在线存储的 AXI256／AXI2Flit／UCIe 通路上实现可综合 RTL。Vortex 命令处理器 DMA 提交门控命令，门控 RTL 通过自身 DMA 访问同一在线存储。16 路 E2M1 FP4 通道配合 E8M0 缩放，计算 32 个索引头的有符号加权 ReLU 分数；共享键缓冲区、稳定 Top-512 堆和明确的 FP32 舍入约定支持全量扫描、候选集扫描及已提交索引复用。命令完成由实际存储响应驱动。\input{generated/abstract_results.tex}验证覆盖 \CoreCaseCount{} 个核心用例、\FpCaseCount{} 个浮点算术用例、预训练权重派生输入及 AXI 错误与背压场景。投影、候选块生成、最终注意力、完整模型质量及 SRAM-CIM 物理实现不在已验证范围内。
+\textbf{摘\quad 要：}本文面向 CSA2 投影后的索引算子，在 Vortex 到在线存储的 AXI256／AXI2Flit／UCIe 通路上实现可综合 RTL。Vortex 命令处理器 DMA 提交门控命令，门控 RTL 通过自身 DMA 访问同一在线存储。16 路 E2M1 FP4 通道配合 E8M0 缩放，计算 32 个索引头的有符号加权 ReLU 分数；共享键缓冲区、稳定 Top-512 堆和明确的 FP32 舍入约定支持全量扫描、候选集扫描及已提交索引复用。命令完成由实际存储响应驱动。在已验证的 H4/N16/K4 Vortex 用例中，Vortex CP DMA 发出 31 笔门控寄存器请求，RTL 在 5201 周期完成，并逐字节核对 1152 B 聚集输出。独立核心验证覆盖 \CoreCaseCount{} 个用例与 \FpCaseCount{} 个浮点算术用例。投影、候选块生成、最终注意力、完整模型质量及 SRAM-CIM 物理实现不在已验证范围内。
 \par\medskip
 \textbf{关键词：}数字集成电路；稀疏注意力；FP4；近存计算；RTL；AXI；UCIe
 \end{minipage}

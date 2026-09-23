@@ -1,5 +1,5 @@
 \begin{figure}[t]
-\centering\includegraphics[width=\columnwidth]{lane_sweep.pdf}
+\centering\includegraphics[width=\columnwidth]{lane_sweep.png}
 \caption{同一预训练权重派生 H32/N640/K512 输入下，运算通道数对核心周期数的影响。全部得分和选择结果一致。该核心独立测试不包含封装层的位置排序及原生 DMA／存储等待；结果输出周期取决于测试平台的 ready 序列。不同实现之间不预设时钟频率或 PPA 等价。}
 \label{fig:lanes}
 \end{figure}

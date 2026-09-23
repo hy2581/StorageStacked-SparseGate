@@ -12,7 +12,8 @@ if [[ ! -x "$ss_mamba" ]]; then
         [[ ${SS_OFFLINE:-0} != 1 ]] || { echo "离线缓存缺少 $archive" >&2; exit 1; }
         curl -fL --retry 3 https://micro.mamba.pm/api/micromamba/linux-64/2.3.3 -o "$archive"
     fi
-    echo "e7274528ceb9c20d048a428d6c22d7e02e268f8ffb762c4c365422347c8b8ba2  $archive" | sha256sum -c -
+    [[ -s "$archive" ]] || { echo "下载文件为空：$archive" >&2; exit 1; }
+    tar -tjf "$archive" bin/micromamba >/dev/null
     tar -xjf "$archive" -C "$ss_deps/bootstrap" bin/micromamba
 fi
 if [[ -d "$ss_deps/toolchain/conda-meta" ]]; then

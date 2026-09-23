@@ -66,7 +66,7 @@ class VortexGPGPU(DmaDevice):
 
     # ---- Memory-access tracing (hettrace) ------------------------------
     # Installs a read-only tap on Vortex's post-LLC request stream so the
-    # DRAM-bound traffic can be merged with the host and CoralNPU traces on
+    # DRAM-bound traffic can be compared with the host trace on
     # a single gem5 time base.
     #
     # Whether a trace is actually produced is decided by the HETTRACE_DIR

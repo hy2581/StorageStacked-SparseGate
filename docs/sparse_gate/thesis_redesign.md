@@ -31,7 +31,7 @@ min-heap根存当前最差候选；每个节点64bit，包含score和index。K=5
 
 ## 接到系统里意味着什么
 
-存储侧原先的 `AouTarget` 输出整burst FIFO对象，并没有现成的RTL AXI引脚。本项目增加协议适配层：MMIO对象逐拍驱动真实AXI256 slave；RTL DMA的AXI256 master再逐拍转换为在线mem_sim请求。普通CPU/GPU/NPU访存保留旁路。所有地址、数据、写mask与响应来自同一个后端镜像。
+存储侧原先的 `AouTarget` 输出整burst FIFO对象，并没有现成的RTL AXI引脚。本项目增加协议适配层：Vortex CP DMA 发出的 MMIO 对象逐拍驱动真实 AXI256 slave；RTL DMA 的 AXI256 master 再逐拍转换为在线 mem_sim 请求。Vortex 普通访问使用同一后端镜像。所有地址、数据、写 mask 与响应均沿在线链路传递。
 
 适配器本身不是可综合总线桥；它属于系统验证环境。可综合边界是 `sparse_gate_axi` 顶层及内部核心/DMA。Verilator仅生成这些RTL的执行模型。其时间由gem5原生SystemC事件轴驱动，不启动第二套SystemC，也不在C++里瞬间计算整个任务。
 

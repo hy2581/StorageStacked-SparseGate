@@ -1,10 +1,9 @@
 Import('*')
 env.Append(CPPPATH=[Dir('#/src/systemc/ext')])
-SimObject('Gem5Axi.py', sim_objects=['AxiDemo', 'AxiPacketTester'])
+SimObject('Gem5Axi.py', sim_objects=['AxiDemo'])
 Source('axi_master.cc')
 Source('axi_ram.cc')
 Source('axi_demo.cc')
-Source('packet_tester.cc')
 
 
 # Compile protocol sources against gem5's own SystemC implementation.

@@ -26,7 +26,6 @@ class HetAxiMonitor(SimObject):
     )
     trace_host = Param.Bool(True, "Create the host source trace")
     trace_vortex = Param.Bool(False, "Create the Vortex source trace")
-    trace_coralnpu = Param.Bool(False, "Create the CoralNPU source trace")
     trace_inst_fetch = Param.Bool(False, "Include host instruction fetches")
     axi_data_bytes = Param.Unsigned(
         16, "Width in bytes used for packet-to-AXI4 projection"
@@ -41,7 +40,4 @@ class HetAxiMonitor(SimObject):
     # baking a particular top-level object name into C++.
     vortex_requestor_patterns = VectorParam.String(
         ["vortex"], "Substrings identifying Vortex requestors"
-    )
-    coralnpu_requestor_patterns = VectorParam.String(
-        ["coralnpu"], "Substrings identifying CoralNPU requestors"
     )

@@ -1,17 +1,15 @@
-# SparseGate manuscript
+# SparseGate 论文
 
-The current Vortex CP DMA manuscript is available in [English](SparseGate-Vortex-review.pdf) and [Chinese](SparseGate-Vortex-review-zh.pdf). Both editions show the Vortex command path and include the independently checked Vortex source result. They are research drafts, not peer-reviewed papers or a new all-suite finalization.
+仓库只交付一份中文论文：[SparseGate-final.pdf](SparseGate-final.pdf)。源码为
+[`zh/main.tex`](zh/main.tex)、[`zh/body.tex`](zh/body.tex) 及 `zh/generated/` 中的
+核心测量表格。系统图仅显示 Vortex CP DMA 发出门控请求；论文中的在线系统结果
+只使用 `evidence/system/vortex_gate_cp.json` 记录的 H4/N16/K4 FULL 用例。
+H32/N640/K512 属于独立 RTL 核心验证，不是当前 Vortex 在线系统实验。
 
-Build both editions from the repository root with Python 3, LaTeX, BibTeX, and Poppler:
+在仓库根目录执行 `bash paper/build.sh`。需要 XeLaTeX、BibTeX、Poppler、
+Noto CJK 和 TeX Gyre 字体。构建临时文件写入系统临时目录；完成后仓库内只保留
+`paper/SparseGate-final.pdf` 一个 PDF。四张架构概念图保留在
+`zh/figures/generated/`，通道数图 `zh/figures/lane_sweep.png` 来自核心实验。
 
-```sh
-PAPER_PYTHON=python3 bash paper/build_vortex_review.sh
-```
-
-This build checks the frozen numerical tables and `evidence/system/vortex_gate_cp.json`, compiles both PDFs, and writes `vortex_review.json` with source, figure, and PDF hashes. `compile_tex.sh` is the shared TeX/BibTeX compile step. The numerical tables and plots come from measured evidence; the four conceptual figures and their prompts are in `figures/generated/` and `zh/figures/generated/`.
-
-The current drafts omit the four-row finish-time table because its programs perform different amounts of work. All underlying JSON evidence remains intact. The remaining three tables and seven figures were regenerated in an isolated worktree at `4815f85eed64a5cd37584bb358a4a05b620c6800` using the current `prepare.py` and `zh/prepare_results.py`, plus `zh/generate_figures.py`. The current Vortex source changes three files sealed by the older Chinese receipt, so those historical measurements cannot be regenerated from this checkout directly.
-
-The earlier [English](SparseGate-paper.pdf) and [Chinese](SparseGate-paper-zh.pdf) PDFs, with `delivery.json` and `zh/delivery.json`, are historical snapshots. Their CPU measurements and source hashes predate the Vortex command-source change. Rebuilding those sealed editions requires their corresponding historical checkout; `build.sh` and `zh/build.sh` are retained for that purpose. The current checkout's build entry is `build_vortex_review.sh`.
-
-The implementation and evidence boundaries are stated in the manuscripts. The repository does not distribute proprietary synthesis libraries or full model weights.
+论文为工程研究草稿；Vortex 用例没有执行 GPU 核函数，算术核心综合也没有完成
+布局布线和物理签核。

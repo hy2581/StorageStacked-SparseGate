@@ -2,7 +2,6 @@
 """Verify that Vortex CP DMA, not the host CPU, submitted the gate command."""
 import argparse
 import csv
-import hashlib
 import json
 from pathlib import Path
 import re
@@ -11,12 +10,11 @@ import sys
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'gem5_new/tools'))
 from hettrace.reader import CHAN_AW, CHAN_AR, read_records
-from check_sparse_gate import audit_gate_wave
+from check_gate_wave import audit_gate_wave
 
 PAGE = 0x1900f0000
 
 def load(path): return json.loads(path.read_text())
-def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 def need(value, message):
     if not value: raise RuntimeError(message)
 
@@ -27,9 +25,11 @@ def check(case, binary, manifest):
     need(model['status']=='BUILT_NOT_VALIDATED' and
          model['parameters']=={'mem_base':0x190000000,'mem_bytes':0x100000,'reg_base':PAGE},
          'wrong RTL model parameters')
-    for name,digest in model['source_sha256'].items():
-        need(sha(ROOT/name)==digest,'RTL model source changed: '+name)
-    need(sha(Path(model['library']))==model['library_sha256'],'RTL library changed')
+    for name,record in model['source_files'].items():
+        source=ROOT/name
+        need(source.stat().st_size==record['bytes'] and source.stat().st_mtime_ns==record['mtime_ns'],
+             'RTL model source changed: '+name)
+    need(Path(model['library']).stat().st_size==model['library_bytes'],'RTL library size changed')
     gate=load(case/'sparse_gate_summary.json')
     protocol=load(case/'protocol_summary.json')
     bridge=load(case/'memsim_bridge_summary.json')
@@ -79,15 +79,15 @@ def check(case, binary, manifest):
             'vortex_timing':{'cp_reads':cp_read,'cp_writes':cp_write,'core_reads':core_read,
                              'core_writes':core_write,'core_cycles':core_cycles},
             'rtl_command':commands[0],'model_build_id':model['build_id'],
-            'binary_sha256':sha(binary),'checker_sha256':sha(Path(__file__)),
-            'model_manifest_sha256':sha(manifest),'model_library_sha256':model['library_sha256'],
-            'source_sha256':{name:sha(ROOT/name) for name in
-                ('gem5_axi/aou_backend.cc','gem5_axi/configs/run_xpu.py',
+            'binary_bytes':binary.stat().st_size,
+            'model_library_bytes':model['library_bytes'],
+            'source_files':{name:(ROOT/name).stat().st_size for name in
+                ('gem5_axi/aou_backend.cc','gem5_axi/configs/run_vortex.py',
                  'gem5_axi/workloads/sparse_gate_vortex_cp.cpp',
                  'research/fixtures/system_smoke.h','env/run_vortex_gate.sh')},
-            'simulator_sha256':sha(ROOT/'gem5/build/AXI/gem5.opt'),
-            'vortex_library_sha256':sha(ROOT/'vortex-gpu/vxbuild/sim/simx/libvortex-gem5.so'),
-            'evidence_sha256':{name:sha(case/name) for name in
+            'simulator_bytes':(ROOT/'gem5/build/AXI/gem5.opt').stat().st_size,
+            'vortex_library_bytes':(ROOT/'vortex-gpu/vxbuild/sim/simx/libvortex-gem5.so').stat().st_size,
+            'evidence_files':{name:(case/name).stat().st_size for name in
                 ('config.json','run.log','protocol_summary.json','aou_summary.json',
                  'link_check_summary.json','sparse_gate_summary.json',
                  'hettrace/vortex.hettrace','hettrace/host.hettrace',

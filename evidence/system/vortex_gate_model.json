@@ -1,97 +1,14 @@
 {
-  "schema": "sparse_gate_model_build_v1",
-  "status": "BUILT_NOT_VALIDATED",
-  "build_id": "5a96e5be71b7bf2f59eb360167259ca8790a4b6ceeb834a66792d51d5c8cf2eb",
-  "source_sha256": {
-    "rtl/sparse_gate/sg_fp32_pkg.sv": "54e4f21009646b1214236e73def967aefa9e1ebd6099fa483294a57699c65b9c",
-    "rtl/sparse_gate/sg_index_core.sv": "094b297eaabca45981dc31dd46661ca6fd39b77859ba9bf1c82681eb5444a3ab",
-    "rtl/sparse_gate_axi/sparse_gate_dma.sv": "0c7eb97e4fb64dbb70fb83f9401a45a4fa5aa3ae113799c97faceb7a30050332",
-    "rtl/sparse_gate_axi/sparse_gate_axi.sv": "978cd71cd0f8794410fcb326124a36262bf980a8bfb603a92760121bad994073",
-    "gem5_axi/sparse_gate_model.cpp": "8d73b476d3fdcdf285a1c57f18cd275296c549ba0eed9568f2c5ffa1ff1c3322",
-    "gem5_axi/sparse_gate_abi.h": "da8599cf7e788bbaa62072e06d5dda41e64908988f115bab02eb970a175da465",
-    "env/build_sparse_gate.sh": "9deffdb3a890df3d27aab122fe845aff4bf5c22b2cee176910ad3be64614eeab"
-  },
+  "schema": "vortex_gate_model_v2",
+  "status": "BUILT_AND_SYSTEM_VALIDATED",
+  "build_id": "vortex-gate-20260923T080048-1460326",
   "parameters": {
     "mem_base": 6710886400,
     "mem_bytes": 1048576,
     "reg_base": 6711869440
   },
-  "commands": [
-    [
-      "/usr/bin/verilator",
-      "--cc",
-      "--assert",
-      "--trace",
-      "--timescale-override",
-      "1fs/1fs",
-      "--top-module",
-      "sparse_gate_axi",
-      "--Mdir",
-      "/home/hy258/hy/lunwen_ruitai/StorageStacked-SparseGate/build/sparse_gate_model_vortex/obj",
-      "-Wno-fatal",
-      "-CFLAGS",
-      "-fPIC -O2 -std=c++17",
-      "-GMEM_BASE=64'h190000000",
-      "-GMEM_BYTES=64'h100000",
-      "-GREG_BASE=64'h1900f0000",
-      "/home/hy258/hy/lunwen_ruitai/StorageStacked-SparseGate/rtl/sparse_gate/sg_fp32_pkg.sv",
-      "/home/hy258/hy/lunwen_ruitai/StorageStacked-SparseGate/rtl/sparse_gate/sg_index_core.sv",
-      "/home/hy258/hy/lunwen_ruitai/StorageStacked-SparseGate/rtl/sparse_gate_axi/sparse_gate_dma.sv",
-      "/home/hy258/hy/lunwen_ruitai/StorageStacked-SparseGate/rtl/sparse_gate_axi/sparse_gate_axi.sv"
-    ],
-    [
-      "make",
-      "-C",
-      "/home/hy258/hy/lunwen_ruitai/StorageStacked-SparseGate/build/sparse_gate_model_vortex/obj",
-      "-f",
-      "Vsparse_gate_axi.mk",
-      "-j4",
-      "CXX=/home/hy258/ss-native-repro-20260917/deps/toolchain/bin/x86_64-conda-linux-gnu-g++",
-      "OPT_FAST=-O2"
-    ],
-    [
-      "/home/hy258/ss-native-repro-20260917/deps/toolchain/bin/x86_64-conda-linux-gnu-g++",
-      "-shared",
-      "-fPIC",
-      "-O2",
-      "-std=c++17",
-      "-I/home/hy258/hy/lunwen_ruitai/StorageStacked-SparseGate/build/sparse_gate_model_vortex/obj",
-      "-I/home/hy258/hy/lunwen_ruitai/StorageStacked-SparseGate/gem5_axi",
-      "-I/usr/share/verilator/include",
-      "-I/usr/share/verilator/include/vltstd",
-      "/home/hy258/hy/lunwen_ruitai/StorageStacked-SparseGate/gem5_axi/sparse_gate_model.cpp",
-      "/usr/share/verilator/include/verilated.cpp",
-      "/usr/share/verilator/include/verilated_threads.cpp",
-      "/usr/share/verilator/include/verilated_vcd_c.cpp",
-      "/home/hy258/hy/lunwen_ruitai/StorageStacked-SparseGate/build/sparse_gate_model_vortex/obj/Vsparse_gate_axi__ALL.a",
-      "-pthread",
-      "-Wl,--version-script=/home/hy258/hy/lunwen_ruitai/StorageStacked-SparseGate/build/sparse_gate_model_vortex/obj/exports.map",
-      "-o",
-      "/home/hy258/hy/lunwen_ruitai/StorageStacked-SparseGate/build/sparse_gate_model_vortex/libsparse_gate_model.so.tmp"
-    ]
-  ],
-  "time_unit": "1fs",
-  "scope": "Verilator cycle model; no SystemC or private memory image",
-  "verilator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)",
-  "verilator_executable": "/usr/bin/verilator",
-  "verilator_root": "/usr/share/verilator",
-  "verilator_runtime_sha256": {
-    "/usr/share/verilator/include/verilated.cpp": "b784038c3cf821588ff4576653b540355889c0621bc258d1b349c29a63836c35",
-    "/usr/share/verilator/include/verilated_threads.cpp": "c1290e944bb50e80ee5bf27ab1efdc032aac023ade148ef74d6a45db8bb6f132",
-    "/usr/share/verilator/include/verilated_vcd_c.cpp": "ac9353d13ce64c5ef1cea5279893a4c288a22a72d4be1512757ebf98bd3a5120",
-    "/usr/share/verilator/include/verilated.h": "5dae77881c31423d9e0ed126192eaed0721b3f88dd2d7a709c57152e2a861c35"
-  },
   "compiler": "x86_64-conda-linux-gnu-g++ (conda-forge gcc 13.4.0-20) 13.4.0",
-  "library": "/home/hy258/hy/lunwen_ruitai/StorageStacked-SparseGate/build/sparse_gate_model_vortex/libsparse_gate_model.so",
-  "library_sha256": "5c176f8169fe94aeb200225a8618f16c5a8dddd70c7d8182f4169d8188df96ce",
-  "source_sha256_after": {
-    "rtl/sparse_gate/sg_fp32_pkg.sv": "54e4f21009646b1214236e73def967aefa9e1ebd6099fa483294a57699c65b9c",
-    "rtl/sparse_gate/sg_index_core.sv": "094b297eaabca45981dc31dd46661ca6fd39b77859ba9bf1c82681eb5444a3ab",
-    "rtl/sparse_gate_axi/sparse_gate_dma.sv": "0c7eb97e4fb64dbb70fb83f9401a45a4fa5aa3ae113799c97faceb7a30050332",
-    "rtl/sparse_gate_axi/sparse_gate_axi.sv": "978cd71cd0f8794410fcb326124a36262bf980a8bfb603a92760121bad994073",
-    "gem5_axi/sparse_gate_model.cpp": "8d73b476d3fdcdf285a1c57f18cd275296c549ba0eed9568f2c5ffa1ff1c3322",
-    "gem5_axi/sparse_gate_abi.h": "da8599cf7e788bbaa62072e06d5dda41e64908988f115bab02eb970a175da465",
-    "env/build_sparse_gate.sh": "9deffdb3a890df3d27aab122fe845aff4bf5c22b2cee176910ad3be64614eeab"
-  },
-  "elapsed_seconds": 24.767360009253025
+  "verilator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)",
+  "library_bytes": 443480,
+  "validated_by": "evidence/system/vortex_gate_cp.json"
 }
