@@ -12,7 +12,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Learned sparse-attention indexing combines low-precision arithmetic, selection, and data movement. We implement a post-projection CSA2 indexer as synthesizable digital hardware on a Vortex-to-memory path with native 256-bit AXI, AXI2Flit, UCIe, and one online memory simulator. Vortex command-processor DMA issues the gate's register requests; the memory-side RTL issues its own data DMA. A 16-lane E2M1 FP4 datapath with E8M0 group scales computes signed weighted-ReLU scores across 32 heads. One shared key buffer, a stable Top-512 heap, an explicit FP32 rounding contract, and a DMA endpoint support full scan, candidate-only scan, and committed-index reuse. Completion depends on actual memory responses. \input{generated/abstract_results.tex} Validation includes \CoreCaseCount{} core cases, \FpCaseCount{} floating-point cases, learned-weight operator fixtures, and AXI fault/backpressure checks. Projection, candidate-block generation, final attention, full-model quality, and SRAM-CIM physical implementation remain outside the demonstrated scope.
+We implement a post-projection CSA2 indexer in synthesizable RTL on a Vortex-to-memory AXI256/AXI2Flit/UCIe path. Vortex command-processor DMA submits gate commands; gate RTL accesses the same online memory simulator through its own DMA. A 16-lane E2M1 FP4 datapath with E8M0 scales computes signed weighted-ReLU scores across 32 heads. A shared key buffer, stable Top-512 heap, and explicit FP32 rounding support full scan, candidate-only scan, and committed-index reuse. Completion follows actual memory responses. \input{generated/abstract_results.tex} Validation includes \CoreCaseCount{} core cases, \FpCaseCount{} floating-point cases, learned-weight operator fixtures, and AXI fault/backpressure checks. Projection, candidate-block generation, final attention, full-model quality, and SRAM-CIM physical implementation remain outside the demonstrated scope.
 \end{abstract}
 \begin{IEEEkeywords}
 Digital IC, sparse attention, FP4, near-memory computing, RTL, AXI, UCIe
@@ -29,7 +29,7 @@ We make three concrete engineering contributions. First, a complete FP4 score-to
 
 \begin{figure*}[t]
 \centering\includegraphics[width=\textwidth]{system.png}
-\caption{System placement and the validated Vortex command path. Vortex command-processor DMA sends the gate's AXI register requests. CPU and CoralNPU remain ordinary traffic sources on the shared link but are omitted from this command-path diagram. SparseGate is after UCIe; ordinary accesses retain a bypass. The C++ memory-side dispatcher is a verification adapter, while the register endpoint, score/selection core, and DMA are synthesizable RTL. Return data and completion follow the original protocol path. Conceptual illustration; exact protocol contracts are in the artifact.}
+\caption{Validated Vortex CP DMA command path. Gate MMIO crosses AXI/UCIe to a C++ verification dispatcher and synthesizable SparseGate RTL. RTL DMA and ordinary accesses share online mem\_sim; responses use the same link. CPU and CoralNPU ordinary traffic is omitted from this diagram.}
 \label{fig:system}
 \end{figure*}
 
@@ -97,7 +97,7 @@ Each result is a 32-B record containing index and FP32 score bits with zero padd
 
 \begin{figure*}[t]
 \centering\includegraphics[width=.95\textwidth]{flow.png}
-\caption{Command lifecycle. Candidate blocks are produced externally and expanded to valid indices. Reuse bypasses scoring, while every mode that produces output still waits for actual memory write responses before committing completion. The error/cache-invalidation path applies to an accepted START; an illegal doorbell is rejected without invalidating an earlier cache.}
+\caption{Accepted START lifecycle. Candidate blocks are expanded externally. REUSE bypasses scoring; DONE waits for all write responses. Failures invalidate the cache, while an illegal doorbell is rejected before START.}
 \label{fig:flow}
 \end{figure*}
 

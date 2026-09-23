@@ -32,7 +32,7 @@
 \vspace{.3em}
 \begin{minipage}{\textwidth}
 \small
-\textbf{摘\quad 要：}学习型稀疏注意力索引需要协同实现低精度计算、候选选择与数据搬运。本文面向 CSA2 投影后的索引算子，设计可综合数字电路，并通过原生 256 位 AXI、AXI2Flit 和 UCIe 接入 Vortex 到在线存储的通路。Vortex 命令处理器的 DMA 发出门控寄存器请求，内存侧 RTL 另行发出数据 DMA。电路采用 16 路 E2M1 FP4 计算通道和 E8M0 分组缩放，计算 32 个索引头的有符号加权 ReLU 分数；以共享键缓冲区、稳定 Top-512 最小堆、明确的 FP32 舍入约定及 DMA 端点，支持全量扫描、候选集扫描和已提交索引复用。命令完成由实际存储响应驱动。\input{generated/abstract_results.tex}验证覆盖 \CoreCaseCount{} 个核心用例、\FpCaseCount{} 个浮点算术用例、预训练权重派生算子输入以及 AXI 错误与背压场景。投影、候选块生成、最终注意力计算、完整模型质量评估及 SRAM-CIM 物理实现不在本文已验证范围内。
+\textbf{摘\quad 要：}本文面向 CSA2 投影后的索引算子，在 Vortex 到在线存储的 AXI256／AXI2Flit／UCIe 通路上实现可综合 RTL。Vortex 命令处理器 DMA 提交门控命令，门控 RTL 通过自身 DMA 访问同一在线存储。16 路 E2M1 FP4 通道配合 E8M0 缩放，计算 32 个索引头的有符号加权 ReLU 分数；共享键缓冲区、稳定 Top-512 堆和明确的 FP32 舍入约定支持全量扫描、候选集扫描及已提交索引复用。命令完成由实际存储响应驱动。\input{generated/abstract_results.tex}验证覆盖 \CoreCaseCount{} 个核心用例、\FpCaseCount{} 个浮点算术用例、预训练权重派生输入及 AXI 错误与背压场景。投影、候选块生成、最终注意力、完整模型质量及 SRAM-CIM 物理实现不在已验证范围内。
 \par\medskip
 \textbf{关键词：}数字集成电路；稀疏注意力；FP4；近存计算；RTL；AXI；UCIe
 \end{minipage}

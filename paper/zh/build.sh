@@ -11,10 +11,5 @@ for figure in system core layout flow; do
     test -s "$source_dir/figures/generated/$figure.png"
 done
 "$python_bin" "$source_dir/finalize.py" --snapshot
-cd "$source_dir"
-xelatex -interaction=nonstopmode -halt-on-error -output-directory="$build_dir" main.tex > "$build_dir/latex.stdout"
-(cd "$build_dir" && BIBINPUTS="$source_dir": bibtex main > bibtex.stdout)
-xelatex -interaction=nonstopmode -halt-on-error -output-directory="$build_dir" main.tex >> "$build_dir/latex.stdout"
-xelatex -interaction=nonstopmode -halt-on-error -output-directory="$build_dir" main.tex >> "$build_dir/latex.stdout"
-cp "$build_dir/main.pdf" "$repo_dir/paper/SparseGate-paper-zh.pdf"
+"$repo_dir/paper/compile_tex.sh" "$source_dir" "$build_dir" xelatex "$repo_dir/paper/SparseGate-paper-zh.pdf"
 "$python_bin" "$source_dir/finalize.py"

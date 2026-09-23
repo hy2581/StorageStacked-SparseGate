@@ -9,7 +9,7 @@
 
 \begin{figure*}[t]
 \centering\includegraphics[width=\textwidth]{system.png}
-\caption{SparseGate 在统一系统中的部署位置及已验证的 Vortex 命令路径。Vortex 命令处理器的 DMA 发出门控寄存器 AXI 请求。CPU 与 CoralNPU 在共享链路上保留普通访存来源，但未画入这张命令路径图。门控电路位于 UCIe 之后，普通访问保留旁路。存储侧 C++ 分发器是验证适配层；寄存器端点、评分与选择核心以及 DMA 均由可综合 RTL 实现。返回数据与完成状态沿原有协议路径传递。本图为架构示意，精确的协议约定见配套仓库。}
+\caption{已验证的 Vortex CP DMA 命令路径。门控 MMIO 经 AXI／UCIe 到达 C++ 验证分发器与可综合的 SparseGate RTL。RTL DMA 与普通访问共用在线 mem\_sim，响应沿原链路返回。图中省略 CPU 与 CoralNPU 的普通访存流量。}
 \label{fig:system}
 \end{figure*}
 
@@ -77,7 +77,7 @@ FULL 模式扫描调用方给定的有效键区间。REINDEX 模式仅读取指�
 
 \begin{figure*}[t]
 \centering\includegraphics[width=.95\textwidth]{flow.png}
-\caption{命令生命周期。候选块在硬件外部生成，并展开为有效索引。复用模式绕过评分阶段，但所有产生输出的模式均须等待实际存储写响应后，才提交完成状态。图中的错误处理与缓存失效路径适用于已接受的 START 命令；非法门铃写入会被拒绝，且不会使此前的缓存失效。}
+\caption{已接受 START 的命令流程。候选块在硬件外展开；REUSE 跳过评分。DONE 等待全部写响应，命令失败使缓存失效；非法门铃写入在 START 前被拒绝。}
 \label{fig:flow}
 \end{figure*}
 
