@@ -15,8 +15,8 @@
       "mtime_ns": 1790041911808682029
     },
     "rtl/sparse_gate_axi/sparse_gate_axi.sv": {
-      "bytes": 18165,
-      "mtime_ns": 1790042577303927010
+      "bytes": 19367,
+      "mtime_ns": 1790232324209493968
     },
     "rtl/sparse_gate_axi/tests/test_axi.cpp": {
       "bytes": 9339,
@@ -24,7 +24,7 @@
     },
     "rtl/sparse_gate_axi/tests/run.sh": {
       "bytes": 2511,
-      "mtime_ns": 1790150877818584338
+      "mtime_ns": 1790151248703310270
     }
   },
   "verilator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)",
@@ -33,7 +33,7 @@
   "command": "bash rtl/sparse_gate_axi/tests/run.sh",
   "binary_bytes": 334120,
   "log_bytes": 1052,
-  "total_test_cycles": 27187,
+  "total_test_cycles": 27205,
   "jobs": [
     {
       "mode": 2,
@@ -62,7 +62,7 @@
     {
       "mode": 0,
       "status": 2,
-      "cycles": 7156,
+      "cycles": 7273,
       "reads": 132,
       "writes": 50,
       "scores": 25
@@ -70,7 +70,7 @@
     {
       "mode": 2,
       "status": 2,
-      "cycles": 1309,
+      "cycles": 1387,
       "reads": 45,
       "writes": 50,
       "scores": 0
@@ -86,7 +86,7 @@
     {
       "mode": 1,
       "status": 2,
-      "cycles": 2438,
+      "cycles": 2373,
       "reads": 61,
       "writes": 40,
       "scores": 4
@@ -94,7 +94,7 @@
     {
       "mode": 1,
       "status": 772,
-      "cycles": 781,
+      "cycles": 760,
       "reads": 16,
       "writes": 0,
       "scores": 1
@@ -102,7 +102,7 @@
     {
       "mode": 1,
       "status": 772,
-      "cycles": 803,
+      "cycles": 763,
       "reads": 16,
       "writes": 0,
       "scores": 1
@@ -118,7 +118,7 @@
     {
       "mode": 0,
       "status": 1284,
-      "cycles": 665,
+      "cycles": 692,
       "reads": 15,
       "writes": 0,
       "scores": 0
@@ -126,7 +126,7 @@
     {
       "mode": 0,
       "status": 1028,
-      "cycles": 5962,
+      "cycles": 5873,
       "reads": 87,
       "writes": 1,
       "scores": 25
@@ -134,7 +134,7 @@
     {
       "mode": 0,
       "status": 2,
-      "cycles": 7123,
+      "cycles": 7135,
       "reads": 132,
       "writes": 50,
       "scores": 25

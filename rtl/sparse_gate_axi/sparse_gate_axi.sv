@@ -151,7 +151,7 @@ module sparse_gate_axi #(
  typedef enum logic [5:0] {S_IDLE,S_START,S_JOB,S_QREQ,S_QWAIT,S_QLOAD,
  S_NEXT_KEY,S_CREQ,S_CWAIT,S_CSELECT,S_KREQ,S_KWAIT,S_KLOAD,S_KEYSTART,S_KEYWAIT,
  S_END,S_RESULTS,S_INSERT,S_OUTREQ,S_OUTWAIT,S_GREAD,S_GWAIT,S_GWRITE,S_GWRITEWAIT,
- S_ADVANCE,S_FINISH,S_ERROR} engine_state;
+ S_ADVANCE,S_FINISH,S_ERROR,S_SORT_SIFT,S_SORT_TAKE} engine_state;
  engine_state es;
  logic core_job_start,core_job_ready,core_load_ready;
  logic q_we,key_we;logic [5:0] q_head;logic [6:0] q_offset,key_offset;logic [7:0] q_data,key_data;
@@ -184,9 +184,21 @@ module sparse_gate_axi #(
  logic [5:0] head_no;logic [1:0] line_no;logic [5:0] byte_no;
  logic [255:0] line_data,candidate_line,gather_line;
  logic [31:0] scan_no,current_key,previous_candidate;
- logic [9:0] insert_pos,output_no;
- logic [31:0] insert_idx,insert_score;logic insert_last;
+ logic [9:0] output_no,sort_pos,sort_root,sort_size;
+ logic sort_extract;
+ logic [10:0] sort_left,sort_right;
+ logic [9:0] sort_child;
+ logic [8:0] sort_last;
  logic [31:0] gather_offset;
+ assign sort_left={sort_pos,1'b0}+11'd1;
+ assign sort_right=sort_left+11'd1;
+ assign sort_last=sort_size[8:0]-9'd1;
+ always_comb begin
+  sort_child=sort_left[9:0];
+  if(sort_left<{1'b0,sort_size} && sort_right<{1'b0,sort_size} &&
+     cache_idx[sort_right[8:0]]>cache_idx[sort_left[8:0]])
+   sort_child=sort_right[9:0];
+ end
  function automatic logic region_ok(input logic [63:0] a,n);
   logic [64:0] e;
   begin e={1'b0,a}+{1'b0,n};region_ok=n!=0 && a>=MEM_BASE && !e[64] &&
@@ -242,7 +254,7 @@ module sparse_gate_axi #(
    es<=S_IDLE;busy<=0;done_flag<=0;error_flag<=0;error_code<=0;cache_valid<=0;
    cycles<=0;score_count<=0;result_count<=0;head_no<=0;line_no<=0;byte_no<=0;
    scan_no<=0;current_key<=0;previous_candidate<=0;line_data<=0;candidate_line<=0;gather_line<=0;
-   insert_pos<=0;output_no<=0;insert_idx<=0;insert_score<=0;insert_last<=0;gather_offset<=0;
+   output_no<=0;sort_pos<=0;sort_root<=0;sort_size<=0;sort_extract<=0;gather_offset<=0;
    saved_context<=0;saved_epoch<=0;saved_nkeys<=0;saved_k<=0;saved_heads<=0;saved_qbase<=0;saved_kbase<=0;
   end else begin
    if(busy) cycles<=cycles+1;
@@ -308,14 +320,39 @@ module sparse_gate_axi #(
     S_END:if(core_end_ready) es<=S_RESULTS;
     S_RESULTS:begin
      if(core_error) begin error_code<=5;es<=S_ERROR;end
-     else if(core_result_valid) begin insert_idx<=core_result_index;insert_score<=core_result_score;
-      insert_last<=core_result_last;insert_pos<=result_count[9:0];es<=S_INSERT;end
+     else if(core_result_valid) begin
+      cache_idx[result_count[8:0]]<=core_result_index;
+      cache_score[result_count[8:0]]<=core_result_score;
+      result_count<=result_count+1;
+      if(core_result_last) begin
+       if(result_count==0) begin output_no<=0;es<=S_OUTREQ;end
+       else begin
+        sort_root<={1'b0,result_count[9:1]};sort_pos<={1'b0,result_count[9:1]};
+        sort_size<=result_count[9:0]+10'd1;sort_extract<=0;es<=S_SORT_SIFT;
+       end
+      end
+     end
     end
-    S_INSERT:begin
-     if(insert_pos>0&&cache_idx[(insert_pos[8:0]-9'd1)]>insert_idx) begin
-      cache_idx[insert_pos[8:0]]<=cache_idx[(insert_pos[8:0]-9'd1)];cache_score[insert_pos[8:0]]<=cache_score[(insert_pos[8:0]-9'd1)];insert_pos<=insert_pos-1;
-     end else begin cache_idx[insert_pos[8:0]]<=insert_idx;cache_score[insert_pos[8:0]]<=insert_score;result_count<=result_count+1;
-      if(insert_last) begin output_no<=0;es<=S_OUTREQ;end else es<=S_RESULTS;
+    S_SORT_SIFT:begin
+     if(sort_left<{1'b0,sort_size} && cache_idx[sort_child[8:0]]>cache_idx[sort_pos[8:0]]) begin
+      cache_idx[sort_pos[8:0]]<=cache_idx[sort_child[8:0]];
+      cache_score[sort_pos[8:0]]<=cache_score[sort_child[8:0]];
+      cache_idx[sort_child[8:0]]<=cache_idx[sort_pos[8:0]];
+      cache_score[sort_child[8:0]]<=cache_score[sort_pos[8:0]];
+      sort_pos<=sort_child;
+     end else if(!sort_extract && sort_root!=0) begin
+      sort_root<=sort_root-10'd1;sort_pos<=sort_root-10'd1;
+     end else if(!sort_extract) begin sort_extract<=1;es<=S_SORT_TAKE;end
+     else es<=S_SORT_TAKE;
+    end
+    S_SORT_TAKE:begin
+     if(sort_size<=1) begin output_no<=0;es<=S_OUTREQ;end
+     else begin
+      cache_idx[0]<=cache_idx[sort_last];
+      cache_score[0]<=cache_score[sort_last];
+      cache_idx[sort_last]<=cache_idx[0];
+      cache_score[sort_last]<=cache_score[0];
+      sort_size<=sort_size-10'd1;sort_pos<=0;es<=S_SORT_SIFT;
      end
     end
     S_OUTREQ:if(dma_req_ready) es<=S_OUTWAIT;

@@ -1,0 +1,55 @@
+{
+  "schema": "vortex_sort_ablation_v1",
+  "passed": true,
+  "scope": "One fixed H32/N640/K512 FULL command; trained indexer weights and seeded synthetic activations; same Vortex CP DMA, memory and link configuration",
+  "fixture": "research/fixtures/csa2_top512_fixture.h",
+  "baseline_case": "results/vortex-gate-long-20260924/case",
+  "optimized_case": "results/vortex-gate-long-sort-20260924/case",
+  "baseline_model_build_id": "vortex-gate-20260924T061744-1643908",
+  "optimized_model_build_id": "vortex-gate-20260924T064558-1649718",
+  "baseline_command_cycles": 670720,
+  "optimized_command_cycles": 615173,
+  "cycles_saved": 55547,
+  "command_cycle_reduction_fraction": 0.08281697280534352,
+  "baseline_position_sort_cycles": 60872,
+  "optimized_position_sort_cycles": 5374,
+  "position_sort_cycles_saved": 55498,
+  "dma_read_beats_each": 6624,
+  "dma_write_beats_each": 5120,
+  "selected_records_checked_each": 512,
+  "gather_bytes_checked_each": 147456,
+  "source": "Vortex command-processor DMA",
+  "baseline_vortex_mmio_requests": 313,
+  "optimized_vortex_mmio_requests": 289,
+  "host_mmio_requests_each": 0,
+  "link_aou_wave_guest_checks_passed_each": true,
+  "baseline_ucie_requests_during_command_by_region": {
+    "other": 3702,
+    "mmio": 284
+  },
+  "optimized_ucie_requests_during_command_by_region": {
+    "other": 3381,
+    "mmio": 260
+  },
+  "ucie_region_scope": "Only command busy interval and submitted AXI requests; fixture upload and result readback occur outside this interval",
+  "physical_area_or_energy_measured": false,
+  "baseline_state_cycles": {
+    "KEYWAIT": 392414,
+    "KLOAD": 61440,
+    "KWAIT": 33607,
+    "RESULTS": 512,
+    "INSERT": 60360,
+    "GWAIT": 63199,
+    "GWRITEWAIT": 35893
+  },
+  "optimized_state_cycles": {
+    "KEYWAIT": 392414,
+    "KLOAD": 61440,
+    "KWAIT": 33652,
+    "RESULTS": 512,
+    "SORT_SIFT": 4350,
+    "SORT_TAKE": 512,
+    "GWAIT": 63281,
+    "GWRITEWAIT": 36011
+  }
+}
