@@ -18,7 +18,19 @@ def load(path): return json.loads(path.read_text())
 def need(value, message):
     if not value: raise RuntimeError(message)
 
-def check(case, binary, manifest):
+PROFILES = {
+    'small': {'heads': 4, 'keys': 16, 'topk': 4, 'kv_bytes': 288,
+              'workload': 'gem5_axi/workloads/sparse_gate_vortex_cp.cpp',
+              'fixture': 'research/fixtures/system_smoke.h'},
+    'long': {'heads': 32, 'keys': 640, 'topk': 512, 'kv_bytes': 288,
+             'workload': 'gem5_axi/workloads/sparse_gate_vortex_long.cpp',
+             'fixture': 'research/fixtures/csa2_top512_fixture.h'},
+}
+
+def check(case, binary, manifest, profile='small'):
+    spec=PROFILES[profile]
+    expected_reads=3*spec['heads']+3*spec['keys']+spec['topk']*(spec['kv_bytes']//32)
+    expected_writes=spec['topk']*(1+spec['kv_bytes']//32)
     config=load(case/'config.json')['systemc_kernel']['system']['axi']
     need(config['gate_enable'] and int(config['gate_base'])==PAGE,'wrong gate aperture')
     model=load(manifest)
@@ -58,23 +70,28 @@ def check(case, binary, manifest):
     need(any(e['event']=='M_AR' for e in events) and any(e['event']=='M_AW' for e in events),
          'RTL did not issue read and write DMA')
     _,commands=audit_gate_wave(case/'sparse_gate.vcd',events,PAGE,protocol['period_ticks'])
-    need(len(commands)==1 and commands[0]['mode']==0 and commands[0]['status']==2,
+    need(len(commands)==1 and commands[0]['mode']==0 and commands[0]['status']==2 and
+         commands[0]['heads']==spec['heads'] and commands[0]['nkeys']==spec['keys'] and
+         commands[0]['topk']==spec['topk'],
          'RTL did not finish one successful FULL command')
     log=(case/'run.log').read_text(errors='replace')
     m=re.search(r'VORTEX_GATE_COMMAND mode=0 status=(\d+) count=(\d+) scores=(\d+) read_beats=(\d+) write_beats=(\d+) cycles=(\d+)',log)
     need(m and 'VORTEX SPARSE GATE PASS source=Vortex-CP-DMA' in log,
          'guest did not verify all scores, indices and gathered bytes')
     values=list(map(int,m.groups()))
-    need(values==[2,4,16,96,40,commands[0]['cycles']],
+    need(values==[2,spec['topk'],spec['keys'],expected_reads,expected_writes,commands[0]['cycles']],
          'guest counters differ from expected RTL command')
-    need(gate['dma_reads']==96 and gate['dma_writes']==40,'adapter DMA count differs')
+    need(gate['dma_reads']==expected_reads and gate['dma_writes']==expected_writes,
+         'adapter DMA count differs')
     timing=re.search(r'VortexGPGPU timing summary: core_read=(\d+) core_write=(\d+) cp_read=(\d+) cp_write=(\d+) completed=(\d+).*vortex_cycles=(\d+)',log)
     need(timing is not None,'Vortex source timing summary absent')
     core_read,core_write,cp_read,cp_write,completed,core_cycles=map(int,timing.groups())
     need(cp_read>0 and cp_write>0 and completed>=cp_read+cp_write and
          core_read==core_write==core_cycles==0,'source is not isolated Vortex CP DMA')
     result={'schema':'vortex_gate_system_v1','passed':True,'source':'Vortex command-processor DMA',
-            'scope':'One synthetic H4/N16/K4 FULL command; guest verifies all result and gather bytes',
+            'scope':('One synthetic H4/N16/K4 FULL command' if profile=='small' else
+                     'One H32/N640/K512 FULL command with trained weights and seeded synthetic activations')+
+                    '; guest verifies all result and gather bytes',
             'vortex_mmio_requests':len(vreq),'host_mmio_requests':len(hreq),
             'vortex_timing':{'cp_reads':cp_read,'cp_writes':cp_write,'core_reads':core_read,
                              'core_writes':core_write,'core_cycles':core_cycles},
@@ -83,8 +100,7 @@ def check(case, binary, manifest):
             'model_library_bytes':model['library_bytes'],
             'source_files':{name:(ROOT/name).stat().st_size for name in
                 ('gem5_axi/aou_backend.cc','gem5_axi/configs/run_vortex.py',
-                 'gem5_axi/workloads/sparse_gate_vortex_cp.cpp',
-                 'research/fixtures/system_smoke.h','env/run_vortex_gate.sh')},
+                 spec['workload'],spec['fixture'],'env/run_vortex_gate.sh')},
             'simulator_bytes':(ROOT/'gem5/build/AXI/gem5.opt').stat().st_size,
             'vortex_library_bytes':(ROOT/'vortex-gpu/vxbuild/sim/simx/libvortex-gem5.so').stat().st_size,
             'evidence_files':{name:(case/name).stat().st_size for name in
@@ -101,5 +117,6 @@ if __name__=='__main__':
     p.add_argument('case',type=Path)
     p.add_argument('--binary',type=Path,required=True)
     p.add_argument('--model-manifest',type=Path,required=True)
+    p.add_argument('--profile',choices=tuple(PROFILES),default='small')
     a=p.parse_args()
-    print(json.dumps(check(a.case,a.binary,a.model_manifest),indent=2))
+    print(json.dumps(check(a.case,a.binary,a.model_manifest,a.profile),indent=2))
