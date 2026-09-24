@@ -1,0 +1,41 @@
+{
+  "schema": "certified_pruning_feasibility_v1",
+  "scope": "Oracle-side conservative bound on fixed real weights plus synthetic activation; no RTL, online cycles, area or energy measured",
+  "fixture": "pretrained-layer20-random-activation-top512",
+  "fixture_heads": 32,
+  "fixture_positions": 640,
+  "order_seed": 1922,
+  "inputs_with_unusable_bound": 0,
+  "results": [
+    {
+      "topk": 512,
+      "keys": 640,
+      "heads": 32,
+      "checked_keys": 128,
+      "certified_rejections": 14,
+      "avoided_head_scores": 26,
+      "avoided_fraction_of_all_head_scores": 0.00126953125,
+      "full_head_scores": 20480
+    },
+    {
+      "topk": 128,
+      "keys": 640,
+      "heads": 32,
+      "checked_keys": 512,
+      "certified_rejections": 310,
+      "avoided_head_scores": 611,
+      "avoided_fraction_of_all_head_scores": 0.029833984375,
+      "full_head_scores": 20480
+    },
+    {
+      "topk": 64,
+      "keys": 640,
+      "heads": 32,
+      "checked_keys": 576,
+      "certified_rejections": 427,
+      "avoided_head_scores": 842,
+      "avoided_fraction_of_all_head_scores": 0.04111328125,
+      "full_head_scores": 20480
+    }
+  ]
+}

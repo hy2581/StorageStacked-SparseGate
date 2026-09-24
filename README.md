@@ -12,6 +12,7 @@
 - [`evidence/system/vortex_gate_cp.json`](evidence/system/vortex_gate_cp.json)：已保存的 Vortex CP DMA H4/N16/K4 FULL 用例回执。31 笔门控寄存器请求来自 Vortex，宿主发出 0 笔；RTL 忙区间 5201 周期，读／写 DMA 为 96／40 拍，4 条结果和 1152 B 聚集数据已核对。
 - [`evidence/core`](evidence/core/)：独立核心验证与综合证据。H32/N640/K512 数据属于独立 RTL 核心实验，不能当作 Vortex 在线系统吞吐量。
 - 唯一论文：[中文最终整理稿](paper/SparseGate-final.pdf)。构建说明见 [`paper/README.md`](paper/README.md)。
+- [创新性审计与后续验收门槛](paper/innovation-gap.md)：区分已验证的系统基线和仍需实现的机制、真实负载与公平对照。
 
 Vortex 系统用例只运行命令处理器 DMA，GPU 核函数执行周期为 0。算法核外仍包含投影、候选块生成和最终注意力；没有完成完整模型质量、SRAM-CIM 宏绑定或物理签核。
 
